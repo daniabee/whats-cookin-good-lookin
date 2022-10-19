@@ -3,7 +3,6 @@ import RecipeRepository from "../src/classes/RecipeRepository";
 import User from "./classes/User";
 import Ingredient from "../src/classes/Ingredient-class";
 import Recipe from "./classes/Recipe";
-const allRecipes = new RecipeRepository();
 const ingredientsList = [];
 const allRecipesList = [];
 const currentUsers = [];
@@ -41,4 +40,4 @@ fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
     setUp(data.recipeData, allRecipesList, Recipe);
   });
 
-export { allRecipes, ingredientsList, allRecipesList, currentUsers };
+export { ingredientsList, allRecipesList, currentUsers };
