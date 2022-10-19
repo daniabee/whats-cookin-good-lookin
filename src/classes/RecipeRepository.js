@@ -1,8 +1,8 @@
 import Recipe from "../classes/Recipe";
 
 class RecipeRepository {
-  constructor() {
-    this.listOfAllRecipes = [];
+  constructor(dataSet) {
+    this.listOfAllRecipes = dataSet;
   }
 
   filterByTag(tag) {
@@ -13,12 +13,6 @@ class RecipeRepository {
 
   filterByName(name) {
     return this.listOfAllRecipes.filter((recipe) => recipe.name === name);
-  }
-
-  addRecipes(recipeData) {
-    this.listOfAllRecipes = recipeData.map((recipe) => {
-      return new Recipe(recipe);
-    });
   }
 }
 
