@@ -22,27 +22,34 @@ body {
   justify-content: center;
   margin-left: 2vw;
   margin-right: 2vw;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   position: relative;
 }
 
 .single-recipe-img {
-  width: 10vw;
-  height: 10vw;
+  width: 15vw;
+  height: 15vw;
 
 }
 
 .single-recipe-text {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
+  width: 15vw;
 }
 
+p {
+ font-size: 2vw;
+}
 .filter-by-tag-display {
 
 }
 
 .label-for-select-a-tag {
-
+  font-size: 2vw;
 }
 
 
