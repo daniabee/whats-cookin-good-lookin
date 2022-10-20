@@ -16,6 +16,7 @@ console.log("Hello world");
 let userData;
 let ingredientsData;
 let recipeData;
+let currentUser;
 
 // const allRecipes = new RecipeRepository(allRecipesList);
 Promise.all([
@@ -29,7 +30,22 @@ Promise.all([
   ingredientsData = data[1];
   recipeData = data[2];
 
+  generateRandomUser(userData);
+
+  console.log(userData.usersData[0].name);
+
   console.log(userData);
   console.log(ingredientsData);
   console.log(recipeData);
+  console.log(currentUser);
 });
+
+function generateRandomUser(usersList) {
+  const randomIndex = getRandomIndex(usersList.length);
+  const randomUserData = usersList[randomIndex];
+  currentUser = new User(randomUserData, recipeRepository);
+}
+
+function getRandomIndex(totalUsers) {
+  return Math.floor(Math.random() * totalUsers);
+}

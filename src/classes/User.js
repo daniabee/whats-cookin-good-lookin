@@ -1,5 +1,5 @@
 class User {
-  constructor(name, id, pantry) {
+  constructor(dataSet) {
     // May need to refactor parameter to be object, will be determined by DOM needs (TBD)
     this.name = name;
     this.id = id;
@@ -7,20 +7,20 @@ class User {
     this.recipesToCook = [];
   }
 
-  generateRandomUser(usersList) {
-    // Takes argument of the array of users data from either users.js or the fetch() request
-    const totalUsers = usersList.length;
+  // generateRandomUser(usersList) {
+  //   // Takes argument of the array of users data from either users.js or the fetch() request
+  //   const totalUsers = usersList.length;
 
-    function createRandomIndex(totalUsers) {
-      return Math.floor(Math.random() * totalUsers);
-    }
+  //   function createRandomIndex(totalUsers) {
+  //     return Math.floor(Math.random() * totalUsers);
+  //   }
 
-    let randomIndex = createRandomIndex(totalUsers);
+  //   let randomIndex = createRandomIndex(totalUsers);
 
-    this.name = usersList[randomIndex]["name"];
-    this.id = usersList[randomIndex]["id"];
-    this.pantry = usersList[randomIndex]["pantry"];
-  }
+  //   this.name = usersList[randomIndex].name;
+  //   this.id = usersList[randomIndex].id;
+  //   this.pantry = usersList[randomIndex].pantry;
+  // }
 
   addRecipe(recipeID, allRecipes) {
     // 🚨 Important to set up dom/HTML/CSS to have IDs so we can use that data to match here below
