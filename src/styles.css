@@ -2,25 +2,58 @@ body {
   background-color: blueviolet;
 }
 
+.page-title {
+
+}
+
+.display-thumbnails-filter-dropdown {
+  display: flex;
+}
+
 .all-recipe-thumbnails {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.single-recipe-thumbnail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  position: relative;
+}
+
+.single-recipe-img {
+  width: 10vw;
+  height: 10vw;
+
+}
+
+.single-recipe-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.filter-by-tag-display {
+
+}
+
+.label-for-select-a-tag {
+
 }
 
 
+
+
+
+.hidden {
+  display: none;
+}
 
 /*
-.saved-view {
-  padding: 30px;
-}
-
-.saved-covers-section {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
 .mini-cover {
   height: 40vh;
   margin: 1.3vh auto;
