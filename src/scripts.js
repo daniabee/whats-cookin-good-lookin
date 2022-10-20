@@ -32,18 +32,16 @@ Promise.all([
 
   generateRandomUser(userData);
 
-  console.log(userData.usersData[0].name);
-
   console.log(userData);
   console.log(ingredientsData);
   console.log(recipeData);
   console.log(currentUser);
 });
 
-function generateRandomUser(usersList) {
-  const randomIndex = getRandomIndex(usersList.length);
-  const randomUserData = usersList[randomIndex];
-  currentUser = new User(randomUserData, recipeRepository);
+function generateRandomUser(dataSet) {
+  const randomIndex = getRandomIndex(dataSet.usersData.length);
+  const randomUserData = dataSet.usersData[randomIndex];
+  currentUser = new User(randomUserData);
 }
 
 function getRandomIndex(totalUsers) {

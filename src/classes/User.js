@@ -1,9 +1,9 @@
 class User {
   constructor(dataSet) {
     // May need to refactor parameter to be object, will be determined by DOM needs (TBD)
-    this.name = name;
-    this.id = id;
-    this.pantry = pantry;
+    this.name = dataSet.name;
+    this.id = dataSet.id;
+    this.pantry = dataSet.pantry;
     this.recipesToCook = [];
   }
 
