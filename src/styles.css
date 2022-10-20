@@ -13,7 +13,7 @@ nav {
 /* Navagation display */
 .welcome-wrapper {
  width: 19rem;
- border:1.5px solid purple;
+ border:2px solid black;
  display: flex;
  justify-content: center;
 }
