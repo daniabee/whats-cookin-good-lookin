@@ -5,20 +5,13 @@ import Ingredient from "../src/classes/Ingredient-class";
 import Recipe from "./classes/Recipe";
 const ingredientsList = [];
 const allRecipesList = [];
-const currentUsers = [];
+const users = [];
 
 fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users")
   .then((res) => res.json())
   .then((data) => {
-    // currentUser.generateRandomUser(data.usersData);
-    setUpUser(data.usersData);
+    setUp(data.usersData, users, User);
   });
-
-function setUpUser(dataSet) {
-  const currentUser = new User();
-  currentUser.generateRandomUser(dataSet);
-  currentUsers.push(currentUser);
-}
 
 console.log("I will be a fetch request!");
 
@@ -40,4 +33,4 @@ fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
     setUp(data.recipeData, allRecipesList, Recipe);
   });
 
-export { ingredientsList, allRecipesList, currentUsers };
+export { ingredientsList, allRecipesList, users };
