@@ -1,3 +1,47 @@
 body {
   background-color: blueviolet;
 }
+
+.all-recipe-thumbnails {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+/*
+.saved-view {
+  padding: 30px;
+}
+
+.saved-covers-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.mini-cover {
+  height: 40vh;
+  margin: 1.3vh auto;
+  position: relative;
+  width: 14vw;
+}
+
+.mini-cover > .cover-title {
+  bottom: 45px;
+  font-size: 40px;
+}
+
+.mini-cover > .cover-title::first-letter {
+  font-size: 60px;
+}
+
+.mini-cover > .tagline {
+  background: RGBA(126, 84, 150, .5);
+  bottom: 5px;
+  color: #fcf4dc;
+  font-size: 10px;
+  padding: 5px;
+}
+*/
