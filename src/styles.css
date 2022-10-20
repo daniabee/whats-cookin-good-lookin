@@ -53,5 +53,15 @@ margin-left: 8px;
   border:.5px solid black;
   height:3cm;
   margin-left: 16px;
-  
+  margin-right:16px;
+  align-content: center;
+  justify-content: space-around;
+  }
+
+.ing {
+  border:.75px solid black;
+  border-radius: 100%;
+  width:65px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
