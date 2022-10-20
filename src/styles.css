@@ -1,9 +1,9 @@
-body {
-  background-color: blueviolet;
+.hide {
+  display: none;
 }
 
 .page-title {
-
+  font-size: 4vw;
 }
 
 .display-thumbnails-filter-dropdown {
@@ -24,64 +24,31 @@ body {
   margin-right: 2vw;
   margin-top: 2vh;
   margin-bottom: 2vh;
-  position: relative;
 }
 
 .single-recipe-img {
   width: 15vw;
   height: 15vw;
-
 }
 
 .single-recipe-text {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
-  width: 15vw;
+  align-items: center;
 }
 
 p {
  font-size: 2vw;
 }
-.filter-by-tag-display {
 
+.filter-by-tag-display {
+  margin-left: 5vw;
+  margin-right: 5vw;
 }
 
 .label-for-select-a-tag {
-  font-size: 2vw;
+  white-space: nowrap;
+  font-size: 1.5vw;
+  margin-bottom: 1vh;
+
 }
-
-
-
-
-
-.hidden {
-  display: none;
-}
-
-/*
-.mini-cover {
-  height: 40vh;
-  margin: 1.3vh auto;
-  position: relative;
-  width: 14vw;
-}
-
-.mini-cover > .cover-title {
-  bottom: 45px;
-  font-size: 40px;
-}
-
-.mini-cover > .cover-title::first-letter {
-  font-size: 60px;
-}
-
-.mini-cover > .tagline {
-  background: RGBA(126, 84, 150, .5);
-  bottom: 5px;
-  color: #fcf4dc;
-  font-size: 10px;
-  padding: 5px;
-}
-*/
