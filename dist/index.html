@@ -12,43 +12,43 @@
     <main>
       <header>
         <h1>RECIPE NAME</h1>
-        <button type="button" id="">save to my recipes</button>
+        <button type="button" class="save-button" id="">save to my recipes</button>
         <!-- 👆 note: when a recipe on the recipes page is clicked, the ID of this button should change to that recipe's ID -->
       </header>
-      <section>
-        <img src="" alt="" class="specific-recipe-img">
-      </section>
-      <section>
-        <div>
-          <h3>INGREDIENTS</h3>
-          <ul>
-            <li>wheat flour</li>
-            <li>bicarbonate of soda</li>
-            <li>eggs</li>
-            <li>brown sugar</li>
-            <li>can of beans</li>
-            <li>chicken scraps</li>
-            <li>cat food</li>
-            <li>sriracha sauce</li>
-            <li>ketchup</li>
-            <li>onions</li>
-          </ul>
-        </div>
-        <div>
-          <h3>INSTRUCTIONS</h3>
-          <ol>
-            <li>Watch how to make this recipe.</li>
-            <li>In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.</li>
-            <li>In another large bowl mix together all-purpose flour and buckwheat flour.</li>
-            <li>Mix until there are no lumps and the batter is smooth and velvety.</li>
-            <li>In a large cast iron skillet or flat grill pan over medium-high heat, melt a tablespoon of butter. Ladle pancake batter onto skillet to desired size. Using the ladle, form pancake into circular shape. Cook on each side for 2 to 3 minutes or until golden brown. Set pancakes aside and keep warm. Repeat with remaining ingredients.</li>
-          </ol>
-        </div>
-        <div>
-          <h3>COST</h3>
-          <p>$6.00</p>
-        </div>
-      </section>
+      <div class="specific-recipe-display">
+        <section>
+          <img src="" alt="" class="specific-recipe-img">
+       </section>
+       <section>
+         <div>
+           <h3>INGREDIENTS</h3>
+            <ul>
+              <li>wheat flour</li>
+              <li>bicarbonate of soda</li>
+              <li>eggs</li>
+              <li>brown sugar</li>
+              <li>can of beans</li>
+              <li>chicken scraps</li>
+              <li>cat food</li>
+              <li>sriracha sauce</li>
+              <li>ketchup</li>
+              <li>onions</li>
+            </ul>
+          </div>
+          <div>
+            <h3>INSTRUCTIONS</h3>
+            <ol>
+              <li>Watch how to make this recipe.</li>
+              <li>In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.</li>
+              <li>In another large bowl mix together all-purpose flour and buckwheat flour.</li>
+            </ol>
+          </div>
+          <div>
+           <h3>COST</h3>
+           <p>$6.00</p>
+          </div>
+        </section>
+      </div>
     </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->

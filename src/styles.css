@@ -7,3 +7,20 @@ body {
   width: 300px;
   padding: 20px;
 }
+
+div {
+  border: 1px;
+  border-style: solid;
+}
+
+.specific-recipe-heading
+
+.save-button {
+  margin-bottom: 27px;
+}
+
+.specific-recipe-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
