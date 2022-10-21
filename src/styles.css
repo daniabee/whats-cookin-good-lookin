@@ -3,20 +3,24 @@ body {
 }
 
 .specific-recipe-img {
-  height: 300px;
-  width: 300px;
-  padding: 20px;
+  width: 380px;
+  padding: 30px;
+  margin-top: -7px;
 }
 
-div {
+/* div {
   border: 1px;
   border-style: solid;
+} */
+
+.specific-recipe-heading {
+  margin-left: 30px;
+  margin-bottom: 4px;
 }
 
-.specific-recipe-heading
-
 .save-button {
-  margin-bottom: 27px;
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
 
 .specific-recipe-display {
