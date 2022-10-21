@@ -1,3 +1,9 @@
 body {
   /* background-color: blueviolet; */
 }
+
+.specific-recipe-img {
+  height: 300px;
+  width: 300px;
+  padding: 20px;
+}
