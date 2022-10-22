@@ -21,7 +21,7 @@ body {
 nav {
   display: flex;
   flex-direction: row;
-  border: solid;
+  border: 2px solid rgb(168 72 47);
   align-items: stretch;
   justify-content: space-between;
   background-color: rgb(87, 36, 41);
@@ -65,8 +65,10 @@ nav {
   font-size: 90pt;
   font-family: "Abril Fatface", cursive;
   width: 900px;
+  margin-top: 30px;
   margin-left: 65px;
   color: rgb(87, 36, 41);
+  text-shadow: 4px 0px rgb(168 72 47);
 }
 
 .homepage-body {
@@ -76,9 +78,9 @@ nav {
   height: 90vh;
   background-image: url("./images/Asset1.png");
   background-repeat: no-repeat;
-  background-position-x: right;
+  background-position-x: 90%;
   background-position-y: bottom;
-  background-size: 39%;
+  background-size: 37%;
 }
 
 .featured-recipe-wrapper {
@@ -112,12 +114,17 @@ nav {
   display: flex;
   flex-direction: column;
   margin: 30px;
+  height: 80vh;
+  background-image: url("./images/Asset4.png");
+  background-repeat: no-repeat;
+  background-position-x: 80%;
+  background-position-y: bottom;
+  background-size: 55%;
 }
 
 .about-paragraph {
   display: flex;
   justify-content: center;
-  border: 2px solid rgb(1, 1, 1);
 }
 
 #about {
@@ -178,8 +185,18 @@ nav {
   justify-content: space-around;
 }
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
+
+.all-recipes-main,
+.saved-recipes-main {
+  background-image: url("./images/Asset9.png");
+}
 .page-title {
-  font-size: 4vw;
+  font-family: "Playball", cursive;
+  font-size: 7vw;
+  color: rgb(87, 36, 41);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 30px;
 }
 
 .display-thumbnails-filter-dropdown {

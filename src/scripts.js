@@ -11,8 +11,6 @@ import "./images/AndrewProfile.png";
 import "./images/BrettProfile.png";
 import "./images/CourtneyProfile.png";
 import "./images/DaniProfile.png";
-import "./images/Asset1.png";
-import "./images/paper.png";
 
 //VARIABLES-----------------------------------------------------
 //Global VARIABLES ---------
