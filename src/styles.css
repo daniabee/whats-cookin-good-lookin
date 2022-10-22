@@ -4,52 +4,82 @@
  green = 145,147,109
  beige = 230, 205, 141
  forest green = 156,126, 68
+ black = 38,38,38
  */
 
 /* font-family: 'Abril Fatface', cursive;
  font-family: 'Playball', cursive;
  font-family: 'Playfair Display', serif; */
- body {
-   font-family: "Playfair Display", serif;
- }
 
+body {
+  font-family: "Playfair Display", serif;
+  background-color: rgb(230, 205, 141);
+  background-image: url("./images/paper.png");
+}
 
- /* Navagation display */
+/* Navagation display */
 nav {
-   display: flex;
-    flex-direction: row;
-    border: solid;
-    align-items: stretch;
-    justify-content: space-between;
-   }
+  display: flex;
+  flex-direction: row;
+  border: solid;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: rgb(87, 36, 41);
+}
+
 .welcome-wrapper {
-   margin-left: 30px;
-   display: flex;
-   justify-content: center;
-   font-size: 10pt;
- }
+  margin-left: 30px;
+  display: flex;
+  justify-content: center;
+  font-size: 10pt;
+  color: rgb(230, 205, 141);
+}
 
 .user-wrapper {
-   margin-left: 8px;
- }
+  margin-left: 8px;
+}
+
+.nav-btns {
+  font-family: "Playfair Display", serif;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-btns:hover {
+  cursor: pointer;
+}
 
 .nav-btns-wrapper {
-   width: 35rem;
-   margin-top: 5px;
-   margin-right: 20px;
-   height: 3rem;
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
- }
- /* HomePage */
+  width: 35rem;
+  margin-top: 5px;
+  margin-right: 20px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+/* HomePage */
+#title {
+  align-self: flex-start;
+  flex-wrap: wrap;
+  font-size: 90pt;
+  font-family: "Abril Fatface", cursive;
+  width: 900px;
+  margin-left: 65px;
+  color: rgb(87, 36, 41);
+}
+
 .homepage-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  border: 1px solid black;
-  height: 5in;
- }
+  /* justify-content: space-evenly; */
+  height: 90vh;
+  background-image: url("./images/Asset1.png");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: 39%;
+}
 
 .featured-recipe-wrapper {
   border: 1px solid black;
@@ -61,7 +91,6 @@ nav {
 
 .filter-ingr-wrapper {
   display: flex;
-  border: .5px solid black;
   height: 3cm;
   margin-left: 16px;
   margin-right: 16px;
@@ -69,11 +98,12 @@ nav {
   justify-content: space-around;
 }
 
- .ing {
-  border: .75px solid black;
-  border-radius: 100%;
-  width: 65px;
-  margin-top: 10px;
+.ing {
+  border: 2px solid rgb(87, 36, 41);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 /* About Page section */
@@ -196,9 +226,8 @@ nav {
   white-space: nowrap;
   font-size: 1.5vw;
   margin-bottom: 1vh;
-
 }
 /* ~~End All/Saved Recipes CSS ~~ */
- .hide {
-   display: none;
- }
+.hide {
+  display: none;
+}

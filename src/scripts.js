@@ -11,6 +11,8 @@ import "./images/AndrewProfile.png";
 import "./images/BrettProfile.png";
 import "./images/CourtneyProfile.png";
 import "./images/DaniProfile.png";
+import "./images/Asset1.png";
+import "./images/paper.png";
 
 //VARIABLES-----------------------------------------------------
 //Global VARIABLES ---------
@@ -25,14 +27,12 @@ let currentUser;
 //Saved Recipes Page VARIABLES --------
 //Specific Recipe Page VARIABLES --------
 
-
 //QUERY SELECTORS-----------------------------------------------
 //Navbar QUERY SELECTORS ---------
 //Home Page QUERY SELECTORS--------
 //All Recipes Page QUERY SELECTORS--------
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
-
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 
@@ -57,7 +57,6 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
   makeIngredientsList(dataSet2);
   currentUser = new User();
   currentUser.generateRandomUser(dataSet3.usersData);
-  
 }
 
 function makeRecipesList(dataSet) {
@@ -78,7 +77,6 @@ function makeIngredientsList(dataSet) {
 //All Recipes Page EVENT LISTENERS --------
 //Saved Recipes Page EVENT LISTENERS --------
 //Specific Recipe Page EVENT LISTENERS --------
-
 
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
