@@ -38,6 +38,7 @@ const allRecipesPageTitle = document.querySelector(".page-title");
 const allRecipeThumbnailsSection = document.querySelector(
   ".all-recipe-thumbnails"
 );
+const filterDropDown = document.querySelector(".list-of-tag-options");
 const allRecipeFilterTagOptions = document.querySelector(
   ".list-of-tag-options"
 );
@@ -71,8 +72,10 @@ Promise.all([
   recipeData = data[2];
 
   createInstances(recipeData, ingredientsData, userData);
+  populateTagFilter(recipeData);
 
   allRecipes = new RecipeRepository(recipeData);
+
   console.log(allRecipes);
   console.log(currentUser);
 });
@@ -148,10 +151,22 @@ function createRecipesOfTag(tag, recipeList) {
   return recipeList.filter((recipe) => recipe.tags.includes(tag));
 }
 
+function populateTagFilter(recipeList) {
+  let demoCount = 0;
+  const tagsList = createListOfTags(recipeList);
+  tagsList.forEach((tag) => {
+    demoCount++;
+    filterDropDown.innerHTML += `
+    <option class="tag-options-text" value="${demoCount}">${tag}</option>
+  `;
+  });
+}
+
 function displayRecipesOfSameTag(tag, recipeList) {
   const recipesWithTag = createRecipesOfTag(tag, recipeList);
   displayRecipeThumbnails(recipeList, "");
 }
+
 //Saved Recipes Page FUNCTIONS --------
 function displaySavedRecipesPage() {
   specificRecipePage.classList.add("hide");

@@ -15,56 +15,55 @@
     <nav>
       <section>
         <div class="welcome-wrapper">
-           <h2>Welcome:</h2>
+          <h2>Welcome:</h2>
           <section>
             <div class="user-wrapper">
               <h2>User</h2>
             </div>
           </section>
         </div>
-        </section>
-        <section>
-          <div class="nav-btns-wrapper">
-            <button class="nav-btns">Home</button>
-            <button class="nav-btns">About</button>
-            <button class="nav-btns all-recipes-button">All Recipes</button>
-            <button class="nav-btns saved-recipes-button">Saved Recipes</button>
-            <div class="search-bar-wrapper">
-              <input type="text" placeholder="search All Recipes" />
-              <button type="submit">Search</button>
-            </div>
+      </section>
+      <section>
+        <div class="nav-btns-wrapper">
+          <button class="nav-btns">Home</button>
+          <button class="nav-btns">About</button>
+          <button class="nav-btns all-recipes-button">All Recipes</button>
+          <button class="nav-btns saved-recipes-button">Saved Recipes</button>
+          <div class="search-bar-wrapper">
+            <input type="text" placeholder="search All Recipes" />
+            <button type="submit">Search</button>
           </div>
-        </section>
+        </div>
+      </section>
     </nav>
     <main class="hide homepage-area">
-        <section class="homepage-body">
-          <section class="featured-recipe-wrapper">
-          </section>
-          <section>
-            <div class="filter-ingr-wrapper">
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-            </div>
-          </section>
+      <section class="homepage-body">
+        <section class="featured-recipe-wrapper"></section>
+        <section>
+          <div class="filter-ingr-wrapper">
+            <section class="ing">
+              <img src="" alt="" />
+            </section>
+            <section class="ing">
+              <img src="" alt="" />
+            </section>
+            <section class="ing">
+              <img src="" alt="" />
+            </section>
+            <section class="ing">
+              <img src="" alt="" />
+            </section>
+            <section class="ing">
+              <img src="" alt="" />
+            </section>
+            <section class="ing">
+              <img src="" alt="" />
+            </section>
+            <section class="ing">
+              <img src="" alt="" />
+            </section>
+          </div>
+        </section>
       </section>
     </main>
     <main class="hide about-page">
@@ -120,7 +119,7 @@
         </div>
       </section>
     </main>
-    <main class = "all-recipes-main saved-recipes-main">
+    <main class="all-recipes-main saved-recipes-main">
       <h1 class="page-title">All RECIPES</h1>
       <!-- The above innerText could be dynamic for saved vs all recipes pages -->
       <div class="display-thumbnails-filter-dropdown">
@@ -136,28 +135,38 @@
           <!-- end dynamic elements -->
         </section>
         <section class="filter-by-tag-display">
-          <label class="label-for-select-a-tag" for="tag-select">Select a tag:</label>
-          <select class = "list-of-tag-options" name="tags">
-            <option class="tag-options-text" value="default">Please choose a tag</option>
+          <label class="label-for-select-a-tag" for="tag-select"
+            >Select a tag:</label
+          >
+          <select class="list-of-tag-options" name="tags">
+            <option class="tag-options-text" value="default">
+              Please choose a tag
+            </option>
             <!-- the html inbetween the comments will need to be dynamic. -->
-            <option class="tag-options-text" value="demo1">Demo1</option>
+            <!-- <option class="tag-options-text" value="demo1">Demo1</option>
             <option class="tag-options-text" value="demo2">Demo2</option>
             <option class="tag-options-text" value="demo3">Demo3</option>
-            <option class="tag-options-text" value="demo4">Demo4</option>
+            <option class="tag-options-text" value="demo4">Demo4</option> -->
             <!-- the tags need to be dynamic, based on an iteration through an array of all tags possible (no repeated tags). We need to access the inner html of this select element. -->
           </select>
         </section>
       </div>
     </main>
-    <main class="  hide specific-recipe-page ">
+    <main class="hide specific-recipe-page">
       <header>
         <h1 class="specific-recipe-heading">RECIPE NAME</h1>
-        <button type="button" class="save-button" id="">save to my recipes</button>
+        <button type="button" class="save-button" id="">
+          save to my recipes
+        </button>
         <!-- 👆 note: when a recipe on the recipes page is clicked, the ID of this button should change to that recipe's ID -->
       </header>
       <div class="specific-recipe-display">
         <section>
-          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" class="specific-recipe-img">
+          <img
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt=""
+            class="specific-recipe-img"
+          />
         </section>
         <section>
           <div>
@@ -180,10 +189,19 @@
             <h3>INSTRUCTIONS</h3>
             <ol class="specific-recipe-instructions">
               <li>Watch how to make this recipe.</li>
-              <li>In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.</li>
-              <li>In another large bowl mix together all-purpose flour and buckwheat flour.</li>
-              <li>Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice
-                cream and a drizzle of chocolate sauce.</li>
+              <li>
+                In a large bowl, whisk together buttermilk, eggs, baking powder,
+                sugar, salt and butter.
+              </li>
+              <li>
+                In another large bowl mix together all-purpose flour and
+                buckwheat flour.
+              </li>
+              <li>
+                Remove the pan from the oven and let sit for 10 minutes before
+                removing onto a cooling rack.Top with ice cream and a drizzle of
+                chocolate sauce.
+              </li>
               <!-- delete these <li>s as they will be created dynamically -->
             </ol>
           </div>
@@ -194,7 +212,6 @@
         </section>
       </div>
     </main>
-
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
