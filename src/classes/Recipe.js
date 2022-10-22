@@ -28,7 +28,7 @@ class Recipe {
       for (let i = 0; i < dataSet.length; i++) {
         if (ingredient.id === dataSet[i].id) {
           let totalCost =
-            dataSet[i].estimatedCostInCents * ingredient.quantity.amount;
+            dataSet[i].costInCents * ingredient.quantity.amount;
           let dollars = totalCost / 100;
           dollars = dollars.toFixed(2);
           return parseFloat(dollars);

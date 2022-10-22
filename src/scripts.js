@@ -216,7 +216,7 @@ function generateCost(recipe) {
   });
   
   specificRecipeCost.innerText = ''; 
-  specificRecipeCost.innerText = totalCostDisplay;
+  specificRecipeCost.innerText = `$${totalCostDisplay}`;
   console.log('total cost display: ', totalCostDisplay);
 }
 
