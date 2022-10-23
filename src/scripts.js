@@ -202,14 +202,9 @@ function displaySavedRecipesPage() {
 };
 
 function deleteSavedRecipe(event) {
-  currentUser.recipesToCook.map(recipe => {
-    if (
-      event.target.classList.contains('delete-recipe') &&
-        recipe.id === parseInt(event.target.parentElement.parentElement.id)
-    ) {
-      currentUser.recipesToCook.splice(currentUser.recipesToCook.indexOf(recipe), 1)
-    }
-   })
+  if (event.target.classList.contains('delete-recipe')) {
+    currentUser.removeRecipe(+event.target.parentElement.parentElement.id)
+  }
   displayRecipeThumbnails(currentUser.recipesToCook, '🗑', 'delete-recipe')
 }
 
