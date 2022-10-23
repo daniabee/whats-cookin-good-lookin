@@ -19,6 +19,7 @@ let ingredientsData;
 let recipeData;
 let currentUser;
 let allRecipes;
+let currentPage = "allRecipes";
 
 //Navbar VARIABLES ---------
 //Home Page VARIABLES --------
@@ -38,10 +39,10 @@ const allRecipesPageTitle = document.querySelector(".page-title");
 const allRecipeThumbnailsSection = document.querySelector(
   ".all-recipe-thumbnails"
 );
-const filterDropDown = document.querySelector(".list-of-tag-options");
 const allRecipeFilterTagOptions = document.querySelector(
   ".list-of-tag-options"
 );
+const dropDownSearchButton = document.querySelector(".drop-down-search");
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
 const specificRecipePage = document.querySelector(".specific-recipe-page");
@@ -105,7 +106,7 @@ function makeIngredientsList(dataSet) {
 //All Recipes Page EVENT LISTENERS --------
 allRecipesMain.addEventListener("click", loadSpecificRecipe); //BRETT ADDITION, KEEP ✅
 allReipesPageButton.addEventListener("click", displayAllRecipesPage);
-allRecipeFilterTagOptions.addEventListener("click", displayRecipesOfSameTag);
+dropDownSearchButton.addEventListener(".click", selectFilter);
 //Saved Recipes Page EVENT LISTENERS --------
 savedReipesPageButton.addEventListener("click", displaySavedRecipesPage);
 //Specific Recipe Page EVENT LISTENERS --------
@@ -144,7 +145,9 @@ function createListOfTags(recipesList) {
   let allTags = recipesList.reduce((prev, current) => {
     return prev.concat(current.tags);
   }, []);
-  return allTags.filter((recipe, index) => allTags.indexOf(recipe) === index);
+  return allTags
+    .filter((recipe, index) => allTags.indexOf(recipe) === index)
+    .sort();
 }
 
 function createRecipesOfTag(tag, recipeList) {
@@ -156,10 +159,16 @@ function populateTagFilter(recipeList) {
   const tagsList = createListOfTags(recipeList);
   tagsList.forEach((tag) => {
     demoCount++;
-    filterDropDown.innerHTML += `
+    allRecipeFilterTagOptions.innerHTML += `
     <option class="tag-options-text" value="${demoCount}">${tag}</option>
   `;
   });
+}
+
+function selectFilter() {
+  let tag = allRecipeFilterTagOptions.value;
+  console.log(allRecipeFilterTagOptions.value);
+  displayRecipesOfSameTag(tag, recipeData);
 }
 
 function displayRecipesOfSameTag(tag, recipeList) {
