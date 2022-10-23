@@ -28,7 +28,23 @@ let currentUser;
 
 //QUERY SELECTORS-----------------------------------------------
 //Navbar QUERY SELECTORS ---------
+const userName = document.querySelector('#userName');
+const homeButton = document.querySelector('#homeButton');
+const aboutButton = document.querySelector('#aboutButton')
+const allRecipesButton = document.querySelector('#allRecipesButton')
+const savedRecipeButton = document.querySelector('#savedRecipesButton')
+const searchButton = document.querySelector('#searchButton')
+const searchButtonInput = document.querySelector('#searchInput')
+const homePage = document.querySelector('#homePage')
+const aboutPage = document.querySelector('#aboutPage')
+const allRecipesMain = document.querySelector('#recipePages')
+const specificRecipePage = document.querySelector('#specificRecipePage')
 //Home Page QUERY SELECTORS--------
+const recipeDisplay = document.querySelector('#featuredRecipeDisplay')
+const featuredRecipeName = document.querySelector('#featuredRecipeName')
+const appetizerFilter = document.querySelector('#appetizerFilter')
+const mainCourseFilter = document.querySelector('#mainCourseFilter')
+const snackFilter = document.querySelector('#snackFilter')
 //All Recipes Page QUERY SELECTORS--------
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------

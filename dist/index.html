@@ -18,56 +18,50 @@
            <h2>Welcome:</h2>
           <section>
             <div class="user-wrapper">
-              <h2>User</h2>
+              <h2 id="userName">User</h2>
             </div>
           </section>
         </div>
         </section>
         <section>
           <div class="nav-btns-wrapper">
-            <button class="nav-btns">Home</button>
-            <button class="nav-btns">About</button>
-            <button class="nav-btns">All Recipes</button>
-            <button class="nav-btns">Saved Recipes</button>
+            <button class="nav-btns " id="homeButton">Home</button>
+            <button class="nav-btns"id="aboutButton">About</button>
+            <button class="nav-btns"id="allRecipesButton">All Recipes</button>
+            <button class="nav-btns"id="savedRecipesButton">Saved Recipes</button>
             <div class="search-bar-wrapper">
-              <input type="text" placeholder="search All Recipes" />
-              <button type="submit">Search</button>
+              <input type="text" placeholder="search All Recipes"id="searchInput" />
+              <button type="submit" id="searchButton">Search</button>
             </div>
           </div>
         </section>
     </nav>
-    <main class=" hide homepage-area">
+    <main class=" hide homepage-area"id="homePage">
         <section class="homepage-body">
-          <section class="featured-recipe-wrapper">
+          <section class="featured-recipe-wrapper"id="featuredRecipeDisplay">
+            <section>
+              <h4> Featured Recipe is : </h4>
+              <section>
+                <h4 id ="featuredRecipeName">Featured Recipe Name here</h4>
+              </section>
+            </section>
           </section>
           <section>
             <div class="filter-ingr-wrapper">
-              <section class="ing">
-                <img src="" alt="">
+              <section class="ing"id="appetizerFilter">
+                <h4> Appetizer</h4>
               </section>
-              <section class="ing">
-                <img src="" alt="">
+              <section class="ing"id="mainCourseFilter">
+                <h4> Main Course</h4>
               </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
-              </section>
-              <section class="ing">
-                <img src="" alt="">
+              <section class="ing"id="snackFilter">
+                <h4> Snacks </h4>
               </section>
             </div>
           </section>
       </section>
     </main>
-    <main class=" hide about-page">
+    <main class=" hide about-page"id="aboutPage">
       <div class="about-paragraph">
         <p id="about">
           This is a web application created by Turing School of Software
@@ -120,7 +114,7 @@
         </div>
       </section>
     </main>
-    <main class = " hide all-recipes-main saved-recipes-main">
+    <main class = " hide all-recipes-main saved-recipes-main"id="recipePages">
       <h1 class="page-title">All RECIPES</h1>
       <!-- The above innerText could be dynamic for saved vs all recipes pages -->
       <div class="display-thumbnails-filter-dropdown">
@@ -226,7 +220,7 @@
         </section>
       </div>
     </main>
-    <main class="  hide specific-recipe-page ">
+    <main class="  hide specific-recipe-page" id="specificRecipePage">
       <header>
         <h1 class="specific-recipe-heading">RECIPE NAME</h1>
         <button type="button" class="save-button" id="">save to my recipes</button>
