@@ -18,7 +18,7 @@ let userData;
 let ingredientsData;
 let recipeData;
 let currentUser;
-let featuredRecipe;
+let allRecipes;
 
 //Navbar VARIABLES ---------
 //Home Page VARIABLES --------
@@ -66,7 +66,9 @@ Promise.all([
 
   createInstances(recipeData, ingredientsData, userData);
 
-  let allRecipes = new RecipeRepository(recipeData);
+    allRecipes = new RecipeRepository(recipeData);
+    console.log(allRecipes)
+    console.log(currentUser)
 });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
@@ -74,7 +76,6 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
   makeIngredientsList(dataSet2);
   currentUser = new User();
   currentUser.generateRandomUser(dataSet3.usersData);
-  featuredRecipe.generateRandomRecipe(dataSet1.recipeData)
 }
 
 function makeRecipesList(dataSet) {
@@ -132,11 +133,8 @@ function displayARecipe() {
   displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage)
 }
 //Home Page FUNCTIONS --------
-function generateFeaturedRecipe() {
-  console.log('test',featuredRecipe)
-  return Math.floor(Math.random() * recipeData);
 
-}
+
 //All Recipes Page FUNCTIONS --------
 //Saved Recipes Page FUNCTIONS --------
 //Specific Recipe Page FUNCTIONS --------
