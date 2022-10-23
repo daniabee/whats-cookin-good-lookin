@@ -18,6 +18,7 @@ let userData;
 let ingredientsData;
 let recipeData;
 let currentUser;
+let featuredRecipe;
 
 //Navbar VARIABLES ---------
 //Home Page VARIABLES --------
@@ -73,7 +74,7 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
   makeIngredientsList(dataSet2);
   currentUser = new User();
   currentUser.generateRandomUser(dataSet3.usersData);
-  
+  featuredRecipe.generateRandomRecipe(dataSet1.recipeData)
 }
 
 function makeRecipesList(dataSet) {
@@ -90,6 +91,11 @@ function makeIngredientsList(dataSet) {
 
 //EVENT LISTENERS-------------------------------------------------
 //Navbar EVENT LISTENERS ---------
+homeButton.addEventListener('click', displayHomePage)
+aboutButton.addEventListener('click', displayAboutPage)
+allRecipesButton.addEventListener('click', displayAllRecipes)
+savedRecipeButton.addEventListener('click', displaySavedRecipes)
+searchButton.addEventListener('click', displayARecipe)
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
 //Saved Recipes Page EVENT LISTENERS --------
@@ -99,7 +105,38 @@ function makeIngredientsList(dataSet) {
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
 //Navbar FUNCTIONS ---------
+function displayAPage(appear, goAway1, goAway2, goAway3) {
+  appear.classList.remove('hide')
+  goAway1.classList.add('hide')
+  goAway2.classList.add('hide')
+  goAway3.classList.add('hide')
+}
+function displayHomePage() {
+  displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage)
+}
+
+function displayAboutPage() {
+  displayAPage(aboutPage, homePage, allRecipesMain, specificRecipePage)
+
+}
+
+function displayAllRecipes() {
+  displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage)
+}
+
+function displaySavedRecipes() {
+  displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage)
+}
+
+function displayARecipe() {
+  displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage)
+}
 //Home Page FUNCTIONS --------
+function generateFeaturedRecipe() {
+  console.log('test',featuredRecipe)
+  return Math.floor(Math.random() * recipeData);
+
+}
 //All Recipes Page FUNCTIONS --------
 //Saved Recipes Page FUNCTIONS --------
 //Specific Recipe Page FUNCTIONS --------
