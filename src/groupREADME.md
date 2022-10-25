@@ -8,11 +8,11 @@ WHAT'S COOKING GOOD LOOKIN!: is a web application that provides a user the abili
 2. Click code
 3. Copy SSH 
 4. Go to computer terminal type: git clone <'filename'>
-5. cd into directory 
-6. run 'npm install'
-7. run 'npm start
-8. should be given a server page 'http://localhost:8080/'
-9. open server in browser  
+5. Cd into directory 
+6. Run 'npm install'
+7. Run 'npm start
+8. Should be given a server page 'http://localhost:8080/'
+9. Open server in browser  
 
 
 ## Preview of App:
