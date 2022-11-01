@@ -149,12 +149,16 @@ function displayHomePage() {
   displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage);
   currentPage = "home";
   changeButtonColor();
+  (searchButtonInput.value = ""),
+  (searchButtonInput.placeholder = `Search all recipes`);
 }
 
 function displayAboutPage() {
   displayAPage(aboutPage, homePage, allRecipesMain, specificRecipePage);
   currentPage = "about";
   changeButtonColor();
+  (searchButtonInput.value = ""),
+  (searchButtonInput.placeholder = `Search all recipes`);
 }
 
 function displayAllRecipes() {
@@ -162,14 +166,14 @@ function displayAllRecipes() {
   currentPage = "all";
   changeButtonColor();
   (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `search ${currentPage} recipes`);
+  (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
 }
 
 function displaySavedRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "saved";
   (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `search ${currentPage} recipes`);
+  (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
   changeButtonColor();
 }
 
