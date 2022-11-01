@@ -3,7 +3,7 @@ import "./styles.css";
 import loadData from "./apiCalls";
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
-import Ingredient from "./classes/Ingredient-class";
+import Ingredient from "./classes/Ingredient";
 import User from "./classes/User";
 import "./images/turing-logo.png";
 import "./images/Asset0.png";
@@ -79,21 +79,22 @@ const specificRecipeInstructions = document.querySelector(
 const specificRecipeCost = document.querySelector(".specific-recipe-cost");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
-Promise.all([
-  loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
-  loadData(
+function getApi (){
+  Promise.all([
+    loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
+    loadData(
     "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
-  ),
-  loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"),
-]).then((data) => {
-  userData = data[0];
-  ingredientsData = data[1];
-  recipeData = data[2];
-
-  createInstances(recipeData, ingredientsData, userData);
-  allRecipes = new RecipeRepository(recipeData);
-  populateTagFilter(allRecipes.listOfAllRecipes);
-});
+    ),
+    loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"),
+  ]).then((data) => {
+    userData = data[0];
+    ingredientsData = data[1];
+    recipeData = data[2];
+    createInstances(recipeData, ingredientsData, userData);
+    allRecipes = new RecipeRepository(recipeData);
+    populateTagFilter(allRecipes.listOfAllRecipes);
+  })
+}
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
   makeRecipesList(dataSet1);
@@ -123,6 +124,7 @@ savedRecipeButton.addEventListener("click", displaySavedRecipes);
 searchButton.addEventListener("click", displaySearchRecipes);
 
 //Home Page EVENT LISTENERS --------
+window.addEventListener('load', getApi())
 //All Recipes Page EVENT LISTENERS --------
 allRecipesMain.addEventListener("click", loadSpecificRecipe);
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
