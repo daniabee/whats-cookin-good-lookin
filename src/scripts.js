@@ -188,7 +188,7 @@ function displaySearchRecipes() {
   let recipesFilteredName;
 
   if (currentPage === "saved") {
-    recipesFilteredName = currentUser.filterByName(userInput);
+    recipesFilteredName = currentUser.recipesToCook.filterByName(userInput);
   } else {
     displayAllRecipes();
     recipesFilteredName = allRecipes.filterByName(userInput);
@@ -251,7 +251,7 @@ function populateTagFilter(recipeList) {
 function displayRecipesOfSameTag() {
   let recipesToTag;
   if (currentPage === "saved") {
-    recipesToTag = currentUser.filterByTag(inputForTags.value);
+    recipesToTag = currentUser.recipesToCook.filterByTag(inputForTags.value);
     allRecipeFilterTagOptions.selectedIndex = 0;
   } else {
     recipesToTag = allRecipes.filterByTag(inputForTags.value);
@@ -266,14 +266,14 @@ function displaySavedRecipesPage() {
   hide(specificRecipePage);
   show(allRecipesMain);
   createPageTitle(`${currentUser.name}'s Saved Recipes`);
-  displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
-  createListOfTags(currentUser.recipesToCook);
+  displayRecipeThumbnails(currentUser.recipesToCook.listOfAllRecipes, "🗑", "delete-recipe");
+  createListOfTags(currentUser.recipesToCook.listOfAllRecipes);
 }
 
 function deleteSavedRecipe(event) {
   if (event.target.classList.contains("delete-recipe")) {
     currentUser.removeRecipe(+event.target.parentElement.parentElement.id);
-    displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
+    displayRecipeThumbnails(currentUser.recipesToCook.listOfAllRecipes, "🗑", "delete-recipe");
   }
 }
 
@@ -355,7 +355,7 @@ function generateCost(recipe) {
 
 function addToRecipesToCook() {
   if (
-    !currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)
+    !currentUser.recipesToCook.listOfAllRecipes.some((recipe) => recipe.id === currentRecipe.id)
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
   }
