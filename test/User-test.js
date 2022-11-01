@@ -47,8 +47,8 @@ describe('User', function() {
   });
 
   it('Should have a place to keep recipes', function() {
-    expect(user1.recipesToCook.listOfAllRecipes).to.deep.equal([]); //🚨update w/ new changes
-    expect(user2.recipesToCook.listOfAllRecipes).to.deep.equal([]); //🚨update w/ new changes
+    expect(user1.recipesToCook.listOfAllRecipes).to.deep.equal([]);
+    expect(user2.recipesToCook.listOfAllRecipes).to.deep.equal([]);
   });
 
   it('Should contain an instance of the Recipe Repository', function() {
@@ -111,30 +111,4 @@ describe('User', function() {
     expect(user1.recipesToCook.listOfAllRecipes).to.deep.equal([]);
     expect(user1.recipesToCook.listOfAllRecipes.length).to.equal(0);
   });
-
-  // it('Should be able to filter recipes by tag', function() { //👈 💀
-  //   user1.addRecipe(222, allRecipes);
-  //   user1.addRecipe(333, allRecipes);
-  //   const filteredList1 = user1.filterByTag('antipasti');
-  //   const filteredList2 = user1.filterByTag('sauce');
-  //   const filteredList3 = user1.filterByTag('dessert');
-  //   const filteredList4 = user1.filterByTag('gabagool');
-
-  //   expect(filteredList1).to.deep.equal([recipe1]);
-  //   expect(filteredList2).to.deep.equal([recipe2]);
-  //   expect(filteredList3).to.deep.equal([recipe1, recipe2]);
-  //   expect(filteredList4).to.deep.equal([]);
-  // });
-
-  // it('Should be able to filter recipes by their name', function() {//👈 💀
-  //   user1.addRecipe(222, allRecipes);
-  //   user1.addRecipe(333, allRecipes);
-  //   const filteredList = user1.filterByName("Loaded Chocolate Chip Pudding Cookie Cups");
-  //   const filteredList2 = user1.filterByName("Dirty Steve's Original Wing Sauce");
-  //   const filteredList3 = user1.filterByName("Microwaved Dinner");
-
-  //   expect(filteredList).to.deep.equal([recipe1]);
-  //   expect(filteredList2).to.deep.equal([recipe2]);
-  //   expect(filteredList3).to.deep.equal([]);
-  // });
 });
