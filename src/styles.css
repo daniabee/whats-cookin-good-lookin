@@ -186,6 +186,17 @@ nav {
   margin-bottom: 1%;
 }
 
+.recipe-saved-text {
+  margin: 3%;
+  font-size: 1.5vw;
+  color: rgb(87, 36, 31);
+}
+
+.button-save-alert-layout {
+  display: flex;
+  align-items: center;
+}
+
 .specific-recipe-display {
   display: flex;
   flex-direction: row;
