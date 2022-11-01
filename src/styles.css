@@ -44,19 +44,6 @@ nav {
   background-color: rgb(156, 126, 68);
 }
 
-/* .welcome-wrapper {
-   margin-left: 30px;
-   display: flex;
-   justify-content: center;
-   font-size: 10pt;
- } */
-
-/* .user-wrapper {
-   margin-left: 8px;
- } */
-
-/* .welcome-wrapper and .user-wrapper are commented out because Courtney commented out those two associated HTML elements for now. We can add this back in if we decide to use the Welcome: User on our homepage. */
-
 .nav-btns-wrapper {
   width: 100vw;
   margin: 1vw;

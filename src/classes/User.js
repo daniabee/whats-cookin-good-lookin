@@ -1,6 +1,5 @@
 class User {
   constructor(name, id, pantry) {
-    // May need to refactor parameter(s) based on whether we make a user login page in the future
     this.name = name;
     this.id = id;
     this.pantry = pantry;

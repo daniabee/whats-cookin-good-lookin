@@ -12,13 +12,6 @@
   </head>
   <body>
     <nav>
-      <!-- <section class="welcome-wrapper">
-        <h2>Welcome:</h2>
-          <section class="user-wrapper">
-            <h2 id="userName">User</h2>
-          </section>
-      </section> -->
-      <!-- We can use the commented out code above if we decide to input the Welcome:User. Until then, Courtney commented them out. -->
       <div class="nav-btns-wrapper">
         <button class="nav-btns current-page-button" id="homeButton">
           Home
@@ -97,30 +90,15 @@
     </main>
     <main class="hide all-recipes-main saved-recipes-main" id="recipePages">
       <h1 class="page-title">All RECIPES</h1>
-      <!-- The above innerText could be dynamic for saved vs all recipes pages -->
       <div class="display-thumbnails-filter-dropdown">
         <section class="all-recipe-thumbnails">
-          <!-- start of dynamic elements
-          <section class="single-recipe-thumbnail">
-            <img class="single-recipe-img" src="" alt="">
-            <div class="single-recipe-text">
-              <p class="recipe-title-text">Recipe Name</p>
-               <p>🗑</p>
-            </div>
-          </section> -->
-          <!-- end dynamic elements -->
         </section>
         <section class="filter-by-tag-display">
-          <label class="label-for-select-a-tag" for="tag-select"
-            >Select a tag:</label
-          >
+          <label class="label-for-select-a-tag" for="tag-select">Select a tag:</label>
           <select class="list-of-tag-options" name="tags">
             <option class="tag-options-text" value="default">
               Please choose a tag
             </option>
-            <!-- the html inbetween the comments will need to be dynamic. -->
-            <!-- <option class="tag-options-text" value="demo1">Demo1</option> -->
-            <!-- the tags need to be dynamic, based on an iteration through an array of all tags possible (no repeated tags). We need to access the inner html of this select element. -->
           </select>
           <button class="filter-button">Search</button>
         </section>
@@ -136,44 +114,17 @@
           <img
             src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
             alt=""
-            class="specific-recipe-img"
-          />
+            class="specific-recipe-img"/>
         </section>
         <section class="specific-recipe-info">
           <div>
             <h3>INGREDIENTS</h3>
             <ul class="specific-recipe-ingredients-list">
-              <li>wheat flour</li>
-              <li>bicarbonate of soda</li>
-              <li>eggs</li>
-              <li>brown sugar</li>
-              <li>can of beans</li>
-              <li>chicken scraps</li>
-              <li>cat food</li>
-              <li>sriracha sauce</li>
-              <li>ketchup</li>
-              <li>onions</li>
-              <!-- delete these <li>s as they will be created dynamically -->
             </ul>
           </div>
           <div>
             <h3>INSTRUCTIONS</h3>
             <ol class="specific-recipe-instructions">
-              <li>Watch how to make this recipe.</li>
-              <li>
-                In a large bowl, whisk together buttermilk, eggs, baking powder,
-                sugar, salt and butter.
-              </li>
-              <li>
-                In another large bowl mix together all-purpose flour and
-                buckwheat flour.
-              </li>
-              <li>
-                Remove the pan from the oven and let sit for 10 minutes before
-                removing onto a cooling rack.Top with ice cream and a drizzle of
-                chocolate sauce.
-              </li>
-              <!-- delete these <li>s as they will be created dynamically -->
             </ol>
           </div>
           <div>
@@ -184,6 +135,5 @@
       </div>
     </main>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
