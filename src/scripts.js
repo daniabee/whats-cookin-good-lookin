@@ -69,6 +69,7 @@ const specificRecipeHeading = document.querySelector(
   ".specific-recipe-heading"
 );
 const specificRecipeSaveButton = document.querySelector(".save-button");
+const specificRecipeSavedAlert = document.querySelector('.recipe-saved-text')
 const specificRecipeImage = document.querySelector(".specific-recipe-img");
 const specificRecipeIngredients = document.querySelector(
   ".specific-recipe-ingredients-list"
@@ -354,6 +355,8 @@ function addToRecipesToCook() {
     !currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
+    show(specificRecipeSavedAlert)
+    setTimeout(hideAlert, 1500)
   }
 }
 
@@ -363,6 +366,10 @@ function show(element) {
 
 function hide(element) {
   element.classList.add("hide");
+}
+
+function hideAlert() {
+  specificRecipeSavedAlert.classList.add('hide')
 }
 
 function changeButtonColor() {
