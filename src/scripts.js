@@ -84,6 +84,11 @@ const userPantryPage = document.querySelector(".user-pantry");
 const userPantryButton = document.querySelector("#userPantryButton");
 const userPantryTitle = document.querySelector(".user-pantry-title");
 const ingredientList = document.querySelector(".ingredient-list");
+const ingredientNameInput = document.querySelector("#ingred-name");
+const ingredientAmountInput = document.querySelector("#ingred-amount");
+const submitIngredientButton = document.querySelector(
+  "#submit-ingredient-button"
+);
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -144,6 +149,7 @@ specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
 
 //User Pantry Page
 userPantryButton.addEventListener("click", displayUserPantry);
+submitIngredientButton.addEventListener("click", addIngredientToPantry);
 
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
@@ -441,15 +447,17 @@ function addToRecipesToCook() {
 
 //User Page FUNCTIONS
 function createUserIngredientsList() {
-  return currentUser.pantry.map((userIngred) => {
-    let ingredientName;
-    ingredientsData.forEach((ingred) => {
-      if (userIngred.ingredient === ingred.id) {
-        ingredientName = ingred.name;
-      }
-    });
-    return `${ingredientName} : ${userIngred.amount}`;
-  });
+  return currentUser.pantry
+    .map((userIngred) => {
+      let ingredientName;
+      ingredientsData.forEach((ingred) => {
+        if (userIngred.ingredient === ingred.id) {
+          ingredientName = ingred.name;
+        }
+      });
+      return `${ingredientName} : ${userIngred.amount}`;
+    })
+    .sort();
 }
 
 function displayUserIngredients() {
@@ -458,6 +466,35 @@ function displayUserIngredients() {
   ingredientDisplay.forEach((item) => {
     ingredientList.innerHTML += `<li>${item}</li>`;
   });
+}
+
+function addIngredientToPantry(event) {
+  event.preventDefault();
+  const ingredientName = ingredientNameInput.value;
+  const ingredientAmount = ingredientAmountInput.value;
+  const found = ingredientsData.find(
+    (ingred) => ingred.name === ingredientName.toLowerCase()
+  );
+  if (ingredientName === "" || ingredientAmount === "") {
+    console.log("please add values");
+  } else if (found === undefined) {
+    console.log("ingredient not recognized/not needed by any recipe");
+  } else {
+    const ingredientToUpdate = currentUser.pantry.find(
+      (ingred) => ingred.ingredient === found.id
+    );
+    if (ingredientToUpdate != undefined) {
+      ingredientToUpdate.amount = ingredientAmount;
+    } else {
+      const newIndgredient = new Object();
+      newIndgredient.ingredient = found.id;
+      newIndgredient.amount = ingredientAmount;
+      currentUser.pantry.push(newIndgredient);
+    }
+  }
+  displayUserIngredients();
+  ingredientNameInput.value = "";
+  ingredientAmountInput.value = "";
 }
 
 //Helper FUNCTIONS
