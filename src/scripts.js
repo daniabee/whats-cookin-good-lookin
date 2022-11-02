@@ -82,6 +82,7 @@ const specificRecipeCost = document.querySelector(".specific-recipe-cost");
 //User Pantry Page
 const userPantryPage = document.querySelector(".user-pantry");
 const userPantryButton = document.querySelector("#userPantryButton");
+const userPantryTitle = document.querySelector(".user-pantry-title");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -164,8 +165,8 @@ function displayHomePage() {
   );
   currentPage = "home";
   changeButtonColor();
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search all recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search all recipes`;
 }
 
 function displayAboutPage() {
@@ -178,8 +179,8 @@ function displayAboutPage() {
   );
   currentPage = "about";
   changeButtonColor();
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search all recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search all recipes`;
 }
 
 function displayAllRecipes() {
@@ -192,8 +193,8 @@ function displayAllRecipes() {
   );
   currentPage = "all";
   changeButtonColor();
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search ${currentPage} recipes`;
 }
 
 function displaySavedRecipes() {
@@ -205,8 +206,8 @@ function displaySavedRecipes() {
     userPantryPage
   );
   currentPage = "saved";
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search ${currentPage} recipes`;
   changeButtonColor();
 }
 
@@ -219,8 +220,9 @@ function displayUserPantry() {
     allRecipesMain
   );
   currentPage = "userPantry";
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+  userPantryTitle.innerHTML = `${currentUser.name}'s Pantry`;
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search ${currentPage} recipes`;
   changeButtonColor();
 }
 
