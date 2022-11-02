@@ -69,6 +69,7 @@ const specificRecipeHeading = document.querySelector(
   ".specific-recipe-heading"
 );
 const specificRecipeSaveButton = document.querySelector(".save-button");
+const specificRecipeSavedAlert = document.querySelector('.recipe-saved-text')
 const specificRecipeImage = document.querySelector(".specific-recipe-img");
 const specificRecipeIngredients = document.querySelector(
   ".specific-recipe-ingredients-list"
@@ -298,6 +299,11 @@ function loadSpecificRecipe(event) {
     show(specificRecipePage);
     changeSpecificRecipeSpecs();
   }
+  if (currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
+    hide(specificRecipeSaveButton)
+  } else if (!currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
+    show(specificRecipeSaveButton)
+  }
 }
 
 function changeSpecificRecipeSpecs() {
@@ -354,10 +360,14 @@ function generateCost(recipe) {
 }
 
 function addToRecipesToCook() {
+  hide(specificRecipeSaveButton)
   if (
     !currentUser.recipesToCook.listOfAllRecipes.some((recipe) => recipe.id === currentRecipe.id)
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
+    specificRecipeSavedAlert.innerText = 'Recipe Has Been Saved!'
+    show(specificRecipeSavedAlert)
+    setTimeout(hideAlert, 1500)
   }
 }
 
@@ -367,6 +377,10 @@ function show(element) {
 
 function hide(element) {
   element.classList.add("hide");
+}
+
+function hideAlert() {
+  specificRecipeSavedAlert.classList.add('hide')
 }
 
 function changeButtonColor() {
