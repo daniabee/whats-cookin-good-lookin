@@ -1,11 +1,10 @@
 import {expect} from "chai";
 import sampleIngredientData from '../sampleSets/Ingredients-sample';
-import Ingredient from '../src/classes/Ingredient-class'
+import Ingredient from '../src/classes/Ingredient'
 
 
 describe("Ingredient",function() {
-	let badIngredient = new Ingredient({id:null, name:null,estimatedCostInCents:null})
-    
+	
   it('should be a function',function() {
     expect(Ingredient).to.be.a('function')
 	})
@@ -19,11 +18,6 @@ describe("Ingredient",function() {
   	let ingredient1 = new Ingredient(sampleIngredientData[0])
   	expect(ingredient1.id).to.equal(20081)
   })
-
-	it('should default to undefined if no id is given',function() {
-		let badIngredient = new Ingredient({ id: null, name: null, estimatedCostInCents: null })
-		expect(badIngredient.id).to.equal(null) 
-	})
     
   it('should have a different id',function(){
   	let ingredient2 = new Ingredient(sampleIngredientData[1])

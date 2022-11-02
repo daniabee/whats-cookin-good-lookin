@@ -3,7 +3,7 @@ import "./styles.css";
 import loadData from "./apiCalls";
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
-import Ingredient from "./classes/Ingredient-class";
+import Ingredient from "./classes/Ingredient";
 import User from "./classes/User";
 import "./images/turing-logo.png";
 import "./images/Asset0.png";
