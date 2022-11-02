@@ -8,9 +8,9 @@ class Recipe {
     this.tags = dataSetObject.tags;
   }
   getIngredientNames(dataSet) {
-   return this.ingredients.map(ingredient => {
-    return dataSet.find(element => element.id === ingredient.id).name;
-   })
+    return this.ingredients.map((ingredient) => {
+      return dataSet.find((element) => element.id === ingredient.id).name;
+    });
   }
 
   getDirections() {
@@ -18,13 +18,15 @@ class Recipe {
   }
 
   getCosts(dataSet) {
-   return this.ingredients.reduce((allCosts, ingred) => {
-    let currentIngredient = dataSet.find(element => element.id === ingred.id);
-    let totalCost = currentIngredient.costInCents * ingred.quantity.amount;
-    let dollars = totalCost / 100;
-    dollars = dollars.toFixed(2)
-    allCosts.push(+dollars)
-    return allCosts
+    return this.ingredients.reduce((allCosts, ingred) => {
+      let currentIngredient = dataSet.find(
+        (element) => element.id === ingred.id
+      );
+      let totalCost = currentIngredient.costInCents * ingred.quantity.amount;
+      let dollars = totalCost / 100;
+      dollars = dollars.toFixed(2);
+      allCosts.push(+dollars);
+      return allCosts;
     }, []);
   }
 }

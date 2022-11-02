@@ -20,8 +20,12 @@ describe("Recipe", function () {
     expect(recipe2.id).to.equal(23456);
   });
   it("Should have an image", function () {
-    expect(recipe1.image).to.not.equal(null);
-    expect(recipe3.image).to.not.equal(null);
+    expect(recipe1.image).to.equal(
+      "https://spoonacular.com/recipeImages/595736-556x370.jpg"
+    );
+    expect(recipe3.image).to.equal(
+      "https://spoonacular.com/recipeImages/595736-556x370.jpg"
+    );
   });
   it("Should have an array for ingredients that holds objects", function () {
     expect(recipe1.ingredients).to.be.an.instanceOf(Array);
