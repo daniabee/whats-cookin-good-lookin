@@ -83,6 +83,7 @@ const specificRecipeCost = document.querySelector(".specific-recipe-cost");
 const userPantryPage = document.querySelector(".user-pantry");
 const userPantryButton = document.querySelector("#userPantryButton");
 const userPantryTitle = document.querySelector(".user-pantry-title");
+const ingredientList = document.querySelector(".ingredient-list");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -219,6 +220,7 @@ function displayUserPantry() {
     specificRecipePage,
     allRecipesMain
   );
+  displayUserIngredients();
   currentPage = "userPantry";
   userPantryTitle.innerHTML = `${currentUser.name}'s Pantry`;
   searchButtonInput.value = "";
@@ -436,6 +438,29 @@ function addToRecipesToCook() {
     setTimeout(hideAlert, 1500);
   }
 }
+
+//User Page FUNCTIONS
+function createUserIngredientsList() {
+  return currentUser.pantry.map((userIngred) => {
+    let ingredientName;
+    ingredientsData.forEach((ingred) => {
+      if (userIngred.ingredient === ingred.id) {
+        ingredientName = ingred.name;
+      }
+    });
+    return `${ingredientName} : ${userIngred.amount}`;
+  });
+}
+
+function displayUserIngredients() {
+  const ingredientDisplay = createUserIngredientsList();
+  ingredientList.innerHTML = "";
+  ingredientDisplay.forEach((item) => {
+    ingredientList.innerHTML += `<li>${item}</li>`;
+  });
+}
+
+//Helper FUNCTIONS
 
 function show(element) {
   element.classList.remove("hide");
