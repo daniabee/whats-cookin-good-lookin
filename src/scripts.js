@@ -89,6 +89,8 @@ const ingredientAmountInput = document.querySelector("#ingred-amount");
 const submitIngredientButton = document.querySelector(
   "#submit-ingredient-button"
 );
+const errorUnfilled = document.querySelector(".error-unfilled");
+const errorNotRecognized = document.querySelector(".error-not-recognized");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -477,8 +479,12 @@ function addIngredientToPantry(event) {
   );
   if (ingredientName === "" || ingredientAmount === "") {
     console.log("please add values");
+    show(errorUnfilled);
+    setTimeout(hideUnfilledError, 1500);
   } else if (found === undefined) {
     console.log("ingredient not recognized/not needed by any recipe");
+    show(errorNotRecognized);
+    setTimeout(hideNotRecognizedError, 1500);
   } else {
     const ingredientToUpdate = currentUser.pantry.find(
       (ingred) => ingred.ingredient === found.id
@@ -505,6 +511,14 @@ function show(element) {
 
 function hide(element) {
   element.classList.add("hide");
+}
+
+function hideUnfilledError() {
+  errorUnfilled.classList.add("hide");
+}
+
+function hideNotRecognizedError() {
+  errorNotRecognized.classList.add("hide");
 }
 
 function hideAlert() {
