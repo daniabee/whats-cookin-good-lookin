@@ -19,6 +19,7 @@
         <button class="nav-btns" id="aboutButton">About</button>
         <button class="nav-btns" id="allRecipesButton">All Recipes</button>
         <button class="nav-btns" id="savedRecipesButton">Saved Recipes</button>
+        <button class="nav-btns" id="userPantryButton">Your Pantry</button>
         <div class="search-bar-wrapper">
           <input
             type="text"
@@ -91,10 +92,11 @@
     <main class="hide all-recipes-main saved-recipes-main" id="recipePages">
       <h1 class="page-title">All RECIPES</h1>
       <div class="display-thumbnails-filter-dropdown">
-        <section class="all-recipe-thumbnails">
-        </section>
+        <section class="all-recipe-thumbnails"></section>
         <section class="filter-by-tag-display">
-          <label class="label-for-select-a-tag" for="tag-select">Select a tag:</label>
+          <label class="label-for-select-a-tag" for="tag-select"
+            >Select a tag:</label
+          >
           <select class="list-of-tag-options" name="tags">
             <option class="tag-options-text" value="default">
               Please choose a tag
@@ -117,18 +119,17 @@
           <img
             src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
             alt=""
-            class="specific-recipe-img"/>
+            class="specific-recipe-img"
+          />
         </section>
         <section class="specific-recipe-info">
           <div>
             <h3>INGREDIENTS</h3>
-            <ul class="specific-recipe-ingredients-list">
-            </ul>
+            <ul class="specific-recipe-ingredients-list"></ul>
           </div>
           <div>
             <h3>INSTRUCTIONS</h3>
-            <ol class="specific-recipe-instructions">
-            </ol>
+            <ol class="specific-recipe-instructions"></ol>
           </div>
           <div>
             <h3>COST</h3>
@@ -136,6 +137,9 @@
           </div>
         </section>
       </div>
+    </main>
+    <main class="user-pantry">
+      <h1>Your Pantry</h1>
     </main>
   </body>
   <script src="bundle.js"></script>

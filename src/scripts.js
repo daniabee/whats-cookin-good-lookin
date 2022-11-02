@@ -69,7 +69,7 @@ const specificRecipeHeading = document.querySelector(
   ".specific-recipe-heading"
 );
 const specificRecipeSaveButton = document.querySelector(".save-button");
-const specificRecipeSavedAlert = document.querySelector('.recipe-saved-text')
+const specificRecipeSavedAlert = document.querySelector(".recipe-saved-text");
 const specificRecipeImage = document.querySelector(".specific-recipe-img");
 const specificRecipeIngredients = document.querySelector(
   ".specific-recipe-ingredients-list"
@@ -78,6 +78,10 @@ const specificRecipeInstructions = document.querySelector(
   ".specific-recipe-instructions"
 );
 const specificRecipeCost = document.querySelector(".specific-recipe-cost");
+
+//User Pantry Page
+const userPantryPage = document.querySelector(".user-pantry");
+const userPantryButton = document.querySelector("#userPantryButton");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -136,45 +140,87 @@ allRecipeThumbnailsSection.addEventListener("click", deleteSavedRecipe);
 //Specific Recipe Page EVENT LISTENERS --------
 specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
 
+//User Pantry Page
+userPantryButton.addEventListener("click", displayUserPantry);
+
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
 //Navbar FUNCTIONS ---------
-function displayAPage(appear, goAway1, goAway2, goAway3) {
+function displayAPage(appear, goAway1, goAway2, goAway3, goAway4) {
   show(appear);
   hide(goAway1);
   hide(goAway2);
   hide(goAway3);
+  hide(goAway4);
 }
 
 function displayHomePage() {
-  displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage);
+  displayAPage(
+    homePage,
+    aboutPage,
+    allRecipesMain,
+    specificRecipePage,
+    userPantryPage
+  );
   currentPage = "home";
   changeButtonColor();
   (searchButtonInput.value = ""),
-  (searchButtonInput.placeholder = `Search all recipes`);
+    (searchButtonInput.placeholder = `Search all recipes`);
 }
 
 function displayAboutPage() {
-  displayAPage(aboutPage, homePage, allRecipesMain, specificRecipePage);
+  displayAPage(
+    aboutPage,
+    homePage,
+    allRecipesMain,
+    specificRecipePage,
+    userPantryPage
+  );
   currentPage = "about";
   changeButtonColor();
   (searchButtonInput.value = ""),
-  (searchButtonInput.placeholder = `Search all recipes`);
+    (searchButtonInput.placeholder = `Search all recipes`);
 }
 
 function displayAllRecipes() {
-  displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
+  displayAPage(
+    allRecipesMain,
+    homePage,
+    aboutPage,
+    specificRecipePage,
+    userPantryPage
+  );
   currentPage = "all";
   changeButtonColor();
   (searchButtonInput.value = ""),
-  (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
 }
 
 function displaySavedRecipes() {
-  displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
+  displayAPage(
+    allRecipesMain,
+    homePage,
+    aboutPage,
+    specificRecipePage,
+    userPantryPage
+  );
   currentPage = "saved";
   (searchButtonInput.value = ""),
-  (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+  changeButtonColor();
+}
+
+function displayUserPantry() {
+  displayAPage(
+    userPantryPage,
+    homePage,
+    aboutPage,
+    specificRecipePage,
+    allRecipesMain
+  );
+  currentPage = "userPantry";
+  (searchButtonInput.value = ""),
+    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
   changeButtonColor();
 }
 
@@ -267,14 +313,22 @@ function displaySavedRecipesPage() {
   hide(specificRecipePage);
   show(allRecipesMain);
   createPageTitle(`${currentUser.name}'s Saved Recipes`);
-  displayRecipeThumbnails(currentUser.recipesToCook.listOfAllRecipes, "🗑", "delete-recipe");
+  displayRecipeThumbnails(
+    currentUser.recipesToCook.listOfAllRecipes,
+    "🗑",
+    "delete-recipe"
+  );
   createListOfTags(currentUser.recipesToCook.listOfAllRecipes);
 }
 
 function deleteSavedRecipe(event) {
   if (event.target.classList.contains("delete-recipe")) {
     currentUser.removeRecipe(+event.target.parentElement.parentElement.id);
-    displayRecipeThumbnails(currentUser.recipesToCook.listOfAllRecipes, "🗑", "delete-recipe");
+    displayRecipeThumbnails(
+      currentUser.recipesToCook.listOfAllRecipes,
+      "🗑",
+      "delete-recipe"
+    );
   }
 }
 
@@ -299,10 +353,18 @@ function loadSpecificRecipe(event) {
     show(specificRecipePage);
     changeSpecificRecipeSpecs();
   }
-  if (currentUser.recipesToCook.listOfAllRecipes.some((recipe) => recipe.id === currentRecipe.id)) {
-    hide(specificRecipeSaveButton)
-  } else if (!currentUser.recipesToCook.listOfAllRecipes.some((recipe) => recipe.id === currentRecipe.id)) {
-    show(specificRecipeSaveButton)
+  if (
+    currentUser.recipesToCook.listOfAllRecipes.some(
+      (recipe) => recipe.id === currentRecipe.id
+    )
+  ) {
+    hide(specificRecipeSaveButton);
+  } else if (
+    !currentUser.recipesToCook.listOfAllRecipes.some(
+      (recipe) => recipe.id === currentRecipe.id
+    )
+  ) {
+    show(specificRecipeSaveButton);
   }
 }
 
@@ -360,14 +422,16 @@ function generateCost(recipe) {
 }
 
 function addToRecipesToCook() {
-  hide(specificRecipeSaveButton)
+  hide(specificRecipeSaveButton);
   if (
-    !currentUser.recipesToCook.listOfAllRecipes.some((recipe) => recipe.id === currentRecipe.id)
+    !currentUser.recipesToCook.listOfAllRecipes.some(
+      (recipe) => recipe.id === currentRecipe.id
+    )
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
-    specificRecipeSavedAlert.innerText = 'Recipe Has Been Saved!'
-    show(specificRecipeSavedAlert)
-    setTimeout(hideAlert, 1500)
+    specificRecipeSavedAlert.innerText = "Recipe Has Been Saved!";
+    show(specificRecipeSavedAlert);
+    setTimeout(hideAlert, 1500);
   }
 }
 
@@ -380,7 +444,7 @@ function hide(element) {
 }
 
 function hideAlert() {
-  specificRecipeSavedAlert.classList.add('hide')
+  specificRecipeSavedAlert.classList.add("hide");
 }
 
 function changeButtonColor() {
@@ -388,6 +452,7 @@ function changeButtonColor() {
   aboutButton.classList.remove("current-page-button");
   allRecipesButton.classList.remove("current-page-button");
   savedRecipeButton.classList.remove("current-page-button");
+  userPantryButton.classList.remove("current-page-button");
 
   if (currentPage === "home") {
     homeButton.classList.add("current-page-button");
@@ -397,5 +462,7 @@ function changeButtonColor() {
     allRecipesButton.classList.add("current-page-button");
   } else if (currentPage === "saved") {
     savedRecipeButton.classList.add("current-page-button");
+  } else if (currentPage === "userPantry") {
+    userPantryButton.classList.add("current-page-button");
   }
 }
