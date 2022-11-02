@@ -299,9 +299,9 @@ function loadSpecificRecipe(event) {
     show(specificRecipePage);
     changeSpecificRecipeSpecs();
   }
-  if (currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
+  if (currentUser.recipesToCook.listOfAllRecipes.some((recipe) => recipe.id === currentRecipe.id)) {
     hide(specificRecipeSaveButton)
-  } else if (!currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
+  } else if (!currentUser.recipesToCook.listOfAllRecipes.some((recipe) => recipe.id === currentRecipe.id)) {
     show(specificRecipeSaveButton)
   }
 }
