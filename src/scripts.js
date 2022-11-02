@@ -295,6 +295,11 @@ function loadSpecificRecipe(event) {
     show(specificRecipePage);
     changeSpecificRecipeSpecs();
   }
+  if (currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
+    hide(specificRecipeSaveButton)
+  } else if (!currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
+    show(specificRecipeSaveButton)
+  }
 }
 
 function changeSpecificRecipeSpecs() {
@@ -351,10 +356,12 @@ function generateCost(recipe) {
 }
 
 function addToRecipesToCook() {
+  hide(specificRecipeSaveButton)
   if (
     !currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
+    specificRecipeSavedAlert.innerText = 'Recipe Has Been Saved!'
     show(specificRecipeSavedAlert)
     setTimeout(hideAlert, 1500)
   }
