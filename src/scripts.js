@@ -232,7 +232,7 @@ function displayUserPantry() {
   currentPage = "userPantry";
   userPantryTitle.innerHTML = `${currentUser.name}'s Pantry`;
   searchButtonInput.value = "";
-  searchButtonInput.placeholder = `Search ${currentPage} recipes`;
+  searchButtonInput.placeholder = `Search all recipes`;
   changeButtonColor();
 }
 
