@@ -475,19 +475,19 @@ function addIngredientToPantry(event) {
   event.preventDefault();
   const ingredientName = ingredientNameInput.value;
   const ingredientAmount = ingredientAmountInput.value;
-  const ingredientAmountNumber = parseInt(ingredientAmount);
-  console.log(ingredientAmountNumber);
   const found = ingredientsData.find(
     (ingred) => ingred.name === ingredientName.toLowerCase()
   );
-  if (ingredientName === "" || ingredientAmount === "") {
+  const isNumber = parseInt(ingredientAmount);
+  if (isNaN(isNumber) && ingredientName != "") {
+    show(errorNotANumber);
+    setTimeout(hideNotNumberError, 1500);
+  } else if (ingredientName === "" && ingredientAmount === "") {
     show(errorUnfilled);
     setTimeout(hideUnfilledError, 1500);
   } else if (found === undefined) {
     show(errorNotRecognized);
     setTimeout(hideNotRecognizedError, 1500);
-  } else if (ingredientAmountNumber === NaN) {
-    console.log("HIIIIIIIIIIIIII");
   } else {
     const ingredientToUpdate = currentUser.pantry.find(
       (ingred) => ingred.ingredient === found.id
@@ -495,10 +495,10 @@ function addIngredientToPantry(event) {
     if (ingredientToUpdate != undefined) {
       ingredientToUpdate.amount = ingredientAmount;
     } else {
-      const newIndgredient = new Object();
-      newIndgredient.ingredient = found.id;
-      newIndgredient.amount = ingredientAmount;
-      currentUser.pantry.push(newIndgredient);
+      const newIngredient = new Object();
+      newIngredient.ingredient = found.id;
+      newIngredient.amount = ingredientAmount;
+      currentUser.pantry.push(newIngredient);
     }
   }
   displayUserIngredients();
