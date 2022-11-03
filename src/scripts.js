@@ -91,6 +91,7 @@ const submitIngredientButton = document.querySelector(
 );
 const errorUnfilled = document.querySelector(".error-unfilled");
 const errorNotRecognized = document.querySelector(".error-not-recognized");
+const errorNotANumber = document.querySelector(".error-not-number");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -478,11 +479,9 @@ function addIngredientToPantry(event) {
     (ingred) => ingred.name === ingredientName.toLowerCase()
   );
   if (ingredientName === "" || ingredientAmount === "") {
-    console.log("please add values");
     show(errorUnfilled);
     setTimeout(hideUnfilledError, 1500);
   } else if (found === undefined) {
-    console.log("ingredient not recognized/not needed by any recipe");
     show(errorNotRecognized);
     setTimeout(hideNotRecognizedError, 1500);
   } else {
@@ -490,14 +489,13 @@ function addIngredientToPantry(event) {
       (ingred) => ingred.ingredient === found.id
     );
     if (ingredientToUpdate != undefined) {
-      ingredientToUpdate.amount = parseInt(ingredientAmount);
+      ingredientToUpdate.amount = ingredientAmount;
     } else {
-      const newIngredient = new Object();
-      newIngredient.ingredient = found.id;
-      newIngredient.amount = parseInt(ingredientAmount);
-      currentUser.pantry.push(newIngredient);
+      const newIndgredient = new Object();
+      newIndgredient.ingredient = found.id;
+      newIndgredient.amount = ingredientAmount;
+      currentUser.pantry.push(newIndgredient);
     }
-    console.log(currentUser.pantry);
   }
   displayUserIngredients();
   ingredientNameInput.value = "";
@@ -520,6 +518,10 @@ function hideUnfilledError() {
 
 function hideNotRecognizedError() {
   errorNotRecognized.classList.add("hide");
+}
+
+function hideNotNumberError() {
+  errorNotANumber.classList.add("hide");
 }
 
 function hideAlert() {
