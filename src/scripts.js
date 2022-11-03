@@ -475,6 +475,8 @@ function addIngredientToPantry(event) {
   event.preventDefault();
   const ingredientName = ingredientNameInput.value;
   const ingredientAmount = ingredientAmountInput.value;
+  const ingredientAmountNumber = parseInt(ingredientAmount);
+  console.log(ingredientAmountNumber);
   const found = ingredientsData.find(
     (ingred) => ingred.name === ingredientName.toLowerCase()
   );
@@ -484,6 +486,8 @@ function addIngredientToPantry(event) {
   } else if (found === undefined) {
     show(errorNotRecognized);
     setTimeout(hideNotRecognizedError, 1500);
+  } else if (ingredientAmountNumber === NaN) {
+    console.log("HIIIIIIIIIIIIII");
   } else {
     const ingredientToUpdate = currentUser.pantry.find(
       (ingred) => ingred.ingredient === found.id
