@@ -316,6 +316,8 @@ function changeSpecificRecipeSpecs() {
   generateIngredientList(currentRecipe);
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
+
+  currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
 }
 
 function generateIngredientList(recipe) {
