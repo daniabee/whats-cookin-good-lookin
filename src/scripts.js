@@ -492,10 +492,10 @@ function addIngredientToPantry(event) {
     if (ingredientToUpdate != undefined) {
       ingredientToUpdate.amount = parseInt(ingredientAmount);
     } else {
-      const newIndgredient = new Object();
-      newIndgredient.ingredient = found.id;
-      newIndgredient.amount = parseInt(ingredientAmount);
-      currentUser.pantry.push(newIndgredient);
+      const newIngredient = new Object();
+      newIngredient.ingredient = found.id;
+      newIngredient.amount = parseInt(ingredientAmount);
+      currentUser.pantry.push(newIngredient);
     }
     console.log(currentUser.pantry);
   }
