@@ -65,19 +65,19 @@ const inputForTags = document.querySelector(".list-of-tag-options");
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
 const specificRecipePage = document.querySelector(".specific-recipe-page");
-const specificRecipeHeading = document.querySelector(
-  ".specific-recipe-heading"
-);
+const specificRecipeHeading = document.querySelector(".specific-recipe-heading");
 const specificRecipeSaveButton = document.querySelector(".save-button");
 const specificRecipeSavedAlert = document.querySelector(".recipe-saved-text");
 const specificRecipeImage = document.querySelector(".specific-recipe-img");
-const specificRecipeIngredients = document.querySelector(
-  ".specific-recipe-ingredients-list"
-);
-const specificRecipeInstructions = document.querySelector(
-  ".specific-recipe-instructions"
-);
+const specificRecipeIngredients = document.querySelector(".specific-recipe-ingredients-list");
+const specificRecipeInstructions = document.querySelector(".specific-recipe-instructions");
 const specificRecipeCost = document.querySelector(".specific-recipe-cost");
+    // NEW ⬇️
+const specificRecipeCookArea = document.querySelector(".specific-recipe-cook-area") //area containing either cook button or missing ingredients
+const cookAreaHeading = document.querySelector(".cook-area-heading");
+const cookButton = document.querySelector(".cook-button");
+const cookConfirmationText = document.querySelector(".cook-confirmation");
+const missingIngredients = document.querySelector(".missing-ingredients"); //subject to change depending on Courtney's work
 
 //User Pantry Page
 const userPantryPage = document.querySelector(".user-pantry");
@@ -173,6 +173,7 @@ function displayHomePage() {
     specificRecipePage,
     userPantryPage
   );
+  resetSpecificRecipeCookArea()
   currentPage = "home";
   changeButtonColor();
   searchButtonInput.value = "";
@@ -187,6 +188,7 @@ function displayAboutPage() {
     specificRecipePage,
     userPantryPage
   );
+  resetSpecificRecipeCookArea();
   currentPage = "about";
   changeButtonColor();
   searchButtonInput.value = "";
@@ -201,6 +203,7 @@ function displayAllRecipes() {
     specificRecipePage,
     userPantryPage
   );
+  resetSpecificRecipeCookArea()
   currentPage = "all";
   changeButtonColor();
   searchButtonInput.value = "";
@@ -215,6 +218,7 @@ function displaySavedRecipes() {
     specificRecipePage,
     userPantryPage
   );
+  resetSpecificRecipeCookArea();
   currentPage = "saved";
   searchButtonInput.value = "";
   searchButtonInput.placeholder = `Search ${currentPage} recipes`;
@@ -229,6 +233,7 @@ function displayUserPantry() {
     specificRecipePage,
     allRecipesMain
   );
+  resetSpecificRecipeCookArea()
   displayUserIngredients();
   currentPage = "userPantry";
   userPantryTitle.innerHTML = `${currentUser.name}'s Pantry`;
@@ -261,6 +266,7 @@ function displaySearchRecipes() {
       "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
   }
   searchButtonInput.value = "";
+  resetSpecificRecipeCookArea()
 }
 //Home Page FUNCTIONS --------
 
@@ -392,7 +398,12 @@ function changeSpecificRecipeSpecs() {
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
 
-  currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
+  // 🚨 if the recipe is ready to cook AND the currentPage === 'saved'
+  //        then call function loadReadyToCookArea()
+  //    else if the recipe is not ready to cook AND the currentPage === 'saved'
+  //        then call function loadNotReadyToCookArea()
+
+  // currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
 }
 
 function generateIngredientList(recipe) {
@@ -449,6 +460,26 @@ function addToRecipesToCook() {
     setTimeout(hideAlert, 1500);
   }
 }
+
+function resetSpecificRecipeCookArea() {
+  hide(cookButton);
+  hide(cookConfirmationText);
+  hide(missingIngredients);
+  hide(specificRecipeCookArea);
+}
+
+function loadReadyToCookArea() {
+  show (specificRecipeCookArea);
+  show(cookButton);
+  cookAreaHeading.innerText = 'This Recipe is Ready to Cook'
+}
+
+function loadNotReadyToCookArea() {
+  show(specificRecipeCookArea);
+  show(missingIngredients);
+  cookAreaHeading.innerText = 'This Recipe is Missing Some Ingredients...' //or whatever
+}
+
 
 //User Page FUNCTIONS
 function createUserIngredientsList() {
