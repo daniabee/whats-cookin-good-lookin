@@ -285,7 +285,17 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = "";
   sortByCookable(currentUser)
   recipesList.forEach((recipe) => {
-    // eventually code here
+    if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
+      return (recipesThumbnailsSection +=
+        `<section class="single-recipe-thumbnail transparent" id = "${recipe.id}"> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
+            <div class="single-recipe-text"> 
+              <p class="recipe-title-text">${recipe.name}</p> 
+              <p class=${trashbinClass}>${trashbin}</p>
+              <p class='meal-ready'>${recipe.name}is unavailable </p> 
+            </div> 
+        </section>`);
+    } else{
     return (recipesThumbnailsSection +=
        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
@@ -294,6 +304,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
               <p class=${trashbinClass}>${trashbin}</p> 
             </div> 
         </section>`);
+    }
   });
   allRecipeThumbnailsSection.innerHTML = recipesThumbnailsSection;
 }
