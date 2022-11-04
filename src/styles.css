@@ -80,6 +80,7 @@ nav {
 }
 
 .circle {
+  opacity: 80%;
   width: 100vw;
   height: 100vh;
   background: radial-gradient(
