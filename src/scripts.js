@@ -94,6 +94,9 @@ const errorUnfilled = document.querySelector(".error-unfilled");
 const errorNotRecognized = document.querySelector(".error-not-recognized");
 const errorNotANumber = document.querySelector(".error-not-number");
 const errorUnableToSave = document.querySelector(".error-unable-to-save");
+const errorUnableToRetrieveData = document.querySelector(
+  ".error-unable-to-retrieve"
+);
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -499,42 +502,40 @@ function displayUserIngredients() {
   });
 }
 
+function findIngredient(ingredName) {
+  return ingredientsData.find(
+    (ingred) => ingred.name === ingredName.toLowerCase()
+  );
+}
+
 function addIngredientToPantry(event) {
   event.preventDefault();
   const ingredientName = ingredientNameInput.value;
   const ingredientAmount = ingredientAmountInput.value;
   const newIngredient = new Object();
-  let postableUser;
-  const found = ingredientsData.find(
-    (ingred) => ingred.name === ingredientName.toLowerCase()
-  );
+  const ingredFound = findIngredient(ingredientName);
   if (isNaN(+ingredientAmount) && ingredientName != "") {
     show(errorNotANumber);
     setTimeout(hideNotNumberError, 1500);
   } else if (ingredientName === "" && ingredientAmount === "") {
     show(errorUnfilled);
     setTimeout(hideUnfilledError, 1500);
-  } else if (found === undefined) {
+  } else if (ingredFound === undefined) {
     show(errorNotRecognized);
     setTimeout(hideNotRecognizedError, 1500);
   } else {
     const ingredientToUpdate = currentUser.pantry.find(
-      (ingred) => ingred.ingredient === found.id
+      (ingred) => ingred.ingredient === ingredFound.id
     );
     if (ingredientToUpdate != undefined) {
-      ingredientToUpdate.amount = +ingredientAmount;
       newIngredient.ingredient = ingredientToUpdate.ingredient;
-      newIngredient.amount = ingredientToUpdate.amount;
-      postableUser = createPostableUser(newIngredient);
-      postUser(postableUser);
-      updateUserData();
-    } else {
-      newIngredient.ingredient = found.id;
       newIngredient.amount = +ingredientAmount;
-      postableUser = createPostableUser(newIngredient);
-      postUser(postableUser);
-      updateUserData();
+    } else {
+      newIngredient.ingredient = ingredFound.id;
+      newIngredient.amount = +ingredientAmount;
     }
+    postUser(createPostableUser(newIngredient));
+    updateUserData();
   }
   ingredientNameInput.value = "";
   ingredientAmountInput.value = "";
@@ -556,9 +557,8 @@ function updateUserData() {
       displayUserIngredients();
     })
     .catch((error) => {
-      console.log(error);
-      show(errorUnableToSave);
-      setTimeout(hideUnableToSaveError, 1500);
+      show(errorUnableToRetrieveData);
+      setTimeout(hideUnableToRetrieveData, 1500);
     });
 }
 
@@ -586,6 +586,10 @@ function hideNotNumberError() {
 
 function hideUnableToSaveError() {
   errorUnableToSave.classList.add("hide");
+}
+
+function hideUnableToRetrieveData() {
+  errorUnableToRetrieveData.classList.add("hide");
 }
 
 function hideAlert() {
