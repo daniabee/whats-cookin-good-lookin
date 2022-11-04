@@ -287,15 +287,25 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   recipesList.forEach((recipe) => {
     if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
-        `<section class="single-recipe-thumbnail transparent" id = "${recipe.id}"> 
+        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+          <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
+            <div class="single-recipe-text"> 
+              <p class="recipe-title-text">${recipe.name}</p> 
+              <p class=${trashbinClass}>${trashbin}</p>
+              <p class='meal-ready'> Not enough ingredients </p> 
+            </div> 
+        </section>`);
+    } else if (sortByCookable(currentUser).readyToCook.includes(recipe) && currentPage === 'saved'){
+      return (recipesThumbnailsSection +=
+        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
               <p class=${trashbinClass}>${trashbin}</p>
-              <p class='meal-ready'>${recipe.name}is unavailable </p> 
+              <p class='meal-ready'> Prep Ready! </p>  
             </div> 
         </section>`);
-    } else{
+    }else {
     return (recipesThumbnailsSection +=
        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 

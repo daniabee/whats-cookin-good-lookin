@@ -278,6 +278,15 @@ nav {
 .list-of-tag-options {
   cursor: pointer;
 }
+.transparent {
+  opacity: .3
+
+}
+.meal-ready {
+color:rgb(150, 53, 35);
+font-size: large;
+}
+
 
 /* User Pantry */
 
