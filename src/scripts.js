@@ -391,8 +391,23 @@ function changeSpecificRecipeSpecs() {
   generateIngredientList(currentRecipe);
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
-
+  console.log('currentRecipe',currentRecipe)
+  console.log('pantry', currentUser.pantry)
   currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
+}
+
+function createListOfNeededIngredients(currentRecipe) {
+/*
+currentRecipe.ingredients.forEach(recipeIngredient => {
+  let matchedIngredient = currentUser.pantry.find(pantryIngredient => pantryIngredient.ingredient
+ === recipeIngredient.id)
+ if (matchedIngredient) {
+      
+ } else if (!matchedIngredient) {
+
+ }
+})
+*/
 }
 
 function generateIngredientList(recipe) {
