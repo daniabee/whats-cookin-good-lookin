@@ -10,10 +10,15 @@
  font-family: 'Playball', cursive;
  font-family: 'Playfair Display', serif; */
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Playfair Display", serif;
   background-image: url("./images/paper.png");
   background-color: rgb(243, 199, 126);
+  margin: 0;
 }
 
 button {
@@ -41,7 +46,7 @@ nav {
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
-  border: solid rgb(146, 146, 112);
+  border: solid rgb(87, 36, 31);
   background-color: rgb(156, 126, 68);
 }
 
@@ -61,7 +66,6 @@ nav {
 }
 
 /* HomePage */
-
 #title {
   align-self: flex-start;
   font-size: 15vh;
@@ -75,10 +79,29 @@ nav {
     3px -3px 0 rgb(87, 36, 31), -3px -3px 0 rgb(87, 36, 31);
 }
 
-.home-background {
-  background-image: url("/src/images/Asset12.png");
-  background-position-x: left;
-  background-size: 180%;
+.circle {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(
+    circle,
+    var(--circle-1) 16% 30%,
+    var(--circle-2) 16% 40%,
+    var(--circle-3) 33% 55%,
+    var(--circle-4) 50% 75%,
+    var(--circle-5) 66% 95%
+  );
+  z-index: -1;
+  position: fixed;
+  background-repeat: repeat-x;
+  background-size: 150%;
+  background-position: left;
+}
+:root {
+  --circle-1: hsla(40, 100%, 84%, 1);
+  --circle-2: hsla(60, 13%, 51%, 1);
+  --circle-3: hsla(9, 62%, 36%, 1);
+  --circle-4: hsla(40, 39%, 44%, 1);
+  --circle-5: hsla(5, 47%, 23%, 1);
 }
 
 .homepage-area {
@@ -89,7 +112,9 @@ nav {
   background-repeat: no-repeat;
   background-position-x: 97%;
   background-position-y: bottom;
-  background-size: 65vh;
+  background-size: 68vh;
+  position: relative;
+  z-index: auto;
 }
 
 /* About Page section */
@@ -150,10 +175,10 @@ nav {
 /*  Specific Recipe  section  */
 .specific-recipe-img {
   width: 20vw;
-  padding: 3%;
+  padding: 2%;
   margin-top: 5%;
   margin-left: 12%;
-  background-color: rgb(156, 126, 68);
+  background-color: rgb(87, 36, 31);
 }
 
 .specific-recipe-info {
@@ -192,7 +217,6 @@ nav {
 }
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
 .all-recipes-main {
-  /* background-image: url(/src/images/Asset9.png); */
   height: 100vh;
 }
 
@@ -228,7 +252,8 @@ nav {
   margin-bottom: 1vh;
   background-color: rgb(255, 227, 171);
   color: rgb(87, 36, 31);
-  border: solid 2px rgb(156, 126, 68);
+  border: solid 5px rgb(87, 36, 31);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .single-recipe-img {
@@ -298,22 +323,37 @@ nav {
   margin-bottom: 3%;
 }
 
+.form-title {
+  text-align: center;
+}
+
 .ingredients-form {
   display: flex;
-  background-color: rgb(255, 227, 171);
-  border: solid 2px rgb(87, 36, 31);
+  background-color: rgb(104, 83, 43);
+  border: solid 5px rgb(87, 36, 31);
   padding: 2%;
   flex-direction: column;
   margin-top: 10%;
-  margin-right: 10%;
-  color: rgb(87, 36, 31);
+  margin-right: 5%;
+  color: rgb(255, 227, 171);
+  align-items: center;
+  height: 50vh;
+  font-size: 115%;
 }
 
 #submit-ingredient-button {
-  background-color: rgb(150, 53, 35);
+  background-color: rgb(87, 36, 31);
   color: rgb(255, 227, 171);
   border: solid 2px rgb(243, 199, 126);
   border-radius: 5px;
+}
+
+.ingredient-list {
+  font-size: 150%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: rgb(87, 36, 31);
 }
 
 /* ~~End All/Saved Recipes CSS ~~ */
