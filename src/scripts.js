@@ -478,7 +478,7 @@ function addIngredientToPantry(event) {
   const found = ingredientsData.find(
     (ingred) => ingred.name === ingredientName.toLowerCase()
   );
-  const isNumber = parseInt(ingredientAmount);
+  const isNumber = +ingredientAmount;
   if (isNaN(isNumber) && ingredientName != "") {
     show(errorNotANumber);
     setTimeout(hideNotNumberError, 1500);
@@ -493,11 +493,11 @@ function addIngredientToPantry(event) {
       (ingred) => ingred.ingredient === found.id
     );
     if (ingredientToUpdate != undefined) {
-      ingredientToUpdate.amount = ingredientAmount;
+      ingredientToUpdate.amount = +ingredientAmount;
     } else {
       const newIngredient = new Object();
       newIngredient.ingredient = found.id;
-      newIngredient.amount = ingredientAmount;
+      newIngredient.amount = +ingredientAmount;
       currentUser.pantry.push(newIngredient);
     }
   }
