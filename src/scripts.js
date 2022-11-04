@@ -49,6 +49,7 @@ const featuredRecipeName = document.querySelector("#featuredRecipeName");
 const appetizerFilter = document.querySelector("#appetizerFilter");
 const mainCourseFilter = document.querySelector("#mainCourseFilter");
 const snackFilter = document.querySelector("#snackFilter");
+const errorLoadFailure = document.querySelector(".error-message");
 
 //All Recipes Page QUERY SELECTORS--------
 const allRecipesMain = document.querySelector(".all-recipes-main");
@@ -112,6 +113,7 @@ Promise.all([
     createInstances(recipeData, ingredientsData, userData);
     allRecipes = new RecipeRepository(recipeData);
     populateTagFilter(allRecipes.listOfAllRecipes);
+    hideLoadFailure();
   })
   .catch((error) => {
     console.log(error);
@@ -474,7 +476,6 @@ function postUser(user) {
       updateUserData();
     })
     .catch((error) => {
-      console.log(error);
       show(errorUnableToSave);
       setTimeout(hideUnableToSaveError, 1500);
     });
@@ -590,6 +591,10 @@ function hideUnableToSaveError() {
 
 function hideUnableToRetrieveData() {
   errorUnableToRetrieveData.classList.add("hide");
+}
+
+function hideLoadFailure() {
+  errorLoadFailure.classList.add("hide");
 }
 
 function hideAlert() {
