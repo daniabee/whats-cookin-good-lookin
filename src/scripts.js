@@ -82,6 +82,16 @@ const specificRecipeCost = document.querySelector(".specific-recipe-cost");
 //User Pantry Page
 const userPantryPage = document.querySelector(".user-pantry");
 const userPantryButton = document.querySelector("#userPantryButton");
+const userPantryTitle = document.querySelector(".user-pantry-title");
+const ingredientList = document.querySelector(".ingredient-list");
+const ingredientNameInput = document.querySelector("#ingred-name");
+const ingredientAmountInput = document.querySelector("#ingred-amount");
+const submitIngredientButton = document.querySelector(
+  "#submit-ingredient-button"
+);
+const errorUnfilled = document.querySelector(".error-unfilled");
+const errorNotRecognized = document.querySelector(".error-not-recognized");
+const errorNotANumber = document.querySelector(".error-not-number");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -142,6 +152,7 @@ specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
 
 //User Pantry Page
 userPantryButton.addEventListener("click", displayUserPantry);
+submitIngredientButton.addEventListener("click", addIngredientToPantry);
 
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
@@ -164,8 +175,8 @@ function displayHomePage() {
   );
   currentPage = "home";
   changeButtonColor();
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search all recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search all recipes`;
 }
 
 function displayAboutPage() {
@@ -178,8 +189,8 @@ function displayAboutPage() {
   );
   currentPage = "about";
   changeButtonColor();
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search all recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search all recipes`;
 }
 
 function displayAllRecipes() {
@@ -192,8 +203,8 @@ function displayAllRecipes() {
   );
   currentPage = "all";
   changeButtonColor();
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search ${currentPage} recipes`;
 }
 
 function displaySavedRecipes() {
@@ -205,8 +216,8 @@ function displaySavedRecipes() {
     userPantryPage
   );
   currentPage = "saved";
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search ${currentPage} recipes`;
   changeButtonColor();
 }
 
@@ -218,9 +229,11 @@ function displayUserPantry() {
     specificRecipePage,
     allRecipesMain
   );
+  displayUserIngredients();
   currentPage = "userPantry";
-  (searchButtonInput.value = ""),
-    (searchButtonInput.placeholder = `Search ${currentPage} recipes`);
+  userPantryTitle.innerHTML = `${currentUser.name}'s Pantry`;
+  searchButtonInput.value = "";
+  searchButtonInput.placeholder = `Search all recipes`;
   changeButtonColor();
 }
 
@@ -437,12 +450,84 @@ function addToRecipesToCook() {
   }
 }
 
+//User Page FUNCTIONS
+function createUserIngredientsList() {
+  return currentUser.pantry
+    .map((userIngred) => {
+      let ingredientName;
+      ingredientsData.forEach((ingred) => {
+        if (userIngred.ingredient === ingred.id) {
+          ingredientName = ingred.name;
+        }
+      });
+      return `${ingredientName} : ${userIngred.amount}`;
+    })
+    .sort();
+}
+
+function displayUserIngredients() {
+  const ingredientDisplay = createUserIngredientsList();
+  ingredientList.innerHTML = "";
+  ingredientDisplay.forEach((item) => {
+    ingredientList.innerHTML += `<li>${item}</li>`;
+  });
+}
+
+function addIngredientToPantry(event) {
+  event.preventDefault();
+  const ingredientName = ingredientNameInput.value;
+  const ingredientAmount = ingredientAmountInput.value;
+  const found = ingredientsData.find(
+    (ingred) => ingred.name === ingredientName.toLowerCase()
+  );
+  const isNumber = +ingredientAmount;
+  if (isNaN(isNumber) && ingredientName != "") {
+    show(errorNotANumber);
+    setTimeout(hideNotNumberError, 1500);
+  } else if (ingredientName === "" && ingredientAmount === "") {
+    show(errorUnfilled);
+    setTimeout(hideUnfilledError, 1500);
+  } else if (found === undefined) {
+    show(errorNotRecognized);
+    setTimeout(hideNotRecognizedError, 1500);
+  } else {
+    const ingredientToUpdate = currentUser.pantry.find(
+      (ingred) => ingred.ingredient === found.id
+    );
+    if (ingredientToUpdate != undefined) {
+      ingredientToUpdate.amount = +ingredientAmount;
+    } else {
+      const newIngredient = new Object();
+      newIngredient.ingredient = found.id;
+      newIngredient.amount = +ingredientAmount;
+      currentUser.pantry.push(newIngredient);
+    }
+  }
+  displayUserIngredients();
+  ingredientNameInput.value = "";
+  ingredientAmountInput.value = "";
+}
+
+//Helper FUNCTIONS
+
 function show(element) {
   element.classList.remove("hide");
 }
 
 function hide(element) {
   element.classList.add("hide");
+}
+
+function hideUnfilledError() {
+  errorUnfilled.classList.add("hide");
+}
+
+function hideNotRecognizedError() {
+  errorNotRecognized.classList.add("hide");
+}
+
+function hideNotNumberError() {
+  errorNotANumber.classList.add("hide");
 }
 
 function hideAlert() {
