@@ -108,7 +108,6 @@ Promise.all([
   createInstances(recipeData, ingredientsData, userData);
   allRecipes = new RecipeRepository(recipeData);
   populateTagFilter(allRecipes.listOfAllRecipes);
-  console.log(currentUserIndex);
 });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
@@ -465,7 +464,7 @@ function postUser(user) {
       return resp.json();
     })
     .then((user) => {
-      displayUserIngredients();
+      updateUserData();
     })
     .catch((error) => {
       console.log(error);
@@ -505,6 +504,7 @@ function addIngredientToPantry(event) {
   );
   const isNumber = +ingredientAmount;
   const newIngredient = new Object();
+  let postableUser;
   if (isNaN(isNumber) && ingredientName != "") {
     show(errorNotANumber);
     setTimeout(hideNotNumberError, 1500);
@@ -520,35 +520,45 @@ function addIngredientToPantry(event) {
     );
     if (ingredientToUpdate != undefined) {
       ingredientToUpdate.amount = +ingredientAmount;
+      newIngredient.ingredient = ingredientToUpdate.ingredient;
+      newIngredient.amount = ingredientToUpdate.amount;
+      postableUser = createPostableUser(newIngredient);
+      postUser(postableUser);
+      updateUserData();
     } else {
       newIngredient.ingredient = found.id;
       newIngredient.amount = +ingredientAmount;
-      currentUser.pantry.push(newIngredient);
+      postableUser = createPostableUser(newIngredient);
+      postUser(postableUser);
+      updateUserData();
     }
   }
-  const postableUser = createPostableUser(newIngredient);
-  postUser(postableUser);
-  updateUserData();
   ingredientNameInput.value = "";
   ingredientAmountInput.value = "";
 }
 
 function createPostableUser(ingredient) {
-  console.log(ingredient);
   const postUser = new Object();
-  console.log(currentUser.id);
   postUser.userID = currentUser.id;
   postUser.ingredientID = ingredient.ingredient;
-  postUser.ingredientModification = ingredient.amount;
+  postUser.ingredientModification = -5; ///ingredient.amount
+
+  //MODIFICATION CHANGES THE AMOUNT BY THE AMOUNT ABOVE
   console.log(postUser);
   return postUser;
 }
 
 function updateUserData() {
-  loadData("http://localhost:3001/api/v1/users").then((data) => {
-    userData = data;
-    console.log(data);
-  });
+  loadData("http://localhost:3001/api/v1/users")
+    .then((data) => {
+      userData = data;
+      currentUser = data[currentUserIndex];
+      console.log("USER INDEX", currentUserIndex);
+      console.log("USER PANTRY", currentUser.pantry);
+    })
+    .then((data) => {
+      displayUserIngredients();
+    });
 }
 
 //Helper FUNCTIONS
