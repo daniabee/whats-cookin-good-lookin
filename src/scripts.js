@@ -285,6 +285,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = "";
   sortByCookable(currentUser)
   recipesList.forEach((recipe) => {
+    console.log('WOWZA',sortByCookable(currentUser).readyToCook)
     if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
@@ -294,7 +295,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
               <p class=${trashbinClass}>${trashbin}</p>
               <p class='meal-ready'> Not enough ingredients </p> 
             </div> 
-        </section>`);
+            </section>`);
     } else if (sortByCookable(currentUser).readyToCook.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
@@ -587,6 +588,7 @@ function changeButtonColor() {
 
 function sortByCookable(currentUser) {
   let goodIng;
+  
   const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
     goodIng = []
     recipe.ingredients.forEach(ing => {
@@ -595,7 +597,7 @@ function sortByCookable(currentUser) {
             goodIng.push(ing)
         }
     })
-
+    
     if (goodIng.length === recipe.ingredients.length) {
       acc.readyToCook.push(recipe)
     } else {
