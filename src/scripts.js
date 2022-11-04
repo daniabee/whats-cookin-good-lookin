@@ -78,6 +78,7 @@ const specificRecipeInstructions = document.querySelector(
   ".specific-recipe-instructions"
 );
 const specificRecipeCost = document.querySelector(".specific-recipe-cost");
+const listOfNeededIngredients = document.querySelector('.to-cook-ingredients-needed-list')
 
 //User Pantry Page
 const userPantryPage = document.querySelector(".user-pantry");
@@ -391,23 +392,56 @@ function changeSpecificRecipeSpecs() {
   generateIngredientList(currentRecipe);
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
-  console.log('currentRecipe',currentRecipe)
-  console.log('pantry', currentUser.pantry)
-  currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
+  // currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
+  createListOfNeededIngredients(currentRecipe)
 }
 
 function createListOfNeededIngredients(currentRecipe) {
-/*
-currentRecipe.ingredients.forEach(recipeIngredient => {
-  let matchedIngredient = currentUser.pantry.find(pantryIngredient => pantryIngredient.ingredient
- === recipeIngredient.id)
- if (matchedIngredient) {
+  const toGetIngredientsList = []
+  currentRecipe.ingredients.forEach(recipeIngredient => {
+    console.log('currentUser.pantry', currentUser.pantry)
+    let matchedIngredient = currentUser.pantry.find(pantryIngredient => {
+      console.log('pantryIngredient',pantryIngredient)
+      console.log(recipeIngredient.id)
+      return pantryIngredient.ingredient
+    === recipeIngredient.id})
+    console.log('matchedIngredient', matchedIngredient)
+    console.log('recipeIngredient', recipeIngredient)
+    if (matchedIngredient && recipeIngredient.quantity.amount > matchedIngredient.amount) {
+      const amountNeededRecipeObj = {
+        ingredient: recipeIngredient,
+        name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
+        unit: recipeIngredient.quantity.unit,
+        amountNeeded: 0
+      }
+      amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount - matchedIngredient.amount
+      toGetIngredientsList.push(amountNeededRecipeObj)
+      } else if (!matchedIngredient) {
+        const amountNeededRecipeObj = {
+          ingredient: recipeIngredient,
+          name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
+          unit: recipeIngredient.quantity.unit,
+          amountNeeded: 0
+        }
+        amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount
+        toGetIngredientsList.push(amountNeededRecipeObj)
+      }
       
- } else if (!matchedIngredient) {
+    })
 
- }
-})
-*/
+  
+  displayListOfNeededIngredients(toGetIngredientsList)
+}
+
+function displayListOfNeededIngredients(toGetIngredientsList) {
+  console.log('toGetIngredientsListDisplay',toGetIngredientsList)
+  listOfNeededIngredients.innerHTML = "";
+  toGetIngredientsList.forEach(ingredient => {
+    listOfNeededIngredients.innerHTML += `
+    <li>${ingredient.amountNeeded} ${ingredient.unit} ${ingredient.name}</li>
+    `
+  })
+
 }
 
 function generateIngredientList(recipe) {
