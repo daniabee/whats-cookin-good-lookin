@@ -95,11 +95,9 @@ const errorNotANumber = document.querySelector(".error-not-number");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
-  loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
-  loadData(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
-  ),
-  loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"),
+  loadData("http://localhost:3001/api/v1/users"),
+  loadData("http://localhost:3001/api/v1/ingredients"),
+  loadData("http://localhost:3001/api/v1/recipes"),
 ]).then((data) => {
   userData = data[0];
   ingredientsData = data[1];
@@ -114,17 +112,17 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
   makeRecipesList(dataSet1);
   makeIngredientsList(dataSet2);
   currentUser = new User();
-  currentUser.generateRandomUser(dataSet3.usersData);
+  currentUser.generateRandomUser(dataSet3);
 }
 
 function makeRecipesList(dataSet) {
-  recipeData = dataSet.recipeData.map((element) => {
+  recipeData = dataSet.map((element) => {
     return new Recipe(element);
   });
 }
 
 function makeIngredientsList(dataSet) {
-  ingredientsData = dataSet.ingredientsData.map((element) => {
+  ingredientsData = dataSet.map((element) => {
     return new Ingredient(element);
   });
 }
@@ -392,7 +390,7 @@ function changeSpecificRecipeSpecs() {
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
 
-  currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
+  currentUser.cookRecipe(currentRecipe); // NOTE: to be deleted, only included to verify method
 }
 
 function generateIngredientList(recipe) {
