@@ -286,7 +286,14 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   sortByCookable(currentUser)
   recipesList.forEach((recipe) => {
     // eventually code here
-    return (recipesThumbnailsSection += `<section class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p class=${trashbinClass}>${trashbin}</p> </div> </section>`);
+    return (recipesThumbnailsSection +=
+       `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
+            <div class="single-recipe-text"> 
+              <p class="recipe-title-text">${recipe.name}</p> 
+              <p class=${trashbinClass}>${trashbin}</p> 
+            </div> 
+        </section>`);
   });
   allRecipeThumbnailsSection.innerHTML = recipesThumbnailsSection;
 }
