@@ -302,7 +302,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
               <p class=${trashbinClass}>${trashbin}</p>
-              <p class='meal-ready'> Prep Ready! </p>  
+              <p class='meal-ready'> Ready to cook! </p>  
             </div> 
         </section>`);
     }else {
