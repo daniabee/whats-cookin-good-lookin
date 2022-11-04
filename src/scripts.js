@@ -285,7 +285,6 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = "";
   sortByCookable(currentUser)
   recipesList.forEach((recipe) => {
-    console.log('WOWZA',sortByCookable(currentUser).readyToCook)
     if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
