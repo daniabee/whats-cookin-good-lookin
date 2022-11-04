@@ -20,6 +20,7 @@ let recipeData;
 let currentUser;
 let allRecipes;
 let currentPage;
+let currentUserIndex;
 
 //Navbar VARIABLES ---------
 
@@ -92,6 +93,7 @@ const submitIngredientButton = document.querySelector(
 const errorUnfilled = document.querySelector(".error-unfilled");
 const errorNotRecognized = document.querySelector(".error-not-recognized");
 const errorNotANumber = document.querySelector(".error-not-number");
+const errorUnableToSave = document.querySelector(".error-unable-to-save");
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
@@ -106,13 +108,14 @@ Promise.all([
   createInstances(recipeData, ingredientsData, userData);
   allRecipes = new RecipeRepository(recipeData);
   populateTagFilter(allRecipes.listOfAllRecipes);
+  console.log(currentUserIndex);
 });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
   makeRecipesList(dataSet1);
   makeIngredientsList(dataSet2);
   currentUser = new User();
-  currentUser.generateRandomUser(dataSet3);
+  currentUserIndex = currentUser.generateRandomUser(dataSet3);
 }
 
 function makeRecipesList(dataSet) {
@@ -449,6 +452,28 @@ function addToRecipesToCook() {
 }
 
 //User Page FUNCTIONS
+function postUser(user) {
+  fetch("http://localhost:3001/api/v1/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  })
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error("There was an issue saving your data.");
+      }
+      return resp.json();
+    })
+    .then((user) => {
+      displayUserIngredients();
+    })
+    .catch((error) => {
+      console.log(error);
+      show(errorUnableToSave);
+      setTimeout(hideUnableToSaveError, 1500);
+    });
+}
+
 function createUserIngredientsList() {
   return currentUser.pantry
     .map((userIngred) => {
@@ -479,6 +504,7 @@ function addIngredientToPantry(event) {
     (ingred) => ingred.name === ingredientName.toLowerCase()
   );
   const isNumber = +ingredientAmount;
+  const newIngredient = new Object();
   if (isNaN(isNumber) && ingredientName != "") {
     show(errorNotANumber);
     setTimeout(hideNotNumberError, 1500);
@@ -495,15 +521,34 @@ function addIngredientToPantry(event) {
     if (ingredientToUpdate != undefined) {
       ingredientToUpdate.amount = +ingredientAmount;
     } else {
-      const newIngredient = new Object();
       newIngredient.ingredient = found.id;
       newIngredient.amount = +ingredientAmount;
       currentUser.pantry.push(newIngredient);
     }
   }
-  displayUserIngredients();
+  const postableUser = createPostableUser(newIngredient);
+  postUser(postableUser);
+  updateUserData();
   ingredientNameInput.value = "";
   ingredientAmountInput.value = "";
+}
+
+function createPostableUser(ingredient) {
+  console.log(ingredient);
+  const postUser = new Object();
+  console.log(currentUser.id);
+  postUser.userID = currentUser.id;
+  postUser.ingredientID = ingredient.ingredient;
+  postUser.ingredientModification = ingredient.amount;
+  console.log(postUser);
+  return postUser;
+}
+
+function updateUserData() {
+  loadData("http://localhost:3001/api/v1/users").then((data) => {
+    userData = data;
+    console.log(data);
+  });
 }
 
 //Helper FUNCTIONS
@@ -526,6 +571,10 @@ function hideNotRecognizedError() {
 
 function hideNotNumberError() {
   errorNotANumber.classList.add("hide");
+}
+
+function hideUnableToSaveError() {
+  errorUnableToSave.classList.add("hide");
 }
 
 function hideAlert() {

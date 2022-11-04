@@ -20,6 +20,7 @@ class User {
     this.name = usersList[randomIndex]["name"];
     this.id = usersList[randomIndex]["id"];
     this.pantry = usersList[randomIndex]["pantry"];
+    return randomIndex;
   }
 
   addRecipe(recipeID, allRecipes) {
@@ -35,32 +36,38 @@ class User {
     this.recipesToCook.listOfAllRecipes.splice(index, 1);
   }
 
-  cookRecipe(recipe) { // 👈 this argument will be the currentRecipe variable
+  cookRecipe(recipe) {
+    // 👈 this argument will be the currentRecipe variable
 
     /* Needs to only run if it has already been satisfied that the currentRecipe 
         CAN be cooked */
 
-    console.log('Pantry before anything: ', this.pantry);
-    const updatedPantry = this.pantry.map(item => {
-      
+    console.log("Pantry before anything: ", this.pantry);
+    const updatedPantry = this.pantry.map((item) => {
       const updatedIng = {};
       updatedIng.ingredient = item.ingredient;
 
-      const matchingIngredientObject = recipe.ingredients.find(ing => ing.id === item.ingredient);
+      const matchingIngredientObject = recipe.ingredients.find(
+        (ing) => ing.id === item.ingredient
+      );
 
       if (matchingIngredientObject !== undefined) {
-        updatedIng.amount = item.amount - matchingIngredientObject.quantity.amount;
-        console.log('BING: ', matchingIngredientObject.quantity.amount, updatedIng);
+        updatedIng.amount =
+          item.amount - matchingIngredientObject.quantity.amount;
+        console.log(
+          "BING: ",
+          matchingIngredientObject.quantity.amount,
+          updatedIng
+        );
       } else {
         updatedIng.amount = item.amount;
       }
-      
+
       return updatedIng;
-    })
+    });
 
-    this.pantry = updatedPantry
-    console.log('Pantry after value reassigned: ', this.pantry);
-
+    this.pantry = updatedPantry;
+    console.log("Pantry after value reassigned: ", this.pantry);
   }
 }
 
