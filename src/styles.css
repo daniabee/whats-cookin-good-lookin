@@ -85,11 +85,14 @@ nav {
   height: 100vh;
   background: radial-gradient(
     circle,
-    var(--circle-1) 16% 30%,
-    var(--circle-2) 16% 40%,
-    var(--circle-3) 33% 55%,
-    var(--circle-4) 50% 75%,
-    var(--circle-5) 66% 95%
+    var(--circle-0) 16% 30%,
+    var(--circle-1) 16% 40%,
+    var(--circle-2) 16% 50%,
+    var(--circle-3) 33% 60%,
+    var(--circle-4) 33% 70%,
+    var(--circle-5) 16% 80%,
+    var(--circle-6) 66% 90%,
+    var(--circle-7) 16% 100%
   );
   z-index: -1;
   position: fixed;
@@ -98,11 +101,14 @@ nav {
   background-position: left;
 }
 :root {
-  --circle-1: hsla(40, 100%, 84%, 1);
+  --circle-0: hsla(40, 100%, 84%, 1);
+  --circle-1: hsla(40, 39%, 44%, 1);
   --circle-2: hsla(60, 13%, 51%, 1);
   --circle-3: hsla(9, 62%, 36%, 1);
   --circle-4: hsla(40, 39%, 44%, 1);
   --circle-5: hsla(5, 47%, 23%, 1);
+  --circle-6: hsla(40, 100%, 84%, 1);
+  --circle-7: hsla(60, 13%, 51%, 1);
 }
 
 .homepage-area {
