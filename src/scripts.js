@@ -100,15 +100,19 @@ Promise.all([
   loadData("http://localhost:3001/api/v1/users"),
   loadData("http://localhost:3001/api/v1/ingredients"),
   loadData("http://localhost:3001/api/v1/recipes"),
-]).then((data) => {
-  userData = data[0];
-  ingredientsData = data[1];
-  recipeData = data[2];
+])
+  .then((data) => {
+    userData = data[0];
+    ingredientsData = data[1];
+    recipeData = data[2];
 
-  createInstances(recipeData, ingredientsData, userData);
-  allRecipes = new RecipeRepository(recipeData);
-  populateTagFilter(allRecipes.listOfAllRecipes);
-});
+    createInstances(recipeData, ingredientsData, userData);
+    allRecipes = new RecipeRepository(recipeData);
+    populateTagFilter(allRecipes.listOfAllRecipes);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
   makeRecipesList(dataSet1);
@@ -499,13 +503,12 @@ function addIngredientToPantry(event) {
   event.preventDefault();
   const ingredientName = ingredientNameInput.value;
   const ingredientAmount = ingredientAmountInput.value;
+  const newIngredient = new Object();
+  let postableUser;
   const found = ingredientsData.find(
     (ingred) => ingred.name === ingredientName.toLowerCase()
   );
-  const isNumber = +ingredientAmount;
-  const newIngredient = new Object();
-  let postableUser;
-  if (isNaN(isNumber) && ingredientName != "") {
+  if (isNaN(+ingredientAmount) && ingredientName != "") {
     show(errorNotANumber);
     setTimeout(hideNotNumberError, 1500);
   } else if (ingredientName === "" && ingredientAmount === "") {
@@ -541,10 +544,7 @@ function createPostableUser(ingredient) {
   const postUser = new Object();
   postUser.userID = currentUser.id;
   postUser.ingredientID = ingredient.ingredient;
-  postUser.ingredientModification = -5; ///ingredient.amount
-
-  //MODIFICATION CHANGES THE AMOUNT BY THE AMOUNT ABOVE
-  console.log(postUser);
+  postUser.ingredientModification = ingredient.amount;
   return postUser;
 }
 
@@ -553,11 +553,12 @@ function updateUserData() {
     .then((data) => {
       userData = data;
       currentUser = data[currentUserIndex];
-      console.log("USER INDEX", currentUserIndex);
-      console.log("USER PANTRY", currentUser.pantry);
-    })
-    .then((data) => {
       displayUserIngredients();
+    })
+    .catch((error) => {
+      console.log(error);
+      show(errorUnableToSave);
+      setTimeout(hideUnableToSaveError, 1500);
     });
 }
 
