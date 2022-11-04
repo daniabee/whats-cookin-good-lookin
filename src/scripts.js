@@ -149,6 +149,7 @@ allRecipeThumbnailsSection.addEventListener("click", deleteSavedRecipe);
 
 //Specific Recipe Page EVENT LISTENERS --------
 specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
+cookButton.addEventListener('click', cookRecipe);
 
 //User Pantry Page
 userPantryButton.addEventListener("click", displayUserPantry);
@@ -478,6 +479,12 @@ function loadNotReadyToCookArea() {
   show(specificRecipeCookArea);
   show(missingIngredients);
   cookAreaHeading.innerText = 'This Recipe is Missing Some Ingredients...' //or whatever
+}
+
+function cookRecipe() {
+  currentUser.cookRecipe(currentRecipe);
+  hide(cookButton);
+  show(cookConfirmationText);
 }
 
 
