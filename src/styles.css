@@ -189,6 +189,30 @@ nav {
   flex-direction: row;
   justify-content: space-around;
 }
+
+.specific-recipe-ingredients-and-cook-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.specific-recipe-cook-area {
+  width: 470px;
+  margin-right: 50px;
+}
+
+.cook-area-heading {
+  font-style: italic;
+}
+
+.cook-button {
+  background-color: rgb(146, 146, 112);
+  border: solid rgb(255, 227, 171);
+  color: rgb(255, 227, 171);
+  font-size: 1.2vw;
+}
+
+
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
 .all-recipes-main {
   background-image: url(/src/images/Asset9.png);
