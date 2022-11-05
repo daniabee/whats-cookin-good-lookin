@@ -399,12 +399,13 @@ function changeSpecificRecipeSpecs() {
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
 
-  // 🚨 if the recipe is ready to cook AND the currentPage === 'saved'
-  //        then call function loadReadyToCookArea()
-  //    else if the recipe is not ready to cook AND the currentPage === 'saved'
-  //        then call function loadNotReadyToCookArea()
-
-  // currentUser.cookRecipe(currentRecipe) // NOTE: to be deleted, only included to verify method
+  if (sortByCookable(currentUser).notReady.includes(currentRecipe) 
+    && currentPage === 'saved') {
+    loadNotReadyToCookArea();
+  } else if (sortByCookable(currentUser).readyToCook.includes(currentRecipe)
+    && currentPage === 'saved') {
+    loadReadyToCookArea();
+  }
 }
 
 function generateIngredientList(recipe) {
@@ -590,4 +591,27 @@ function changeButtonColor() {
   } else if (currentPage === "userPantry") {
     userPantryButton.classList.add("current-page-button");
   }
+}
+
+function sortByCookable(currentUser) {
+  let goodIng;
+  
+  const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
+    goodIng = []
+    recipe.ingredients.forEach(ing => {
+      const matchPantryIng = currentUser.pantry.find(item => item.ingredient === ing.id)
+        if (matchPantryIng !== undefined && matchPantryIng.amount - ing.quantity.amount > -1) {
+            goodIng.push(ing)
+        }
+    })
+    
+    if (goodIng.length === recipe.ingredients.length) {
+      acc.readyToCook.push(recipe)
+    } else {
+      acc.notReady.push(recipe)
+    }
+    return acc;
+  }, { readyToCook: [], notReady: [] })
+
+  return sortedRecipes;
 }
