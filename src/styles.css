@@ -167,8 +167,8 @@ nav {
 }
 
 .profile-picture {
-  height: 7vh;
-  width: 7vw;
+  height: 12vh;
+  width: auto;
   border-radius: 50%;
   border: 2px solid black;
 }
@@ -313,14 +313,12 @@ nav {
   cursor: pointer;
 }
 .transparent {
-  opacity: .2;
-
+  opacity: 0.2;
 }
 .meal-ready {
-color:rgb(150, 53, 35);
-font-size: large;
+  color: rgb(150, 53, 35);
+  font-size: large;
 }
-
 
 /* User Pantry */
 
