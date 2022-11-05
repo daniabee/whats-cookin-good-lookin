@@ -379,7 +379,7 @@ function deleteSavedRecipe(event) {
 //Specific Recipe Page FUNCTIONS --------
 
 function loadSpecificRecipe(event) {
-  if (event.target.className === "single-recipe-img") {
+  if (event.target.classList.contains( "single-recipe-img")) {
     currentRecipe = allRecipes.listOfAllRecipes.find(
       (recipe) => recipe.id === +event.target.parentElement.id
     );
@@ -390,9 +390,9 @@ function loadSpecificRecipe(event) {
     );
   }
   if (
-    event.target.className === "single-recipe-img" ||
+    event.target.classList.contains( "single-recipe-img" ||
     event.target.className === "recipe-title-text"
-  ) {
+  )) {
     hide(allRecipesMain);
     show(specificRecipePage);
     changeSpecificRecipeSpecs();
