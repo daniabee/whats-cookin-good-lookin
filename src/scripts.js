@@ -405,9 +405,6 @@ function changeSpecificRecipeSpecs() {
     && currentPage === 'saved') {
     loadReadyToCookArea();
   }
-
-}
-
 }
 
 function createListOfNeededIngredients(currentRecipe) {
@@ -455,6 +452,7 @@ function displayListOfNeededIngredients(toGetIngredientsList) {
     <li>${ingredient.amountNeeded} ${ingredient.unit} ${ingredient.name}</li>
     `
   })
+}
 
 function generateIngredientList(recipe) {
   const ingredientsListDisplay = recipe.ingredients.reduce((list, currIng) => {
@@ -662,4 +660,5 @@ function sortByCookable(currentUser) {
   }, { readyToCook: [], notReady: [] })
 
   return sortedRecipes;
-}
+  }
+
