@@ -67,14 +67,22 @@ const inputForTags = document.querySelector(".list-of-tag-options");
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
 const specificRecipePage = document.querySelector(".specific-recipe-page");
-const specificRecipeHeading = document.querySelector(".specific-recipe-heading");
+const specificRecipeHeading = document.querySelector(
+  ".specific-recipe-heading"
+);
 const specificRecipeSaveButton = document.querySelector(".save-button");
 const specificRecipeSavedAlert = document.querySelector(".recipe-saved-text");
 const specificRecipeImage = document.querySelector(".specific-recipe-img");
-const specificRecipeIngredients = document.querySelector(".specific-recipe-ingredients-list");
-const specificRecipeInstructions = document.querySelector(".specific-recipe-instructions");
+const specificRecipeIngredients = document.querySelector(
+  ".specific-recipe-ingredients-list"
+);
+const specificRecipeInstructions = document.querySelector(
+  ".specific-recipe-instructions"
+);
 const specificRecipeCost = document.querySelector(".specific-recipe-cost");
-const specificRecipeCookArea = document.querySelector(".specific-recipe-cook-area") //area containing either cook button or missing ingredients
+const specificRecipeCookArea = document.querySelector(
+  ".specific-recipe-cook-area"
+); //area containing either cook button or missing ingredients
 const cookAreaHeading = document.querySelector(".cook-area-heading");
 const cookButton = document.querySelector(".cook-button");
 const cookConfirmationText = document.querySelector(".cook-confirmation");
@@ -157,7 +165,7 @@ allRecipeThumbnailsSection.addEventListener("click", deleteSavedRecipe);
 
 //Specific Recipe Page EVENT LISTENERS --------
 specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
-cookButton.addEventListener('click', cookRecipe);
+cookButton.addEventListener("click", cookRecipe);
 
 //User Pantry Page
 userPantryButton.addEventListener("click", displayUserPantry);
@@ -182,7 +190,7 @@ function displayHomePage() {
     specificRecipePage,
     userPantryPage
   );
-  resetSpecificRecipeCookArea()
+  resetSpecificRecipeCookArea();
   currentPage = "home";
   changeButtonColor();
   searchButtonInput.value = "";
@@ -212,7 +220,7 @@ function displayAllRecipes() {
     specificRecipePage,
     userPantryPage
   );
-  resetSpecificRecipeCookArea()
+  resetSpecificRecipeCookArea();
   currentPage = "all";
   changeButtonColor();
   searchButtonInput.value = "";
@@ -232,7 +240,6 @@ function displaySavedRecipes() {
   searchButtonInput.value = "";
   searchButtonInput.placeholder = `Search ${currentPage} recipes`;
   changeButtonColor();
- 
 }
 
 function displayUserPantry() {
@@ -243,7 +250,7 @@ function displayUserPantry() {
     specificRecipePage,
     allRecipesMain
   );
-  resetSpecificRecipeCookArea()
+  resetSpecificRecipeCookArea();
   displayUserIngredients();
   currentPage = "userPantry";
   userPantryTitle.innerHTML = `${currentUser.name}'s Pantry`;
@@ -276,7 +283,7 @@ function displaySearchRecipes() {
       "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
   }
   searchButtonInput.value = "";
-  resetSpecificRecipeCookArea()
+  resetSpecificRecipeCookArea();
 }
 //Home Page FUNCTIONS --------
 
@@ -298,11 +305,13 @@ function createPageTitle(title) {
 //Both ALL and Saved Recipe Pages
 function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = "";
-  sortByCookable(currentUser)
+  sortByCookable(currentUser);
   recipesList.forEach((recipe) => {
-    if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
-      return (recipesThumbnailsSection +=
-        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+    if (
+      sortByCookable(currentUser).notReady.includes(recipe) &&
+      currentPage === "saved"
+    ) {
+      return (recipesThumbnailsSection += `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
@@ -310,9 +319,11 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
               <p class='meal-ready'> Not enough ingredients </p> 
             </div> 
             </section>`);
-    } else if (sortByCookable(currentUser).readyToCook.includes(recipe) && currentPage === 'saved'){
-      return (recipesThumbnailsSection +=
-        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+    } else if (
+      sortByCookable(currentUser).readyToCook.includes(recipe) &&
+      currentPage === "saved"
+    ) {
+      return (recipesThumbnailsSection += `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
@@ -320,9 +331,8 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
               <p class='meal-ready'> Ready to cook! </p>  
             </div> 
         </section>`);
-    }else {
-    return (recipesThumbnailsSection +=
-       `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+    } else {
+      return (recipesThumbnailsSection += `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
@@ -394,7 +404,7 @@ function deleteSavedRecipe(event) {
 //Specific Recipe Page FUNCTIONS --------
 
 function loadSpecificRecipe(event) {
-  if (event.target.classList.contains( "single-recipe-img")) {
+  if (event.target.classList.contains("single-recipe-img")) {
     currentRecipe = allRecipes.listOfAllRecipes.find(
       (recipe) => recipe.id === +event.target.parentElement.id
     );
@@ -405,7 +415,7 @@ function loadSpecificRecipe(event) {
     );
   }
   if (
-    event.target.classList.contains('single-recipe-img') ||
+    event.target.classList.contains("single-recipe-img") ||
     event.target.className === "recipe-title-text"
   ) {
     hide(allRecipesMain);
@@ -437,50 +447,60 @@ function changeSpecificRecipeSpecs() {
   generateIngredientList(currentRecipe);
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
-   if (sortByCookable(currentUser).notReady.includes(currentRecipe) 
-    && currentPage === 'saved') {
+  if (
+    sortByCookable(currentUser).notReady.includes(currentRecipe) &&
+    currentPage === "saved"
+  ) {
     loadNotReadyToCookArea();
-    createListOfNeededIngredients(currentRecipe)
-  } else if (sortByCookable(currentUser).readyToCook.includes(currentRecipe)
-    && currentPage === 'saved') {
+    createListOfNeededIngredients(currentRecipe);
+  } else if (
+    sortByCookable(currentUser).readyToCook.includes(currentRecipe) &&
+    currentPage === "saved"
+  ) {
     loadReadyToCookArea();
   }
 }
 
 function createListOfNeededIngredients(currentRecipe) {
-  const toGetIngredientsList = []
-  currentRecipe.ingredients.forEach(recipeIngredient => {
-    let matchedPantryIngredient = currentUser.pantry.find(pantryIngredient => pantryIngredient.ingredient
-    === recipeIngredient.id)
-    if (matchedPantryIngredient && recipeIngredient.quantity.amount > matchedPantryIngredient.amount) {
+  const toGetIngredientsList = [];
+  currentRecipe.ingredients.forEach((recipeIngredient) => {
+    let matchedPantryIngredient = currentUser.pantry.find(
+      (pantryIngredient) => pantryIngredient.ingredient === recipeIngredient.id
+    );
+    if (
+      matchedPantryIngredient &&
+      recipeIngredient.quantity.amount > matchedPantryIngredient.amount
+    ) {
       const amountNeededRecipeObj = {
         ingredient: recipeIngredient,
-        name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
+        name: ingredientsData.find((ing) => ing.id === recipeIngredient.id)
+          .name,
         unit: recipeIngredient.quantity.unit,
-        amountNeeded: recipeIngredient.quantity.amount - matchedPantryIngredient.amount
-      }
-      toGetIngredientsList.push(amountNeededRecipeObj)
-      } else if (!matchedPantryIngredient) {
-        const amountNeededRecipeObj = {
-          ingredient: recipeIngredient,
-          name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
-          unit: recipeIngredient.quantity.unit,
-          amountNeeded: recipeIngredient.quantity.amount
-        }
-        toGetIngredientsList.push(amountNeededRecipeObj)
-      }
-    })
-  displayListOfNeededIngredients(toGetIngredientsList)
+        amountNeeded:
+          recipeIngredient.quantity.amount - matchedPantryIngredient.amount,
+      };
+      toGetIngredientsList.push(amountNeededRecipeObj);
+    } else if (!matchedPantryIngredient) {
+      const amountNeededRecipeObj = {
+        ingredient: recipeIngredient,
+        name: ingredientsData.find((ing) => ing.id === recipeIngredient.id)
+          .name,
+        unit: recipeIngredient.quantity.unit,
+        amountNeeded: recipeIngredient.quantity.amount,
+      };
+      toGetIngredientsList.push(amountNeededRecipeObj);
+    }
+  });
+  displayListOfNeededIngredients(toGetIngredientsList);
 }
-
 
 function displayListOfNeededIngredients(toGetIngredientsList) {
   missingIngredients.innerHTML = "";
-  toGetIngredientsList.forEach(ingredient => {
+  toGetIngredientsList.forEach((ingredient) => {
     missingIngredients.innerHTML += `
     <li>${ingredient.amountNeeded} ${ingredient.unit} ${ingredient.name}</li>
-    `
-  })
+    `;
+  });
 }
 
 function generateIngredientList(recipe) {
@@ -546,15 +566,15 @@ function resetSpecificRecipeCookArea() {
 }
 
 function loadReadyToCookArea() {
-  show (specificRecipeCookArea);
+  show(specificRecipeCookArea);
   show(cookButton);
-  cookAreaHeading.innerText = 'This Recipe is Ready to Cook'
+  cookAreaHeading.innerText = "This Recipe is Ready to Cook";
 }
 
 function loadNotReadyToCookArea() {
   show(specificRecipeCookArea);
   show(missingIngredients);
-  cookAreaHeading.innerText = 'This Recipe is Missing Some Ingredients...'
+  cookAreaHeading.innerText = "This Recipe is Missing Some Ingredients...";
 }
 
 function cookRecipe() {
@@ -658,11 +678,7 @@ function updateUserData() {
   loadData("http://localhost:3001/api/v1/users")
     .then((data) => {
       userData = data;
-      currentUser = new User(
-        data[currentUserIndex].name,
-        data[currentUser].id,
-        data[currentUser].pantry
-      );
+      currentUser.pantry = data[currentUserIndex].pantry;
       displayUserIngredients();
     })
     .catch((error) => {
@@ -731,25 +747,31 @@ function changeButtonColor() {
 
 function sortByCookable(currentUser) {
   let goodIng;
-  
-  const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
-    goodIng = []
-    recipe.ingredients.forEach(ing => {
-      const matchPantryIng = currentUser.pantry.find(item => item.ingredient === ing.id)
-        if (matchPantryIng !== undefined && matchPantryIng.amount - ing.quantity.amount > -1) {
-            goodIng.push(ing)
+
+  const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce(
+    (acc, recipe) => {
+      goodIng = [];
+      recipe.ingredients.forEach((ing) => {
+        const matchPantryIng = currentUser.pantry.find(
+          (item) => item.ingredient === ing.id
+        );
+        if (
+          matchPantryIng !== undefined &&
+          matchPantryIng.amount - ing.quantity.amount > -1
+        ) {
+          goodIng.push(ing);
         }
-    })
+      });
 
-    if (goodIng.length === recipe.ingredients.length) {
-      acc.readyToCook.push(recipe)
-    } else {
-      acc.notReady.push(recipe)
-    }
-    return acc;
-  }, { readyToCook: [], notReady: [] })
-    
-    return sortedRecipes;
-  }
+      if (goodIng.length === recipe.ingredients.length) {
+        acc.readyToCook.push(recipe);
+      } else {
+        acc.notReady.push(recipe);
+      }
+      return acc;
+    },
+    { readyToCook: [], notReady: [] }
+  );
 
-
+  return sortedRecipes;
+}
