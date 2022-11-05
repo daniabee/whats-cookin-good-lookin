@@ -32,12 +32,10 @@
       </div>
     </nav>
     <main class="home-background" id="homePage">
-      <div class="container">
-        <section class="homepage-area">
-          <h1 id="title">What's Cookin' Good Lookin'</h1>
-          <div class="circle"></div>
-        </section>
-      </div>
+      <section class="homepage-area">
+        <h1 id="title">What's Cookin' Good Lookin'</h1>
+      </section>
+      <p class="error-message">Could not load data!</p>
     </main>
     <main class="hide about-page" id="aboutPage">
       <div class="about-paragraph">
@@ -165,7 +163,9 @@
         <label for="ingred-name">What's the name of your ingredient?</label
         ><br />
         <input type="text" id="ingred-name" /><br />
-        <label for="ingred-amount">How much do you have in total? Ex: 3</label
+        <label for="ingred-amount"
+          >How much would you like to add? You can also subtract from your total
+          by putting a negative number! Ex: -3</label
         ><br />
         <input type="text" id="ingred-amount" /><br /><br />
         <button id="submit-ingredient-button">Submit</button>
@@ -174,6 +174,12 @@
           Ingredient is not recognized by our data base!
         </p>
         <p class="error-not-number hide">Amount is not a number!</p>
+        <p class="error-unable-to-save hide">
+          We could not save your data! Please try again.
+        </p>
+        <p class="error-unable-to-retrieve hide">
+          Whoops! We could not retrieve your data!
+        </p>
       </form>
     </main>
   </body>

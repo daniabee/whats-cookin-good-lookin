@@ -20,6 +20,7 @@ let recipeData;
 let currentUser;
 let allRecipes;
 let currentPage;
+let currentUserIndex;
 
 //Navbar VARIABLES ---------
 
@@ -48,6 +49,7 @@ const featuredRecipeName = document.querySelector("#featuredRecipeName");
 const appetizerFilter = document.querySelector("#appetizerFilter");
 const mainCourseFilter = document.querySelector("#mainCourseFilter");
 const snackFilter = document.querySelector("#snackFilter");
+const errorLoadFailure = document.querySelector(".error-message");
 
 //All Recipes Page QUERY SELECTORS--------
 const allRecipesMain = document.querySelector(".all-recipes-main");
@@ -91,39 +93,46 @@ const submitIngredientButton = document.querySelector(
 const errorUnfilled = document.querySelector(".error-unfilled");
 const errorNotRecognized = document.querySelector(".error-not-recognized");
 const errorNotANumber = document.querySelector(".error-not-number");
+const errorUnableToSave = document.querySelector(".error-unable-to-save");
+const errorUnableToRetrieveData = document.querySelector(
+  ".error-unable-to-retrieve"
+);
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 Promise.all([
-  loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
-  loadData(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
-  ),
-  loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"),
-]).then((data) => {
-  userData = data[0];
-  ingredientsData = data[1];
-  recipeData = data[2];
+  loadData("http://localhost:3001/api/v1/users"),
+  loadData("http://localhost:3001/api/v1/ingredients"),
+  loadData("http://localhost:3001/api/v1/recipes"),
+])
+  .then((data) => {
+    userData = data[0];
+    ingredientsData = data[1];
+    recipeData = data[2];
 
-  createInstances(recipeData, ingredientsData, userData);
-  allRecipes = new RecipeRepository(recipeData);
-  populateTagFilter(allRecipes.listOfAllRecipes);
-});
+    createInstances(recipeData, ingredientsData, userData);
+    allRecipes = new RecipeRepository(recipeData);
+    populateTagFilter(allRecipes.listOfAllRecipes);
+    hideLoadFailure();
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
   makeRecipesList(dataSet1);
   makeIngredientsList(dataSet2);
   currentUser = new User();
-  currentUser.generateRandomUser(dataSet3.usersData);
+  currentUserIndex = currentUser.generateRandomUser(dataSet3);
 }
 
 function makeRecipesList(dataSet) {
-  recipeData = dataSet.recipeData.map((element) => {
+  recipeData = dataSet.map((element) => {
     return new Recipe(element);
   });
 }
 
 function makeIngredientsList(dataSet) {
-  ingredientsData = dataSet.ingredientsData.map((element) => {
+  ingredientsData = dataSet.map((element) => {
     return new Ingredient(element);
   });
 }
@@ -464,6 +473,7 @@ function createListOfNeededIngredients(currentRecipe) {
   displayListOfNeededIngredients(toGetIngredientsList)
 }
 
+
 function displayListOfNeededIngredients(toGetIngredientsList) {
   missingIngredients.innerHTML = "";
   toGetIngredientsList.forEach(ingredient => {
@@ -554,6 +564,27 @@ function cookRecipe() {
 }
 
 //User Page FUNCTIONS
+function postUser(user) {
+  fetch("http://localhost:3001/api/v1/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  })
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error("There was an issue saving your data.");
+      }
+      return resp.json();
+    })
+    .then((user) => {
+      updateUserData();
+    })
+    .catch((error) => {
+      show(errorUnableToSave);
+      setTimeout(hideUnableToSaveError, 1500);
+    });
+}
+
 function createUserIngredientsList() {
   return currentUser.pantry
     .map((userIngred) => {
@@ -576,39 +607,68 @@ function displayUserIngredients() {
   });
 }
 
+function findIngredient(ingredName) {
+  return ingredientsData.find(
+    (ingred) => ingred.name === ingredName.toLowerCase()
+  );
+}
+
 function addIngredientToPantry(event) {
   event.preventDefault();
   const ingredientName = ingredientNameInput.value;
   const ingredientAmount = ingredientAmountInput.value;
-  const found = ingredientsData.find(
-    (ingred) => ingred.name === ingredientName.toLowerCase()
-  );
-  const isNumber = +ingredientAmount;
-  if (isNaN(isNumber) && ingredientName != "") {
+  const newIngredient = new Object();
+  const ingredFound = findIngredient(ingredientName);
+  if (isNaN(+ingredientAmount) && ingredientName != "") {
     show(errorNotANumber);
     setTimeout(hideNotNumberError, 1500);
   } else if (ingredientName === "" && ingredientAmount === "") {
     show(errorUnfilled);
     setTimeout(hideUnfilledError, 1500);
-  } else if (found === undefined) {
+  } else if (ingredFound === undefined) {
     show(errorNotRecognized);
     setTimeout(hideNotRecognizedError, 1500);
   } else {
     const ingredientToUpdate = currentUser.pantry.find(
-      (ingred) => ingred.ingredient === found.id
+      (ingred) => ingred.ingredient === ingredFound.id
     );
     if (ingredientToUpdate != undefined) {
-      ingredientToUpdate.amount = +ingredientAmount;
-    } else {
-      const newIngredient = new Object();
-      newIngredient.ingredient = found.id;
+      newIngredient.ingredient = ingredientToUpdate.ingredient;
       newIngredient.amount = +ingredientAmount;
-      currentUser.pantry.push(newIngredient);
+    } else {
+      newIngredient.ingredient = ingredFound.id;
+      newIngredient.amount = +ingredientAmount;
     }
+    postUser(createPostableUser(newIngredient));
+    updateUserData();
   }
-  displayUserIngredients();
   ingredientNameInput.value = "";
   ingredientAmountInput.value = "";
+}
+
+function createPostableUser(ingredient) {
+  const postUser = new Object();
+  postUser.userID = currentUser.id;
+  postUser.ingredientID = ingredient.ingredient;
+  postUser.ingredientModification = ingredient.amount;
+  return postUser;
+}
+
+function updateUserData() {
+  loadData("http://localhost:3001/api/v1/users")
+    .then((data) => {
+      userData = data;
+      currentUser = new User(
+        data[currentUserIndex].name,
+        data[currentUser].id,
+        data[currentUser].pantry
+      );
+      displayUserIngredients();
+    })
+    .catch((error) => {
+      show(errorUnableToRetrieveData);
+      setTimeout(hideUnableToRetrieveData, 1500);
+    });
 }
 
 //Helper FUNCTIONS
@@ -631,6 +691,18 @@ function hideNotRecognizedError() {
 
 function hideNotNumberError() {
   errorNotANumber.classList.add("hide");
+}
+
+function hideUnableToSaveError() {
+  errorUnableToSave.classList.add("hide");
+}
+
+function hideUnableToRetrieveData() {
+  errorUnableToRetrieveData.classList.add("hide");
+}
+
+function hideLoadFailure() {
+  errorLoadFailure.classList.add("hide");
 }
 
 function hideAlert() {
