@@ -390,9 +390,9 @@ function loadSpecificRecipe(event) {
     );
   }
   if (
-    event.target.classList.contains( "single-recipe-img" ||
+    event.target.classList.contains('single-recipe-img') ||
     event.target.className === "recipe-title-text"
-  )) {
+  ) {
     hide(allRecipesMain);
     show(specificRecipePage);
     changeSpecificRecipeSpecs();
