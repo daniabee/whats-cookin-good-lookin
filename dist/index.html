@@ -124,18 +124,30 @@
           />
         </section>
         <section class="specific-recipe-info">
-          <div>
-            <h3>INGREDIENTS</h3>
-            <ul class="specific-recipe-ingredients-list"></ul>
-          </div>
-          <div>
+          <section class="specific-recipe-ingredients-and-cook-section">
+            <div>
+              <h3>INGREDIENTS</h3>
+              <ul class="specific-recipe-ingredients-list"></ul>
+            </div>
+            <div class="specific-recipe-cook-area hide">
+              <h3 class="cook-area-heading">This Recipe Is Ready To Cook</h3> <!-- this inner text will need to be updated depending on where the recipe can be cooked or not-->
+              <button class="cook-button" type="button">Let's Cook!</button> <!-- this button will need to be hidden after being clicked-->
+              <p class="cook-confirmation">The recipe's ingredients have been removed from your pantry.</p>
+              <!-- the above <p> tag will need to be hidden then shown once the 'cook button has been clicked'-->
+              <ul class="missing-ingredients">
+                <li>test</li>
+                <!-- the recipe ingredents that are needed go here -->
+              </ul>
+            </div>
+          </section>
+          <section>
             <h3>INSTRUCTIONS</h3>
             <ol class="specific-recipe-instructions"></ol>
-          </div>
-          <div>
+          </section>
+          <section>
             <h3>COST</h3>
             <p class="specific-recipe-cost">$6.00</p>
-          </div>
+          </section>
         </section>
       </div>
     </main>
@@ -147,7 +159,7 @@
         </ul>
       </section>
       <form class="ingredients-form">
-        <h2>Add an ingredient to your pantry!</h2>
+        <h2 class="form-title">Add an ingredient to your pantry!</h2>
         <label for="ingred-name">What's the name of your ingredient?</label
         ><br />
         <input type="text" id="ingred-name" /><br />
