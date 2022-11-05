@@ -410,42 +410,30 @@ function changeSpecificRecipeSpecs() {
 function createListOfNeededIngredients(currentRecipe) {
   const toGetIngredientsList = []
   currentRecipe.ingredients.forEach(recipeIngredient => {
-    console.log('currentUser.pantry', currentUser.pantry)
-    let matchedIngredient = currentUser.pantry.find(pantryIngredient => {
-      console.log('pantryIngredient',pantryIngredient)
-      console.log(recipeIngredient.id)
-      return pantryIngredient.ingredient
-    === recipeIngredient.id})
-    console.log('matchedIngredient', matchedIngredient)
-    console.log('recipeIngredient', recipeIngredient)
-    if (matchedIngredient && recipeIngredient.quantity.amount > matchedIngredient.amount) {
+    let matchedPantryIngredient = currentUser.pantry.find(pantryIngredient => pantryIngredient.ingredient
+    === recipeIngredient.id)
+    if (matchedPantryIngredient && recipeIngredient.quantity.amount > matchedPantryIngredient.amount) {
       const amountNeededRecipeObj = {
         ingredient: recipeIngredient,
         name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
         unit: recipeIngredient.quantity.unit,
-        amountNeeded: 0
+        amountNeeded: recipeIngredient.quantity.amount - matchedPantryIngredient.amount
       }
-      amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount - matchedIngredient.amount
       toGetIngredientsList.push(amountNeededRecipeObj)
-      } else if (!matchedIngredient) {
+      } else if (!matchedPantryIngredient) {
         const amountNeededRecipeObj = {
           ingredient: recipeIngredient,
           name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
           unit: recipeIngredient.quantity.unit,
-          amountNeeded: 0
+          amountNeeded: recipeIngredient.quantity.amount
         }
-        amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount
         toGetIngredientsList.push(amountNeededRecipeObj)
       }
-      
     })
-
-  
   displayListOfNeededIngredients(toGetIngredientsList)
 }
 
 function displayListOfNeededIngredients(toGetIngredientsList) {
-  console.log('toGetIngredientsListDisplay',toGetIngredientsList)
   missingIngredients.innerHTML = "";
   toGetIngredientsList.forEach(ingredient => {
     missingIngredients.innerHTML += `
@@ -525,7 +513,7 @@ function loadReadyToCookArea() {
 function loadNotReadyToCookArea() {
   show(specificRecipeCookArea);
   show(missingIngredients);
-  cookAreaHeading.innerText = 'This Recipe is Missing Some Ingredients...' //or whatever
+  cookAreaHeading.innerText = 'This Recipe is Missing Some Ingredients...'
 }
 
 function cookRecipe() {
@@ -533,7 +521,6 @@ function cookRecipe() {
   hide(cookButton);
   show(cookConfirmationText);
 }
-
 
 //User Page FUNCTIONS
 function createUserIngredientsList() {
@@ -641,7 +628,6 @@ function changeButtonColor() {
 
 function sortByCookable(currentUser) {
   let goodIng;
-  
   const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
     goodIng = []
     recipe.ingredients.forEach(ing => {
@@ -650,7 +636,6 @@ function sortByCookable(currentUser) {
             goodIng.push(ing)
         }
     })
-    
     if (goodIng.length === recipe.ingredients.length) {
       acc.readyToCook.push(recipe)
     } else {
@@ -658,7 +643,6 @@ function sortByCookable(currentUser) {
     }
     return acc;
   }, { readyToCook: [], notReady: [] })
-
   return sortedRecipes;
   }
 
