@@ -190,6 +190,7 @@ nav {
 
 .specific-recipe-info {
   margin-left: 5%;
+  margin-right: 5%;
   color: rgb(87, 36, 31);
 }
 
@@ -244,7 +245,6 @@ nav {
   color: rgb(255, 227, 171);
   font-size: 1.2vw;
 }
-
 
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
 .all-recipes-main {
