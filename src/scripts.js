@@ -561,7 +561,23 @@ function cookRecipe() {
   currentUser.cookRecipe(currentRecipe);
   hide(cookButton);
   show(cookConfirmationText);
+
+  currentRecipe.ingredients.forEach(recipeIngredient => {
+    postUser(createPostableUserAfterCooking(recipeIngredient))
+  })
+
+  updateUserData();
 }
+
+function createPostableUserAfterCooking(ingredient) {
+  const postUser = {};
+  postUser.userID = currentUser.id;
+  postUser.ingredientID = ingredient.id;
+  postUser.ingredientModification = -ingredient.quantity.amount;
+  console.log('postUser after cooking: ', postUser);
+  return postUser
+}
+
 
 //User Page FUNCTIONS
 function postUser(user) {
