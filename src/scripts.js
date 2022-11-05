@@ -658,11 +658,9 @@ function updateUserData() {
   loadData("http://localhost:3001/api/v1/users")
     .then((data) => {
       userData = data;
-      currentUser = new User(
-        data[currentUserIndex].name,
-        data[currentUser].id,
-        data[currentUser].pantry
-      );
+      
+      currentUser.pantry = data[currentUserIndex].pantry
+  
       displayUserIngredients();
     })
     .catch((error) => {
