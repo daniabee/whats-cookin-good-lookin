@@ -561,7 +561,23 @@ function cookRecipe() {
   currentUser.cookRecipe(currentRecipe);
   hide(cookButton);
   show(cookConfirmationText);
+
+  currentRecipe.ingredients.forEach(recipeIngredient => {
+    postUser(createPostableUserAfterCooking(recipeIngredient))
+  })
+
+  updateUserData();
 }
+
+function createPostableUserAfterCooking(ingredient) {
+  const postUser = {};
+  postUser.userID = currentUser.id;
+  postUser.ingredientID = ingredient.id;
+  postUser.ingredientModification = -ingredient.quantity.amount;
+  console.log('postUser after cooking: ', postUser);
+  return postUser
+}
+
 
 //User Page FUNCTIONS
 function postUser(user) {
@@ -658,11 +674,9 @@ function updateUserData() {
   loadData("http://localhost:3001/api/v1/users")
     .then((data) => {
       userData = data;
-      currentUser = new User(
-        data[currentUserIndex].name,
-        data[currentUser].id,
-        data[currentUser].pantry
-      );
+      
+      currentUser.pantry = data[currentUserIndex].pantry
+  
       displayUserIngredients();
     })
     .catch((error) => {
