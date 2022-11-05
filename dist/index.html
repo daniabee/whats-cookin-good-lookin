@@ -32,10 +32,13 @@
       </div>
     </nav>
     <main class="home-background" id="homePage">
-      <section class="homepage-area">
-        <h1 id="title">What's Cookin' Good Lookin'</h1>
-      </section>
-      <p class="error-message">Could not load data!</p>
+      <div class="container">
+        <section class="homepage-area">
+          <h1 id="title">What's Cookin' Good Lookin'</h1>
+          <div class="circle"></div>
+        </section>
+        <p class="error-message">Could not load data!</p>
+      </div>
     </main>
     <main class="hide about-page" id="aboutPage">
       <div class="about-paragraph">
@@ -130,9 +133,13 @@
               <ul class="specific-recipe-ingredients-list"></ul>
             </div>
             <div class="specific-recipe-cook-area hide">
-              <h3 class="cook-area-heading">This Recipe Is Ready To Cook</h3> <!-- this inner text will need to be updated depending on where the recipe can be cooked or not-->
-              <button class="cook-button" type="button">Let's Cook!</button> <!-- this button will need to be hidden after being clicked-->
-              <p class="cook-confirmation">The recipe's ingredients have been removed from your pantry.</p>
+              <h3 class="cook-area-heading">This Recipe Is Ready To Cook</h3>
+              <!-- this inner text will need to be updated depending on where the recipe can be cooked or not-->
+              <button class="cook-button" type="button">Let's Cook!</button>
+              <!-- this button will need to be hidden after being clicked-->
+              <p class="cook-confirmation">
+                The recipe's ingredients have been removed from your pantry.
+              </p>
               <!-- the above <p> tag will need to be hidden then shown once the 'cook button has been clicked'-->
               <ul class="missing-ingredients">
                 <li>test</li>
