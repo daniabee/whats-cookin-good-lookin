@@ -72,7 +72,6 @@ const specificRecipeImage = document.querySelector(".specific-recipe-img");
 const specificRecipeIngredients = document.querySelector(".specific-recipe-ingredients-list");
 const specificRecipeInstructions = document.querySelector(".specific-recipe-instructions");
 const specificRecipeCost = document.querySelector(".specific-recipe-cost");
-    // NEW ⬇️
 const specificRecipeCookArea = document.querySelector(".specific-recipe-cook-area") //area containing either cook button or missing ingredients
 const cookAreaHeading = document.querySelector(".cook-area-heading");
 const cookButton = document.querySelector(".cook-button");
@@ -398,15 +397,64 @@ function changeSpecificRecipeSpecs() {
   generateIngredientList(currentRecipe);
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
-
-  if (sortByCookable(currentUser).notReady.includes(currentRecipe) 
+   if (sortByCookable(currentUser).notReady.includes(currentRecipe) 
     && currentPage === 'saved') {
     loadNotReadyToCookArea();
+    createListOfNeededIngredients(currentRecipe)
   } else if (sortByCookable(currentUser).readyToCook.includes(currentRecipe)
     && currentPage === 'saved') {
     loadReadyToCookArea();
   }
+
 }
+
+}
+
+function createListOfNeededIngredients(currentRecipe) {
+  const toGetIngredientsList = []
+  currentRecipe.ingredients.forEach(recipeIngredient => {
+    console.log('currentUser.pantry', currentUser.pantry)
+    let matchedIngredient = currentUser.pantry.find(pantryIngredient => {
+      console.log('pantryIngredient',pantryIngredient)
+      console.log(recipeIngredient.id)
+      return pantryIngredient.ingredient
+    === recipeIngredient.id})
+    console.log('matchedIngredient', matchedIngredient)
+    console.log('recipeIngredient', recipeIngredient)
+    if (matchedIngredient && recipeIngredient.quantity.amount > matchedIngredient.amount) {
+      const amountNeededRecipeObj = {
+        ingredient: recipeIngredient,
+        name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
+        unit: recipeIngredient.quantity.unit,
+        amountNeeded: 0
+      }
+      amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount - matchedIngredient.amount
+      toGetIngredientsList.push(amountNeededRecipeObj)
+      } else if (!matchedIngredient) {
+        const amountNeededRecipeObj = {
+          ingredient: recipeIngredient,
+          name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
+          unit: recipeIngredient.quantity.unit,
+          amountNeeded: 0
+        }
+        amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount
+        toGetIngredientsList.push(amountNeededRecipeObj)
+      }
+      
+    })
+
+  
+  displayListOfNeededIngredients(toGetIngredientsList)
+}
+
+function displayListOfNeededIngredients(toGetIngredientsList) {
+  console.log('toGetIngredientsListDisplay',toGetIngredientsList)
+  missingIngredients.innerHTML = "";
+  toGetIngredientsList.forEach(ingredient => {
+    missingIngredients.innerHTML += `
+    <li>${ingredient.amountNeeded} ${ingredient.unit} ${ingredient.name}</li>
+    `
+  })
 
 function generateIngredientList(recipe) {
   const ingredientsListDisplay = recipe.ingredients.reduce((list, currIng) => {
