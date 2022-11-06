@@ -298,7 +298,6 @@ function createPageTitle(title) {
 //Both ALL and Saved Recipe Pages
 function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = "";
-  // sortByCookable(currentUser) may not be necessary
   recipesList.forEach((recipe) => {
     if(currentUser.sortByCookable().notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
@@ -574,7 +573,6 @@ function createPostableUserAfterCooking(ingredient) {
   postUser.userID = currentUser.id;
   postUser.ingredientID = ingredient.id;
   postUser.ingredientModification = -ingredient.quantity.amount;
-  console.log('postUser after cooking: ', postUser);
   return postUser
 }
 
@@ -743,27 +741,5 @@ function changeButtonColor() {
   }
 }
 
-// function sortByCookable(currentUser) {
-//   let goodIng;
-  
-//   const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
-//     goodIng = []
-//     recipe.ingredients.forEach(ing => {
-//       const matchPantryIng = currentUser.pantry.find(item => item.ingredient === ing.id)
-//         if (matchPantryIng !== undefined && matchPantryIng.amount - ing.quantity.amount > -1) {
-//             goodIng.push(ing)
-//         }
-//     })
-
-//     if (goodIng.length === recipe.ingredients.length) {
-//       acc.readyToCook.push(recipe)
-//     } else {
-//       acc.notReady.push(recipe)
-//     }
-//     return acc;
-//   }, { readyToCook: [], notReady: [] })
-    
-//     return sortedRecipes;
-//   }
 
 
