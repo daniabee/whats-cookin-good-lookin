@@ -357,7 +357,7 @@ nav {
 }
 
 .user-pantry-title {
-  margin: 5%;
+  margin: 3%;
 }
 
 .form-title {
@@ -393,7 +393,7 @@ nav {
   flex-wrap: wrap;
   color: rgb(87, 36, 31);
   width: 60vw;
-  margin-left: 5%;
+  margin-left: 3%;
 }
 
 /* ~~End All/Saved Recipes CSS ~~ */
