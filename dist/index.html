@@ -20,7 +20,8 @@
         <button class="nav-btns" id="allRecipesButton">All Recipes</button>
         <button class="nav-btns" id="savedRecipesButton">Your Recipes To Cook</button>
         <button class="nav-btns" id="userPantryButton">Your Pantry</button>
-        <div class="search-bar-wrapper">
+        <form for="searchInput"class="search-bar-wrapper">
+          <label for="searchInput" class="hide">site search</label>
           <input
             type="text"
             placeholder="Search all recipes"
@@ -28,7 +29,7 @@
             onfocus="this.value=''"
           />
           <button type="submit" id="searchButton">Search</button>
-        </div>
+        </form>
       </div>
     </nav>
     <main class="home-background" id="homePage">
@@ -53,6 +54,7 @@
             class="profile-picture"
             id="andrew"
             src="./images/AndrewProfile.png"
+            alt="Picture of Andrew Cerveny"
           />
           <a class="github" href="https://github.com/AndrewCerveny"
             >Check out Andrew's github!</a
@@ -63,6 +65,7 @@
             class="profile-picture"
             id="brett"
             src="./images/BrettProfile.png"
+            alt="Picture of Brett Kuhn"
           />
           <a class="github" href="https://github.com/bkuhn2"
             >Check out Brett's github!</a
@@ -73,6 +76,7 @@
             class="profile-picture"
             id="courtney"
             src="./images/CourtneyProfile.png"
+            alt="Picture of Courtney Lippman"
           />
           <a class="github" href="https://github.com/Courtney-Lippman"
             >Check out Courtney's github!</a
@@ -83,6 +87,7 @@
             class="profile-picture"
             id="dani"
             src="./images/DaniProfile.png"
+            alt="Picture of Dani Bagley"
           />
           <a class="github" href="https://github.com/daniabee"
             >Check out Dani's github!</a
@@ -94,17 +99,17 @@
       <h1 class="page-title">All RECIPES</h1>
       <div class="display-thumbnails-filter-dropdown">
         <section class="all-recipe-thumbnails"></section>
-        <section class="filter-by-tag-display">
+        <form for="tag-select" class="filter-by-tag-display">
           <label class="label-for-select-a-tag" for="tag-select"
             >Select a tag:</label
           >
-          <select class="list-of-tag-options" name="tags">
+          <select id="tag-select"class="list-of-tag-options" name="tags">
             <option class="tag-options-text" value="default">
               Please choose a tag
             </option>
           </select>
           <button class="filter-button">Search</button>
-        </section>
+        </form>
       </div>
     </main>
     <main class="hide specific-recipe-page" id="specificRecipePage">
@@ -112,7 +117,7 @@
         <h1 class="specific-recipe-heading">Recipe Name</h1>
         <div class="button-save-alert-layout">
           <button type="button" class="save-button" id="">Save Recipe</button>
-          <p class="recipe-saved-text hide">Recipe Has Been Saved!</p>
+          <h2 class="recipe-saved-text hide">Recipe Has Been Saved!</h2>
         </div>
       </header>
       <div class="specific-recipe-display">
@@ -124,24 +129,12 @@
           />
         </section>
         <section class="specific-recipe-info">
-          <section class="specific-recipe-ingredients-and-cook-section">
-            <div>
-              <h3>INGREDIENTS</h3>
-              <ul class="specific-recipe-ingredients-list"></ul>
-            </div>
-            <div class="specific-recipe-cook-area hide">
-              <h3 class="cook-area-heading">This Recipe Is Ready To Cook</h3> <!-- this inner text will need to be updated depending on where the recipe can be cooked or not-->
-              <button class="cook-button" type="button">Let's Cook!</button> <!-- this button will need to be hidden after being clicked-->
-              <p class="cook-confirmation">The recipe's ingredients have been removed from your pantry.</p>
-              <!-- the above <p> tag will need to be hidden then shown once the 'cook button has been clicked'-->
-              <ul class="missing-ingredients">
-                <li>test</li>
-                <!-- the recipe ingredents that are needed go here -->
-              </ul>
-            </div>
-          </section>
-          <section>
-            <h3>INSTRUCTIONS</h3>
+          <div>
+            <h2>INGREDIENTS</h2>
+            <ul class="specific-recipe-ingredients-list"></ul>
+          </div>
+          <div>
+            <h2>INSTRUCTIONS</h2>
             <ol class="specific-recipe-instructions"></ol>
           </section>
           <section>
@@ -167,7 +160,7 @@
           >How much would you like to add? You can also subtract from your total
           by putting a negative number! Ex: -3</label
         ><br />
-        <input type="text" id="ingred-amount" /><br /><br />
+        <input type="text" id="ingred-amount" required="number" /><br /><br />
         <button id="submit-ingredient-button">Submit</button>
         <p class="error-unfilled hide">Please fill out the form completely!</p>
         <p class="error-not-recognized hide">
