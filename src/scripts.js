@@ -136,10 +136,17 @@ searchButton.addEventListener("click", displaySearchRecipes);
 allRecipesMain.addEventListener("click", loadSpecificRecipe);
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 searchFilterButton.addEventListener("click", displayRecipesOfSameTag);
+allRecipesMain.addEventListener("keypress",function(event) {
+  if (event.key === "Enter") {
+    console.log('pressing enter',event)
+    loadSpecificRecipe(event)
+    deleteSavedRecipe(event)
+  }
+})
 
 //Saved Recipes Page EVENT LISTENERS --------
 savedRecipeButton.addEventListener("click", displaySavedRecipesPage);
-allRecipeThumbnailsSection.addEventListener("click", deleteSavedRecipe);
+allRecipeThumbnailsSection.addEventListener("click", deleteSavedRecipe); 
 
 //Specific Recipe Page EVENT LISTENERS --------
 specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
@@ -281,8 +288,8 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   recipesList.forEach((recipe) => {
     if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
-        `<section class="single-recipe-thumbnail" tabindex='0' id = "${recipe.id}"> 
-          <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
+        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+          <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text" >${recipe.name} </p> 
               <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
@@ -291,8 +298,8 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
             </section>`);
     } else if (sortByCookable(currentUser).readyToCook.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
-        `<section class="single-recipe-thumbnail" id = "${recipe.id}"tabindex='0'> 
-          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
+        `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
               <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
@@ -301,8 +308,8 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
         </section>`);
     }else {
     return (recipesThumbnailsSection +=
-      `<section class="single-recipe-thumbnail" id = "${recipe.id}"tabindex='0'> 
-          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
+      `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
               <p class=${trashbinClass} tabindex='0'>${trashbin}</p> 
@@ -373,6 +380,7 @@ function deleteSavedRecipe(event) {
 //Specific Recipe Page FUNCTIONS --------
 
 function loadSpecificRecipe(event) {
+  console.log('LOADING AREA',event)
   if (event.target.classList.contains( "single-recipe-img")) {
     currentRecipe = allRecipes.listOfAllRecipes.find(
       (recipe) => recipe.id === +event.target.parentElement.id
