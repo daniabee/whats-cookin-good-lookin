@@ -18,7 +18,7 @@
         </button>
         <button class="nav-btns" id="aboutButton">About</button>
         <button class="nav-btns" id="allRecipesButton">All Recipes</button>
-        <button class="nav-btns" id="savedRecipesButton">Saved Recipes</button>
+        <button class="nav-btns" id="savedRecipesButton">Your Recipes To Cook</button>
         <button class="nav-btns" id="userPantryButton">Your Pantry</button>
         <form for="searchInput"class="search-bar-wrapper">
           <label for="searchInput" class="hide">site search</label>
@@ -36,6 +36,7 @@
       <section class="homepage-area">
         <h1 id="title">What's Cookin' Good Lookin'</h1>
       </section>
+      <p class="error-message">Could not load data!</p>
     </main>
     <main class="hide about-page" id="aboutPage">
       <div class="about-paragraph">
@@ -135,11 +136,11 @@
           <div>
             <h2>INSTRUCTIONS</h2>
             <ol class="specific-recipe-instructions"></ol>
-          </div>
-          <div>
+          </section>
+          <section>
             <h3>COST</h3>
             <p class="specific-recipe-cost">$6.00</p>
-          </div>
+          </section>
         </section>
       </div>
     </main>
@@ -151,11 +152,13 @@
         </ul>
       </section>
       <form class="ingredients-form">
-        <h2>Add an ingredient to your pantry!</h2>
+        <h2 class="form-title">Add an ingredient to your pantry!</h2>
         <label for="ingred-name">What's the name of your ingredient?</label
         ><br />
-        <input type="text" id="ingred-name" required="text"/><br />
-        <label for="ingred-amount">How much do you have in total? Ex: 3</label
+        <input type="text" id="ingred-name" /><br />
+        <label for="ingred-amount"
+          >How much would you like to add? You can also subtract from your total
+          by putting a negative number! Ex: -3</label
         ><br />
         <input type="text" id="ingred-amount" required="number" /><br /><br />
         <button id="submit-ingredient-button">Submit</button>
@@ -164,6 +167,12 @@
           Ingredient is not recognized by our data base!
         </p>
         <p class="error-not-number hide">Amount is not a number!</p>
+        <p class="error-unable-to-save hide">
+          We could not save your data! Please try again.
+        </p>
+        <p class="error-unable-to-retrieve hide">
+          Whoops! We could not retrieve your data!
+        </p>
       </form>
     </main>
   </body>
