@@ -259,7 +259,8 @@ function displayARecipe() {
   changeButtonColor();
 }
 
-function displaySearchRecipes() {
+function displaySearchRecipes(event) {
+  event.preventDefault()
   let userInput = searchButtonInput.value;
   let recipesFilteredName;
 
