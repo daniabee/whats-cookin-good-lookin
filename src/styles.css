@@ -353,12 +353,11 @@ nav {
 }
 
 .user-pantry-ingredients {
-  width: 50vw;
+  width: 60vw;
 }
 
 .user-pantry-title {
-  margin-top: 3%;
-  margin-bottom: 3%;
+  margin: 5%;
 }
 
 .form-title {
@@ -375,7 +374,8 @@ nav {
   margin-right: 5%;
   color: rgb(255, 227, 171);
   align-items: center;
-  height: 50vh;
+  text-align: center;
+  height: 60vh;
   font-size: 115%;
 }
 
@@ -392,6 +392,8 @@ nav {
   flex-direction: column;
   flex-wrap: wrap;
   color: rgb(87, 36, 31);
+  width: 60vw;
+  margin-left: 5%;
 }
 
 /* ~~End All/Saved Recipes CSS ~~ */
