@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import User from '../src/classes/User';
-import { allRecipes, testUsersData } from '../sampleSets/User-test-data';
+import { allRecipes, testUsersData, recipe3 } from '../sampleSets/User-test-data';
 import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('User', function() {
@@ -8,7 +8,7 @@ describe('User', function() {
   let user1, user2, recipe1, recipe2;
 
   beforeEach('define variables for test suite', function() {
-    user1 = new User('Melvin Gordon', 3, [{"ingredient": 11297, "amount": 7}]);
+    user1 = new User('Melvin Gordon', 3, [{"ingredient": 20081, "amount": 50}, {"ingredient": 18372, "amount": 20}]);
     user2 = new User();
     recipe1 = allRecipes.listOfAllRecipes[0];
     recipe2 = allRecipes.listOfAllRecipes[1];
@@ -39,7 +39,7 @@ describe('User', function() {
   });
 
   it('Should be able to have a pantry', function() {
-    expect(user1.pantry).to.deep.equal([{"ingredient": 11297, "amount": 7}]);
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 50}, {"ingredient": 18372, "amount": 20}]);
     expect(user1.pantry).to.be.an('array');
 
     expect(user2).to.have.any.keys('pantry');
@@ -111,4 +111,49 @@ describe('User', function() {
     expect(user1.recipesToCook.listOfAllRecipes).to.deep.equal([]);
     expect(user1.recipesToCook.listOfAllRecipes.length).to.equal(0);
   });
+
+  it('Should be able to cook a recipe', function() {
+    user1.addRecipe(222, allRecipes);
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 50}, {"ingredient": 18372, "amount": 20}]);
+
+    user1.cookRecipe(recipe1)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+  })
+
+  it('Should not be able to cook a recipe that is not in their queue', function() {
+    user1.addRecipe(222, allRecipes);
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 50}, {"ingredient": 18372, "amount": 20}]);
+
+    user1.cookRecipe(recipe1)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+    
+    user1.cookRecipe(recipe3)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+    expect(user1.cookRecipe(recipe3)).to.equal('Please add to your list of recipes to cook and make sure you have enough ingredients.');
+  })
+
+  it('Should be able to sort their recipes whether they have enough ingredients to cook or not', function() {
+    user1.addRecipe(222, allRecipes);
+    user1.addRecipe(333, allRecipes);
+
+    expect(user1.sortByCookable()).to.deep.equal({
+      readyToCook: [recipe1],
+      notReady: [recipe2]
+      }
+    );
+  })
+
+  it('Should only be able to cook a recipe if there is enough ingredients', function() {
+    user1.addRecipe(222, allRecipes);
+    user1.addRecipe(333, allRecipes);
+
+    user1.cookRecipe(recipe1)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+
+    user1.cookRecipe(recipe2)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+    expect(user1.cookRecipe(recipe2)).to.equal('Please add to your list of recipes to cook and make sure you have enough ingredients.');
+  })
+
+
 });
