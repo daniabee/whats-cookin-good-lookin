@@ -37,9 +37,6 @@ class User {
   }
 
   cookRecipe(recipe) {
-    console.log('cook recipe fux: ', recipe);
-    console.log(this.recipesToCook.listOfAllRecipes);
-    console.log(this.recipesToCook.listOfAllRecipes.find(savedRecipe => savedRecipe.id === recipe.id));
     if (this.recipesToCook.listOfAllRecipes.find(savedRecipe => savedRecipe.id === recipe.id)) {
       const updatedPantry = this.pantry.map((item) => {
         const updatedIng = {};
@@ -63,6 +60,28 @@ class User {
     }
   }
 
+  sortByCookable() {
+    let goodIng;
+    
+    const sortedRecipes = this.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
+      goodIng = []
+      recipe.ingredients.forEach(ing => {
+        const matchPantryIng = this.pantry.find(item => item.ingredient === ing.id)
+          if (matchPantryIng !== undefined && matchPantryIng.amount - ing.quantity.amount > -1) {
+              goodIng.push(ing)
+          }
+      })
+  
+      if (goodIng.length === recipe.ingredients.length) {
+        acc.readyToCook.push(recipe)
+      } else {
+        acc.notReady.push(recipe)
+      }
+      return acc;
+    }, { readyToCook: [], notReady: [] })
+      
+      return sortedRecipes;
+    }
 
 }
 
