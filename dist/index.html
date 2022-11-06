@@ -20,7 +20,8 @@
         <button class="nav-btns" id="allRecipesButton">All Recipes</button>
         <button class="nav-btns" id="savedRecipesButton">Saved Recipes</button>
         <button class="nav-btns" id="userPantryButton">Your Pantry</button>
-        <div class="search-bar-wrapper">
+        <form for="searchInput"class="search-bar-wrapper">
+          <label for="searchInput" class="hide">site search</label>
           <input
             type="text"
             placeholder="Search all recipes"
@@ -28,7 +29,7 @@
             onfocus="this.value=''"
           />
           <button type="submit" id="searchButton">Search</button>
-        </div>
+        </form>
       </div>
     </nav>
     <main class="home-background" id="homePage">
@@ -52,6 +53,7 @@
             class="profile-picture"
             id="andrew"
             src="./images/AndrewProfile.png"
+            alt="Picture of Andrew Cerveny"
           />
           <a class="github" href="https://github.com/AndrewCerveny"
             >Check out Andrew's github!</a
@@ -62,6 +64,7 @@
             class="profile-picture"
             id="brett"
             src="./images/BrettProfile.png"
+            alt="Picture of Brett Kuhn"
           />
           <a class="github" href="https://github.com/bkuhn2"
             >Check out Brett's github!</a
@@ -72,6 +75,7 @@
             class="profile-picture"
             id="courtney"
             src="./images/CourtneyProfile.png"
+            alt="Picture of Courtney Lippman"
           />
           <a class="github" href="https://github.com/Courtney-Lippman"
             >Check out Courtney's github!</a
@@ -82,6 +86,7 @@
             class="profile-picture"
             id="dani"
             src="./images/DaniProfile.png"
+            alt="Picture of Dani Bagley"
           />
           <a class="github" href="https://github.com/daniabee"
             >Check out Dani's github!</a
@@ -93,17 +98,17 @@
       <h1 class="page-title">All RECIPES</h1>
       <div class="display-thumbnails-filter-dropdown">
         <section class="all-recipe-thumbnails"></section>
-        <section class="filter-by-tag-display">
+        <form for="tag-select" class="filter-by-tag-display">
           <label class="label-for-select-a-tag" for="tag-select"
             >Select a tag:</label
           >
-          <select class="list-of-tag-options" name="tags">
+          <select id="tag-select"class="list-of-tag-options" name="tags">
             <option class="tag-options-text" value="default">
               Please choose a tag
             </option>
           </select>
           <button class="filter-button">Search</button>
-        </section>
+        </form>
       </div>
     </main>
     <main class="hide specific-recipe-page" id="specificRecipePage">
@@ -111,7 +116,7 @@
         <h1 class="specific-recipe-heading">Recipe Name</h1>
         <div class="button-save-alert-layout">
           <button type="button" class="save-button" id="">Save Recipe</button>
-          <p class="recipe-saved-text hide">Recipe Has Been Saved!</p>
+          <h2 class="recipe-saved-text hide">Recipe Has Been Saved!</h2>
         </div>
       </header>
       <div class="specific-recipe-display">
@@ -124,11 +129,11 @@
         </section>
         <section class="specific-recipe-info">
           <div>
-            <h3>INGREDIENTS</h3>
+            <h2>INGREDIENTS</h2>
             <ul class="specific-recipe-ingredients-list"></ul>
           </div>
           <div>
-            <h3>INSTRUCTIONS</h3>
+            <h2>INSTRUCTIONS</h2>
             <ol class="specific-recipe-instructions"></ol>
           </div>
           <div>
