@@ -37,7 +37,8 @@ class User {
   }
 
   cookRecipe(recipe) {
-    if (this.recipesToCook.listOfAllRecipes.find(savedRecipe => savedRecipe.id === recipe.id)) {
+    if (this.recipesToCook.listOfAllRecipes.find(savedRecipe => savedRecipe.id === recipe.id)
+        && this.sortByCookable().readyToCook.includes(recipe)) {
       const updatedPantry = this.pantry.map((item) => {
         const updatedIng = {};
         updatedIng.ingredient = item.ingredient;
@@ -56,7 +57,7 @@ class User {
       });
       this.pantry = updatedPantry;
     } else {
-      return 'Please add to your list of recipes to cook before cooking.'
+      return 'Please add to your list of recipes to cook and make sure you have enough ingredients.'
     }
   }
 

@@ -129,7 +129,7 @@ describe('User', function() {
     
     user1.cookRecipe(recipe3)
     expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
-    expect(user1.cookRecipe(recipe3)).to.equal('Please add to your list of recipes to cook before cooking.');
+    expect(user1.cookRecipe(recipe3)).to.equal('Please add to your list of recipes to cook and make sure you have enough ingredients.');
   })
 
   it('Should be able to sort their recipes whether they have enough ingredients to cook or not', function() {
@@ -142,5 +142,18 @@ describe('User', function() {
       }
     );
   })
+
+  it('Should only be able to cook a recipe if there is enough ingredients', function() {
+    user1.addRecipe(222, allRecipes);
+    user1.addRecipe(333, allRecipes);
+
+    user1.cookRecipe(recipe1)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+
+    user1.cookRecipe(recipe2)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+    expect(user1.cookRecipe(recipe2)).to.equal('Please add to your list of recipes to cook and make sure you have enough ingredients.');
+  })
+
 
 });
