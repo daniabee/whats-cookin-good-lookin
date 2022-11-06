@@ -33,10 +33,13 @@
       </div>
     </nav>
     <main class="home-background" id="homePage">
-      <section class="homepage-area">
-        <h1 id="title">What's Cookin' Good Lookin'</h1>
-      </section>
-      <p class="error-message">Could not load data!</p>
+      <div class="container">
+        <section class="homepage-area">
+          <h1 id="title">What's Cookin' Good Lookin'</h1>
+          <div class="circle"></div>
+        </section>
+        <p class="error-message">Could not load data!</p>
+      </div>
     </main>
     <main class="hide about-page" id="aboutPage">
       <div class="about-paragraph">
@@ -129,17 +132,29 @@
           />
         </section>
         <section class="specific-recipe-info">
-          <div>
-            <h2>INGREDIENTS</h2>
-            <ul class="specific-recipe-ingredients-list"></ul>
-          </div>
-          <div>
+
+          <section class="specific-recipe-ingredients-and-cook-section">
+            <div>
+              <h2>INGREDIENTS</h2>
+              <ul class="specific-recipe-ingredients-list"></ul>
+            </div>
+            <div class="specific-recipe-cook-area hide">
+              <h2 class="cook-area-heading">This Recipe Is Ready To Cook</h2>
+              <button class="cook-button" type="button">Let's Cook!</button>
+              <h2 class="cook-confirmation">
+                The recipe's ingredients have been removed from your pantry.
+              </h2>
+              <ul class="missing-ingredients">
+              </ul>
+            </div>
+          </section>
+          <section>
             <h2>INSTRUCTIONS</h2>
             <ol class="specific-recipe-instructions"></ol>
           </section>
           <section>
-            <h3>COST</h3>
-            <p class="specific-recipe-cost">$6.00</p>
+            <h2>COST</h2>
+            <h3 class="specific-recipe-cost">$6.00</h3>
           </section>
         </section>
       </div>
