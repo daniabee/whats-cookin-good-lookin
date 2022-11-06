@@ -37,38 +37,33 @@ class User {
   }
 
   cookRecipe(recipe) {
-    // 👈 this argument will be the currentRecipe variable
-
-    /* Needs to only run if it has already been satisfied that the currentRecipe 
-        CAN be cooked */
-
-    console.log("Pantry before anything: ", this.pantry);
-    const updatedPantry = this.pantry.map((item) => {
-      const updatedIng = {};
-      updatedIng.ingredient = item.ingredient;
-
-      const matchingIngredientObject = recipe.ingredients.find(
-        (ing) => ing.id === item.ingredient
-      );
-
-      if (matchingIngredientObject !== undefined) {
-        updatedIng.amount =
-          item.amount - matchingIngredientObject.quantity.amount;
-        console.log(
-          "BING: ",
-          matchingIngredientObject.quantity.amount,
-          updatedIng
+    console.log('cook recipe fux: ', recipe);
+    console.log(this.recipesToCook.listOfAllRecipes);
+    console.log(this.recipesToCook.listOfAllRecipes.find(savedRecipe => savedRecipe.id === recipe.id));
+    if (this.recipesToCook.listOfAllRecipes.find(savedRecipe => savedRecipe.id === recipe.id)) {
+      const updatedPantry = this.pantry.map((item) => {
+        const updatedIng = {};
+        updatedIng.ingredient = item.ingredient;
+        const matchingIngredientObject = recipe.ingredients.find(
+          (ing) => ing.id === item.ingredient
         );
-      } else {
-        updatedIng.amount = item.amount;
-      }
 
-      return updatedIng;
-    });
+        if (matchingIngredientObject !== undefined) {
+          updatedIng.amount =
+            item.amount - matchingIngredientObject.quantity.amount;
+        } else {
+          updatedIng.amount = item.amount;
+        }
 
-    this.pantry = updatedPantry;
-    console.log("Pantry after value reassigned: ", this.pantry);
+        return updatedIng;
+      });
+      this.pantry = updatedPantry;
+    } else {
+      return 'Please add to your list of recipes to cook before cooking.'
+    }
   }
+
+
 }
 
 export default User;

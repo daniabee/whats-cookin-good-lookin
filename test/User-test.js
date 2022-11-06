@@ -120,7 +120,7 @@ describe('User', function() {
     expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
   })
 
-  it('Shouldn not be able to cook a recipe that is not in their queue of recipes', function() {
+  it('Should not be able to cook a recipe that is not in their queue of recipes', function() {
     user1.addRecipe(222, allRecipes);
     expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 50}, {"ingredient": 18372, "amount": 20}]);
 
@@ -128,6 +128,8 @@ describe('User', function() {
     expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
     
     user1.cookRecipe(recipe3)
+    expect(user1.pantry).to.deep.equal([{"ingredient": 20081, "amount": 48.5}, {"ingredient": 18372, "amount": 19.5}]);
+    expect(user1.cookRecipe(recipe3)).to.equal('Please add to your list of recipes to cook before cooking.');
   })
 
 });
