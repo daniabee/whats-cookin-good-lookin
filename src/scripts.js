@@ -298,9 +298,9 @@ function createPageTitle(title) {
 //Both ALL and Saved Recipe Pages
 function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = "";
-  sortByCookable(currentUser)
+  // sortByCookable(currentUser) may not be necessary
   recipesList.forEach((recipe) => {
-    if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
+    if(currentUser.sortByCookable().notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
@@ -310,7 +310,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
               <p class='meal-ready'> Not enough ingredients </p> 
             </div> 
             </section>`);
-    } else if (sortByCookable(currentUser).readyToCook.includes(recipe) && currentPage === 'saved'){
+    } else if (currentUser.sortByCookable().readyToCook.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
@@ -437,11 +437,11 @@ function changeSpecificRecipeSpecs() {
   generateIngredientList(currentRecipe);
   generateInstructions(currentRecipe);
   generateCost(currentRecipe);
-   if (sortByCookable(currentUser).notReady.includes(currentRecipe) 
+   if (currentUser.sortByCookable().notReady.includes(currentRecipe) 
     && currentPage === 'saved') {
     loadNotReadyToCookArea();
     createListOfNeededIngredients(currentRecipe)
-  } else if (sortByCookable(currentUser).readyToCook.includes(currentRecipe)
+  } else if (currentUser.sortByCookable().readyToCook.includes(currentRecipe)
     && currentPage === 'saved') {
     loadReadyToCookArea();
   }
@@ -743,27 +743,27 @@ function changeButtonColor() {
   }
 }
 
-function sortByCookable(currentUser) {
-  let goodIng;
+// function sortByCookable(currentUser) {
+//   let goodIng;
   
-  const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
-    goodIng = []
-    recipe.ingredients.forEach(ing => {
-      const matchPantryIng = currentUser.pantry.find(item => item.ingredient === ing.id)
-        if (matchPantryIng !== undefined && matchPantryIng.amount - ing.quantity.amount > -1) {
-            goodIng.push(ing)
-        }
-    })
+//   const sortedRecipes = currentUser.recipesToCook.listOfAllRecipes.reduce((acc, recipe) => {
+//     goodIng = []
+//     recipe.ingredients.forEach(ing => {
+//       const matchPantryIng = currentUser.pantry.find(item => item.ingredient === ing.id)
+//         if (matchPantryIng !== undefined && matchPantryIng.amount - ing.quantity.amount > -1) {
+//             goodIng.push(ing)
+//         }
+//     })
 
-    if (goodIng.length === recipe.ingredients.length) {
-      acc.readyToCook.push(recipe)
-    } else {
-      acc.notReady.push(recipe)
-    }
-    return acc;
-  }, { readyToCook: [], notReady: [] })
+//     if (goodIng.length === recipe.ingredients.length) {
+//       acc.readyToCook.push(recipe)
+//     } else {
+//       acc.notReady.push(recipe)
+//     }
+//     return acc;
+//   }, { readyToCook: [], notReady: [] })
     
-    return sortedRecipes;
-  }
+//     return sortedRecipes;
+//   }
 
 
