@@ -137,8 +137,8 @@ allRecipesMain.addEventListener("click", loadSpecificRecipe);
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 searchFilterButton.addEventListener("click", displayRecipesOfSameTag);
 allRecipesMain.addEventListener("keypress",function(event) {
+  event.preventDefault();
   if (event.key === "Enter") {
-    console.log('pressing enter',event)
     loadSpecificRecipe(event)
     deleteSavedRecipe(event)
   }
@@ -380,7 +380,7 @@ function deleteSavedRecipe(event) {
 //Specific Recipe Page FUNCTIONS --------
 
 function loadSpecificRecipe(event) {
-  console.log('LOADING AREA',event)
+  
   if (event.target.classList.contains( "single-recipe-img")) {
     currentRecipe = allRecipes.listOfAllRecipes.find(
       (recipe) => recipe.id === +event.target.parentElement.id
