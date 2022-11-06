@@ -33,7 +33,6 @@ let currentRecipe;
 
 //QUERY SELECTORS-----------------------------------------------
 //Navbar QUERY SELECTORS ---------
-const userName = document.querySelector("#userName");
 const homeButton = document.querySelector("#homeButton");
 const aboutButton = document.querySelector("#aboutButton");
 const allRecipesButton = document.querySelector("#allRecipesButton");
@@ -44,11 +43,6 @@ const homePage = document.querySelector("#homePage");
 const aboutPage = document.querySelector("#aboutPage");
 
 //Home Page QUERY SELECTORS--------
-const recipeDisplay = document.querySelector("#featuredRecipeDisplay");
-const featuredRecipeName = document.querySelector("#featuredRecipeName");
-const appetizerFilter = document.querySelector("#appetizerFilter");
-const mainCourseFilter = document.querySelector("#mainCourseFilter");
-const snackFilter = document.querySelector("#snackFilter");
 const errorLoadFailure = document.querySelector(".error-message");
 
 //All Recipes Page QUERY SELECTORS--------
@@ -150,10 +144,17 @@ searchButton.addEventListener("click", displaySearchRecipes);
 allRecipesMain.addEventListener("click", loadSpecificRecipe);
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 searchFilterButton.addEventListener("click", displayRecipesOfSameTag);
+allRecipesMain.addEventListener("keypress",function(event) {
+  event.preventDefault();
+  if (event.key === "Enter") {
+    loadSpecificRecipe(event)
+    deleteSavedRecipe(event)
+  }
+})
 
 //Saved Recipes Page EVENT LISTENERS --------
 savedRecipeButton.addEventListener("click", displaySavedRecipesPage);
-allRecipeThumbnailsSection.addEventListener("click", deleteSavedRecipe);
+allRecipeThumbnailsSection.addEventListener("click", deleteSavedRecipe); 
 
 //Specific Recipe Page EVENT LISTENERS --------
 specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
@@ -303,30 +304,30 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
     if(sortByCookable(currentUser).notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
-          <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
+          <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
             <div class="single-recipe-text"> 
-              <p class="recipe-title-text">${recipe.name}</p> 
-              <p class=${trashbinClass}>${trashbin}</p>
+              <p class="recipe-title-text" >${recipe.name} </p> 
+              <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
               <p class='meal-ready'> Not enough ingredients </p> 
             </div> 
             </section>`);
     } else if (sortByCookable(currentUser).readyToCook.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
-          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
-              <p class=${trashbinClass}>${trashbin}</p>
+              <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
               <p class='meal-ready'> Ready to cook! </p>  
             </div> 
         </section>`);
     }else {
     return (recipesThumbnailsSection +=
-       `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
-          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
+      `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
-              <p class=${trashbinClass}>${trashbin}</p> 
+              <p class=${trashbinClass} tabindex='0'>${trashbin}</p> 
             </div> 
         </section>`);
     }
@@ -394,6 +395,7 @@ function deleteSavedRecipe(event) {
 //Specific Recipe Page FUNCTIONS --------
 
 function loadSpecificRecipe(event) {
+  
   if (event.target.classList.contains( "single-recipe-img")) {
     currentRecipe = allRecipes.listOfAllRecipes.find(
       (recipe) => recipe.id === +event.target.parentElement.id
