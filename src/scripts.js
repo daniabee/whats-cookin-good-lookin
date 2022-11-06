@@ -285,7 +285,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
           <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text" >${recipe.name} </p> 
-              <p class=${trashbinClass}>${trashbin}</p>
+              <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
               <p class='meal-ready'> Not enough ingredients </p> 
             </div> 
             </section>`);
@@ -295,7 +295,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
-              <p class=${trashbinClass}>${trashbin}</p>
+              <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
               <p class='meal-ready'> Ready to cook! </p>  
             </div> 
         </section>`);
@@ -305,7 +305,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
               <p class="recipe-title-text">${recipe.name}</p> 
-              <p class=${trashbinClass}>${trashbin}</p> 
+              <p class=${trashbinClass} tabindex='0'>${trashbin}</p> 
             </div> 
         </section>`);
     }
