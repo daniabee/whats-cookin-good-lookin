@@ -253,12 +253,6 @@ function displayUserPantry() {
   changeButtonColor();
 }
 
-function displayARecipe() {
-  displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
-  currentPage = "specific";
-  changeButtonColor();
-}
-
 function displaySearchRecipes(event) {
   event.preventDefault()
   let userInput = searchButtonInput.value;
