@@ -259,6 +259,7 @@ function displaySearchRecipes(event) {
   let recipesFilteredName;
 
   if (currentPage === "saved") {
+    displaySavedRecipesPage();
     recipesFilteredName = currentUser.recipesToCook.filterByName(userInput);
   } else {
     displayAllRecipes();
