@@ -47,10 +47,9 @@ class User {
         );
 
         if (matchingIngredientObject !== undefined) {
-          updatedIng.amount =
-            item.amount - matchingIngredientObject.quantity.amount;
+          updatedIng.amount = +(item.amount - matchingIngredientObject.quantity.amount).toFixed(2);
         } else {
-          updatedIng.amount = item.amount;
+          updatedIng.amount = +item.amount.toFixed(2);
         }
 
         return updatedIng;

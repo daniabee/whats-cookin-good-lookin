@@ -459,7 +459,7 @@ function createListOfNeededIngredients(currentRecipe) {
         ingredient: recipeIngredient,
         name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
         unit: recipeIngredient.quantity.unit,
-        amountNeeded: recipeIngredient.quantity.amount - matchedPantryIngredient.amount
+        amountNeeded: +(recipeIngredient.quantity.amount - matchedPantryIngredient.amount).toFixed(2)
       }
       toGetIngredientsList.push(amountNeededRecipeObj)
       } else if (!matchedPantryIngredient) {
@@ -467,7 +467,7 @@ function createListOfNeededIngredients(currentRecipe) {
           ingredient: recipeIngredient,
           name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
           unit: recipeIngredient.quantity.unit,
-          amountNeeded: recipeIngredient.quantity.amount
+          amountNeeded: +(recipeIngredient.quantity.amount.toFixed(2))
         }
         toGetIngredientsList.push(amountNeededRecipeObj)
       }
@@ -575,7 +575,7 @@ function createPostableUserAfterCooking(ingredient) {
   const postUser = {};
   postUser.userID = currentUser.id;
   postUser.ingredientID = ingredient.id;
-  postUser.ingredientModification = -ingredient.quantity.amount;
+  postUser.ingredientModification = -(+ingredient.quantity.amount.toFixed(2));
   return postUser
 }
 
