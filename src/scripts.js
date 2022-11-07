@@ -267,7 +267,7 @@ function displaySearchRecipes(event) {
   }
 
   if (recipesFilteredName.length !== 0) {
-    displayRecipeThumbnails(recipesFilteredName, "", "", "0");
+    displayRecipeThumbnails(recipesFilteredName, "", "", "1");
   } else {
     allRecipeThumbnailsSection.innerHTML =
       "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
@@ -301,8 +301,8 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass, tabIndex)
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
-              <p class="recipe-title-text" tabindex='0'>${recipe.name} </p> 
-              <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
+              <p class="recipe-title-text" tabindex='1'>${recipe.name} </p> 
+              <p class=${trashbinClass} tabindex='1'>${trashbin}</p>
               <p class='meal-ready'>Add ingredients to your pantry to cook this recipe!</p> 
             </div> 
             </section>`);
@@ -311,8 +311,8 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass, tabIndex)
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
-              <p class="recipe-title-text" tabindex='0'>${recipe.name}</p> 
-              <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
+              <p class="recipe-title-text" tabindex='1'>${recipe.name}</p> 
+              <p class=${trashbinClass} tabindex='1'>${trashbin}</p>
               <p class='meal-ready'> Ready to cook! </p>  
             </div> 
         </section>`);
@@ -321,7 +321,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass, tabIndex)
       `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
           <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
-              <p class="recipe-title-text" tabindex='0'>${recipe.name}</p> 
+              <p class="recipe-title-text" tabindex='1'>${recipe.name}</p> 
               <p class=${trashbinClass} tabindex=${tabIndex}>${trashbin}</p> 
             </div> 
         </section>`);
@@ -360,7 +360,7 @@ function displayRecipesOfSameTag(event) {
     recipesToTag = allRecipes.filterByTag(inputForTags.value);
     allRecipeFilterTagOptions.selectedIndex = 0;
   }
-  displayRecipeThumbnails(recipesToTag, "", "", "0");
+  displayRecipeThumbnails(recipesToTag, "", "", "1");
 }
 
 //Saved Recipes Page FUNCTIONS --------
@@ -372,7 +372,7 @@ function displaySavedRecipesPage() {
   displayRecipeThumbnails(
     currentUser.recipesToCook.listOfAllRecipes,
     "🗑",
-    "delete-recipe", "0"
+    "delete-recipe", "1"
   );
   createListOfTags(currentUser.recipesToCook.listOfAllRecipes);
 }
@@ -383,7 +383,7 @@ function deleteSavedRecipe(event) {
     displayRecipeThumbnails(
       currentUser.recipesToCook.listOfAllRecipes,
       "🗑",
-      "delete-recipe", "0"
+      "delete-recipe", "1"
     );
   }
 }
