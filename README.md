@@ -1,7 +1,8 @@
 ## Abstract:
-Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN' offers users unique recipes, as well as cooking instructions to advance the user's palette. In our application, a user has the abilitiy to search a recipe, save a recipe, delete a saved recipe, filter all recipes, filter all saved recipes, search by tags, and see specifications of a selected recipe. 
+Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN' offers users unique recipes, as well as cooking instructions to advance the user's palette. In our application, a user has the abilitiy to search a recipe, save a recipe, delete a saved recipe, filter all recipes, filter all saved recipes, search by tags, see specifications of a selected recipe, see their own pantry of ingredients, add/remove ingredients from their pantry, and see what ingredients they are missing from any given recipe they save. 
 
 ## Installation Instructions:
+What's Cookin' Good Lookin' Repo - 
 1. Start at https://github.com/daniabee/whats-cookin-good-lookin
 2. Click code
 3. Copy SSH 
@@ -12,6 +13,18 @@ Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN' offers user
 8. Should be given a server page 'http://localhost:8080/'
 9. Open server in browser  
 
+Whats-cookin-api Repo - 
+1. Start at https://github.com/turingschool-examples/whats-cookin-api
+2. Click code
+3. Copy SSH 
+4. Go to computer terminal type: git clone <'filename'>
+5. Cd into directory 
+6. Run 'npm install'
+7. Run 'npm start
+8. Should be given a server page 'http://localhost:3001/'
+9. Open server in browser  
+
+10. Both what's cookin' good lookin' and what's-cooking-api should be running in order to properly use this application. You can do command T to have 2 tabs open in your terminal. Control C to stop running the servers. 
 
 ## Preview of App:
 <img width="1440" alt="Screen Shot 2022-10-24 at 8 13 30 PM" src="https://user-images.githubusercontent.com/104169837/197666775-c296a35d-3ca9-49ce-bdcd-e143570218cf.png">
@@ -23,7 +36,7 @@ Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN' offers user
 
 
 ## Context:
-Each member of our group has been in Turing for 3 months. (Mod2, week 3)
+Each member of our group has been in Turing for 3 months. (Mod2, week 5)
 
 ## Where you can find the spec:
 https://frontend.turing.edu/projects/whats-cookin-part-one.html
@@ -36,7 +49,7 @@ Dani Bagley: https://github.com/daniabee
 
 ## Learning Goals:
 1. Collaboration with others 
-2. API fetching
+2. API fetching (GET and POST)
 3. Using array iterators in functions 
 4. Creating a wire frame
 5. Use TDD testing to build data model
@@ -44,6 +57,7 @@ Dani Bagley: https://github.com/daniabee
 7. Practice import and exports
 8. Practice git work flow 
 9. Practice a uniform project management system
+10. Practice implementing ARIA and other accesibility practices within our code.
 
 ## Technology Used:
 VS Code
@@ -55,8 +69,13 @@ Terminal
 WebPack
 HTML
 CSS
+WAVE Chrome Extension  
+Lighthouse Extension
+Dalton Chrome Extension 
+Adobe XD 
+Adobe Illustrator 
 ## Wins:
-A consistent win would be overcoming the limitation of merge conflicts. Each member created their own test, their own class, and their own webpage section. Using daily standup's our group was able to communicate effectively and minimize possibilities of major merge conflicts. As a group, our second major win was the retrieval of our api data, once data became accessible outside of the fetch call our website gained practical functionality. 
+A consistent win would be overcoming the limitation of merge conflicts. Each member created their own test, their own class, and their own webpage section. Using daily standup's our group was able to communicate effectively and minimize possibilities of major merge conflicts. As a group, our second major win was the retrieval of our api data, once data became accessible outside of the fetch call our website gained practical functionality. Another win was being able to successfully GET and POST data to APIs, as well as being able to work on individual tasks and then merge them together at the given points throughout the project. 
 
 ## Challenges:
 The greatest challenges were...
@@ -65,6 +84,7 @@ The greatest challenges were...
 2. The ability for functions to be on page load  
 3. Group scheduling across time zones
 4. Making sure commits seemed balanced 
+5. Trusting GitHub automatic merges
 
 ## Future Features:
 1. More user friendly interface
@@ -72,7 +92,7 @@ The greatest challenges were...
 3. Welcome user on home page
 4. A page introducing our website for entry
 
- 
 ## Possible additions:
 1. More functionality to the search bar:  type partial words and filter possible recipes 
 2. Additional filter options as part of the front page spec 
+3. The API used for this project lacked some data that would have been helpful for the overall user experience. On the backend, we recommend adding a 'units' property, in addition to the 'amount' property, that specifies the unit of a given ingredient in a user's pantry. For example, vanilla : 2 *Tbs*.
