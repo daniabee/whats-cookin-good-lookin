@@ -457,10 +457,10 @@ function createListOfNeededIngredients(currentRecipe) {
       amountNeeded: 0
     }
     if (matchedPantryIngredient && recipeIngredient.quantity.amount > matchedPantryIngredient.amount) {
-      amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount - matchedPantryIngredient.amount
+      amountNeededRecipeObj.amountNeeded = +(recipeIngredient.quantity.amount - matchedPantryIngredient.amount).toFixed(2)
       toGetIngredientsList.push(amountNeededRecipeObj)
       } else if (!matchedPantryIngredient) {
-        amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount
+        amountNeededRecipeObj.amountNeeded = +recipeIngredient.quantity.amount.toFixed(2)
         toGetIngredientsList.push(amountNeededRecipeObj)
       }
     })
@@ -667,7 +667,7 @@ function createPostableUser(ingredient) {
   const postUser = new Object();
   postUser.userID = currentUser.id;
   postUser.ingredientID = ingredient.ingredient;
-  postUser.ingredientModification = ingredient.amount;
+  postUser.ingredientModification = +ingredient.amount.toFixed(2);
   return postUser;
 }
 
