@@ -267,7 +267,7 @@ function displaySearchRecipes(event) {
   }
 
   if (recipesFilteredName.length !== 0) {
-    displayRecipeThumbnails(recipesFilteredName, "", "");
+    displayRecipeThumbnails(recipesFilteredName, "", "", "0");
   } else {
     allRecipeThumbnailsSection.innerHTML =
       "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
@@ -283,7 +283,7 @@ function displayAllRecipesPage() {
   displayRecipeThumbnails(
     allRecipes.listOfAllRecipes,
     "",
-    "all-recipe-thumbnail"
+    "all-recipe-thumbnail", ""
   );
   createListOfTags(allRecipes.listOfAllRecipes);
 }
@@ -293,15 +293,15 @@ function createPageTitle(title) {
 }
 
 //Both ALL and Saved Recipe Pages
-function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
+function displayRecipeThumbnails(recipesList, trashbin, trashbinClass, tabIndex) {
   let recipesThumbnailsSection = "";
   recipesList.forEach((recipe) => {
     if(currentUser.sortByCookable().notReady.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
-          <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
+          <img class="single-recipe-img transparent" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
-              <p class="recipe-title-text" >${recipe.name} </p> 
+              <p class="recipe-title-text" tabindex='0'>${recipe.name} </p> 
               <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
               <p class='meal-ready'>Add ingredients to your pantry to cook this recipe!</p> 
             </div> 
@@ -309,9 +309,9 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
     } else if (currentUser.sortByCookable().readyToCook.includes(recipe) && currentPage === 'saved'){
       return (recipesThumbnailsSection +=
         `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
-          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
-              <p class="recipe-title-text">${recipe.name}</p> 
+              <p class="recipe-title-text" tabindex='0'>${recipe.name}</p> 
               <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
               <p class='meal-ready'> Ready to cook! </p>  
             </div> 
@@ -319,10 +319,10 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
     }else {
     return (recipesThumbnailsSection +=
       `<section class="single-recipe-thumbnail" id = "${recipe.id}"> 
-          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name} tabindex='0'> 
+          <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> 
             <div class="single-recipe-text"> 
-              <p class="recipe-title-text">${recipe.name}</p> 
-              <p class=${trashbinClass} tabindex='0'>${trashbin}</p> 
+              <p class="recipe-title-text" tabindex='0'>${recipe.name}</p> 
+              <p class=${trashbinClass} tabindex=${tabIndex}>${trashbin}</p> 
             </div> 
         </section>`);
     }
@@ -350,7 +350,8 @@ function populateTagFilter(recipeList) {
   });
 }
 
-function displayRecipesOfSameTag() {
+function displayRecipesOfSameTag(event) {
+  event.preventDefault()
   let recipesToTag;
   if (currentPage === "saved") {
     recipesToTag = currentUser.recipesToCook.filterByTag(inputForTags.value);
@@ -359,7 +360,7 @@ function displayRecipesOfSameTag() {
     recipesToTag = allRecipes.filterByTag(inputForTags.value);
     allRecipeFilterTagOptions.selectedIndex = 0;
   }
-  displayRecipeThumbnails(recipesToTag, "", "");
+  displayRecipeThumbnails(recipesToTag, "", "", "0");
 }
 
 //Saved Recipes Page FUNCTIONS --------
@@ -371,7 +372,7 @@ function displaySavedRecipesPage() {
   displayRecipeThumbnails(
     currentUser.recipesToCook.listOfAllRecipes,
     "🗑",
-    "delete-recipe"
+    "delete-recipe", "0"
   );
   createListOfTags(currentUser.recipesToCook.listOfAllRecipes);
 }
@@ -382,7 +383,7 @@ function deleteSavedRecipe(event) {
     displayRecipeThumbnails(
       currentUser.recipesToCook.listOfAllRecipes,
       "🗑",
-      "delete-recipe"
+      "delete-recipe", "0"
     );
   }
 }
@@ -449,21 +450,17 @@ function createListOfNeededIngredients(currentRecipe) {
   currentRecipe.ingredients.forEach(recipeIngredient => {
     let matchedPantryIngredient = currentUser.pantry.find(pantryIngredient => pantryIngredient.ingredient
     === recipeIngredient.id)
+    const amountNeededRecipeObj = {
+      ingredient: recipeIngredient,
+      name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
+      unit: recipeIngredient.quantity.unit,
+      amountNeeded: 0
+    }
     if (matchedPantryIngredient && recipeIngredient.quantity.amount > matchedPantryIngredient.amount) {
-      const amountNeededRecipeObj = {
-        ingredient: recipeIngredient,
-        name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
-        unit: recipeIngredient.quantity.unit,
-        amountNeeded: +(recipeIngredient.quantity.amount - matchedPantryIngredient.amount).toFixed(2)
-      }
+      amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount - matchedPantryIngredient.amount
       toGetIngredientsList.push(amountNeededRecipeObj)
       } else if (!matchedPantryIngredient) {
-        const amountNeededRecipeObj = {
-          ingredient: recipeIngredient,
-          name: ingredientsData.find((ing) => ing.id === recipeIngredient.id).name,
-          unit: recipeIngredient.quantity.unit,
-          amountNeeded: +(recipeIngredient.quantity.amount.toFixed(2))
-        }
+        amountNeededRecipeObj.amountNeeded = recipeIngredient.quantity.amount
         toGetIngredientsList.push(amountNeededRecipeObj)
       }
     })
