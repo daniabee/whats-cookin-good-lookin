@@ -608,7 +608,15 @@ function createUserIngredientsList() {
       });
       return `${ingredientName} : ${userIngred.amount}`;
     })
-    .sort();
+    .sort((a, b) => {
+      if (a.toLowerCase() > b.toLowerCase()) {
+        return 1
+      } else if (a.toLowerCase() < b.toLowerCase()) {
+        return -1
+      } else {
+        return 0
+      }
+    });
 }
 
 function displayUserIngredients() {
@@ -621,7 +629,7 @@ function displayUserIngredients() {
 
 function findIngredient(ingredName) {
   return ingredientsData.find(
-    (ingred) => ingred.name === ingredName.toLowerCase()
+    (ingred) => ingred.name.toLowerCase() === ingredName.toLowerCase()
   );
 }
 
