@@ -253,18 +253,13 @@ function displayUserPantry() {
   changeButtonColor();
 }
 
-function displayARecipe() {
-  displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
-  currentPage = "specific";
-  changeButtonColor();
-}
-
 function displaySearchRecipes(event) {
   event.preventDefault()
   let userInput = searchButtonInput.value;
   let recipesFilteredName;
 
   if (currentPage === "saved") {
+    displaySavedRecipesPage();
     recipesFilteredName = currentUser.recipesToCook.filterByName(userInput);
   } else {
     displayAllRecipes();
@@ -308,7 +303,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass, tabIndex)
             <div class="single-recipe-text"> 
               <p class="recipe-title-text" tabindex='0'>${recipe.name} </p> 
               <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
-              <p class='meal-ready'> Not enough ingredients </p> 
+              <p class='meal-ready'>Add ingredients to your pantry to cook this recipe!</p> 
             </div> 
             </section>`);
     } else if (currentUser.sortByCookable().readyToCook.includes(recipe) && currentPage === 'saved'){
@@ -572,7 +567,7 @@ function createPostableUserAfterCooking(ingredient) {
   const postUser = {};
   postUser.userID = currentUser.id;
   postUser.ingredientID = ingredient.id;
-  postUser.ingredientModification = -ingredient.quantity.amount;
+  postUser.ingredientModification = -(+ingredient.quantity.amount.toFixed(2));
   return postUser
 }
 
@@ -610,7 +605,15 @@ function createUserIngredientsList() {
       });
       return `${ingredientName} : ${userIngred.amount}`;
     })
-    .sort();
+    .sort((a, b) => {
+      if (a.toLowerCase() > b.toLowerCase()) {
+        return 1
+      } else if (a.toLowerCase() < b.toLowerCase()) {
+        return -1
+      } else {
+        return 0
+      }
+    });
 }
 
 function displayUserIngredients() {
@@ -623,7 +626,7 @@ function displayUserIngredients() {
 
 function findIngredient(ingredName) {
   return ingredientsData.find(
-    (ingred) => ingred.name === ingredName.toLowerCase()
+    (ingred) => ingred.name.toLowerCase() === ingredName.toLowerCase()
   );
 }
 
