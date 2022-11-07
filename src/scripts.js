@@ -302,7 +302,7 @@ function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
             <div class="single-recipe-text"> 
               <p class="recipe-title-text" >${recipe.name} </p> 
               <p class=${trashbinClass} tabindex='0'>${trashbin}</p>
-              <p class='meal-ready'> Not enough ingredients </p> 
+              <p class='meal-ready'>Add ingredients to your pantry to cook this recipe!</p> 
             </div> 
             </section>`);
     } else if (currentUser.sortByCookable().readyToCook.includes(recipe) && currentPage === 'saved'){
