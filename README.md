@@ -62,6 +62,7 @@ Each member of our group has been in Turing for 3 months. (Mod2, week 5)
 
 ## Where you can find the spec:
 https://frontend.turing.edu/projects/whats-cookin-part-one.html
+https://frontend.turing.edu/projects/whats-cookin-part-two.html
 
 ## Contributors:
 Andrew Cerveny : https://github.com/AndrewCerveny
