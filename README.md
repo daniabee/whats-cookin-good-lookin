@@ -27,10 +27,20 @@ Whats-cookin-api Repo -
 10. Both what's cookin' good lookin' and what's-cooking-api should be running in order to properly use this application. You can do command T to have 2 tabs open in your terminal. Control C to stop running the servers. 
 
 ## Preview of App:
-<img width="1440" alt="Screen Shot 2022-10-24 at 8 13 30 PM" src="https://user-images.githubusercontent.com/104169837/197666775-c296a35d-3ca9-49ce-bdcd-e143570218cf.png">
 
-![Screen Shot 2022-10-24 at 8 17 31 PM](https://user-images.githubusercontent.com/104169837/197667211-50e61a41-8a52-40fa-b88f-2cb569acf62d.png)
-![Screen Shot 2022-10-24 at 8 15 51 PM](https://user-images.githubusercontent.com/104169837/197667308-2cf09813-f89f-4eee-b103-5ae1e2b8332a.png)
+<img width="1440" alt="Screen Shot 2022-11-07 at 4 33 41 PM (2)" src="https://user-images.githubusercontent.com/104169837/200441286-f5f4a86a-9f23-47f5-9099-924a71a12044.png">
+
+![Screen Shot 2022-11-07 at 5 21 18 PM](https://user-images.githubusercontent.com/104169837/200443732-3ee4af62-a6cf-4bcc-b6c0-1ceb493c6a78.png)
+
+![Screen Shot 2022-11-07 at 5 21 26 PM](https://user-images.githubusercontent.com/104169837/200443793-6cd34baf-7abc-4718-bc8a-1ace18062701.png)
+
+![Screen Shot 2022-11-07 at 5 21 43 PM](https://user-images.githubusercontent.com/104169837/200443808-30c76061-5db3-4e90-99a0-34173261d47b.png)
+
+![Brief features gif](https://media.giphy.com/media/I71a8fJZM9u4boPOLB/giphy.gif)
+
+![Brief features gif](https://media.giphy.com/media/DpBgcAzkTAwh6kHcIJ/giphy.gif)
+
+![Brief features gif](https://media.giphy.com/media/prrvfJzKwIBp730htK/giphy.gif)
 
 
 
