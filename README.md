@@ -27,18 +27,30 @@ Whats-cookin-api Repo -
 10. Both what's cookin' good lookin' and what's-cooking-api should be running in order to properly use this application. You can do command T to have 2 tabs open in your terminal. Control C to stop running the servers. 
 
 ## Preview of App:
+### Home:
 
-<img width="1440" alt="Screen Shot 2022-11-07 at 4 33 41 PM (2)" src="https://user-images.githubusercontent.com/104169837/200441286-f5f4a86a-9f23-47f5-9099-924a71a12044.png">
+![Screen Shot 2022-11-07 at 5 29 40 PM](https://user-images.githubusercontent.com/104169837/200444644-c5d7f716-7ebe-4d4a-8864-7b646a16e258.png)
+
+### Saved recipe that has enough ingredients in the pantry to cook:
 
 ![Screen Shot 2022-11-07 at 5 21 18 PM](https://user-images.githubusercontent.com/104169837/200443732-3ee4af62-a6cf-4bcc-b6c0-1ceb493c6a78.png)
 
+### Saved recipe that does not have enough ingredients in the pantry to cook:
+
 ![Screen Shot 2022-11-07 at 5 21 26 PM](https://user-images.githubusercontent.com/104169837/200443793-6cd34baf-7abc-4718-bc8a-1ace18062701.png)
+### User's pantry:
 
 ![Screen Shot 2022-11-07 at 5 21 43 PM](https://user-images.githubusercontent.com/104169837/200443808-30c76061-5db3-4e90-99a0-34173261d47b.png)
 
+### Save a recipe:
+
 ![Brief features gif](https://media.giphy.com/media/I71a8fJZM9u4boPOLB/giphy.gif)
 
+### Filter by a tag (shown by tabbing only):
+
 ![Brief features gif](https://media.giphy.com/media/DpBgcAzkTAwh6kHcIJ/giphy.gif)
+
+### Filter by a name (shown by tabbing only):
 
 ![Brief features gif](https://media.giphy.com/media/prrvfJzKwIBp730htK/giphy.gif)
 
